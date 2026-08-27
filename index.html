@@ -577,6 +577,39 @@ table.t tbody tr:hover{background:var(--surface)}
 
 
 
+
+/* ---- ficha de producto con visor 3D ---- */
+.pdp{display:grid;grid-template-columns:1.15fr 1fr;gap:0;background:var(--app-line)}
+.pdp__v{background:var(--app-bg);padding:22px;display:flex;flex-direction:column;gap:14px}
+.viewer{position:relative;background:var(--paper);border:1px solid var(--app-line);aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;overflow:hidden;cursor:grab;user-select:none}
+.viewer:active{cursor:grabbing}
+.viewer img{max-width:74%;max-height:80%;object-fit:contain;transition:transform .06s linear;pointer-events:none}
+.viewer__360{position:absolute;top:12px;left:12px;display:flex;align-items:center;gap:6px;font-family:var(--f-mono);font-size:9.5px;letter-spacing:.12em;background:var(--signal);color:var(--on-signal);padding:5px 9px;border-radius:3px}
+.viewer__360 svg{width:12px;height:12px}
+.viewer__deg{position:absolute;top:12px;right:12px;font-family:var(--f-mono);font-size:10px;color:var(--muted);background:var(--surface);border:1px solid var(--app-line);padding:4px 8px;border-radius:3px;font-variant-numeric:tabular-nums}
+.viewer__hint{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);font-family:var(--f-mono);font-size:9px;letter-spacing:.12em;color:var(--muted);white-space:nowrap;opacity:.85}
+.viewer__ring{position:absolute;bottom:34px;left:50%;transform:translateX(-50%);width:56%;height:3px;background:var(--app-line);border-radius:99px;overflow:hidden}
+.viewer__ring i{display:block;height:100%;width:12%;background:var(--signal);border-radius:99px}
+.angs{display:flex;gap:8px}
+.ang{flex:1;background:var(--paper);border:1px solid var(--app-line);padding:7px 4px;font-family:var(--f-mono);font-size:8.5px;letter-spacing:.08em;color:var(--muted);text-align:center;cursor:pointer;transition:border-color .2s,color .2s}
+.ang.on{border-color:var(--signal);color:var(--signal-ink)}
+.pdp__d{background:var(--paper);padding:24px 22px;display:flex;flex-direction:column;gap:13px}
+.pdp__brand{font-family:var(--f-mono);font-size:9.5px;letter-spacing:.16em;color:var(--signal-ink)}
+.pdp__n{font-family:var(--f-display);font-size:20px;font-weight:800;letter-spacing:-.02em;line-height:1.15}
+.pdp__p{font-family:var(--f-mono);font-size:26px;font-weight:600;letter-spacing:-.01em}
+.pdp__lbl{font-family:var(--f-mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+.sw{display:flex;gap:9px;flex-wrap:wrap}
+.sw button{width:30px;height:30px;border-radius:50%;border:2px solid transparent;cursor:pointer;padding:0;outline:1px solid var(--app-line);outline-offset:-1px;transition:border-color .2s}
+.sw button.on{border-color:var(--signal)}
+.pdp__sel{font-size:13px;color:var(--ink-2)}
+.pdp__fit{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--ok);background:var(--surface);border:1px solid var(--app-line);padding:9px 12px}
+.pdp__fit svg{width:15px;height:15px;flex-shrink:0}
+.pdp__b{background:var(--signal);color:var(--on-signal);border:none;padding:12px;font-family:var(--f-display);font-weight:700;font-size:14px;cursor:pointer;margin-top:2px}
+.pdp__specs{margin-top:4px;border-top:1px solid var(--app-line);padding-top:12px;display:flex;flex-direction:column;gap:7px}
+.pdp__specs div{display:flex;justify-content:space-between;gap:12px;font-size:12.5px;color:var(--muted)}
+.pdp__specs b{color:var(--ink-2);font-weight:500}
+@media (max-width:820px){.pdp{grid-template-columns:1fr}}
+
 /* ---- mockup contable ---- */
 .cta2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
 .ctab{width:100%;border-collapse:collapse;font-size:12.5px}
@@ -1336,6 +1369,51 @@ body{padding-left:var(--side-w)}
     <p class="mock__cap rv">CADA PRODUCTO CON SU COMPATIBILIDAD VERIFICADA Y EL PRECIO DE LA LISTA DEL CLIENTE</p>
 
     <!-- MOCKUP 5: app del cliente -->
+    <h3 style="font-size:22px;font-weight:800;margin-top:56px" class="rv">La ficha por dentro</h3>
+    <p class="lede rv" style="margin-top:12px">El casco AVX FS-V6 sale 350.000 pesos y hoy se compra mirando una foto de tres cuartos. En la ficha nueva el producto se gira, se mira por donde el cliente quiera, y la terminación se elige y se ve aplicada antes de pagar.</p>
+    <div class="mock rv">
+      <div class="mock__bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="mock__url">tienda.okinoi.com.ar/casco-avx-fs-v6</span></div>
+      <div class="mock__body" style="padding:0">
+        <div class="pdp">
+          <div class="pdp__v">
+            <div class="viewer" id="v3d">
+              <span class="viewer__360"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4a8 4 0 1 0 0 8 8 4 0 1 0 0-8"/><path d="M9 2l3 2-3 2"/></svg>360°</span>
+              <span class="viewer__deg" id="v3ddeg">0°</span>
+              <img src="data:image/jpeg;base64,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" alt="Casco AVX FS-V6" id="v3dimg">
+              <div class="viewer__ring"><i id="v3dring"></i></div>
+              <span class="viewer__hint">ARRASTRÁ PARA GIRAR</span>
+            </div>
+            <div class="angs" id="v3dangs">
+              <span class="ang on">FRENTE</span><span class="ang">PERFIL</span><span class="ang">NUCA</span><span class="ang">INTERIOR</span>
+            </div>
+          </div>
+          <div class="pdp__d">
+            <span class="pdp__brand">AVX · MARCA PROPIA</span>
+            <div class="pdp__n">Casco AVX FS-V6 Matt Black Cafe Racer</div>
+            <div class="pdp__p">$ 350.000</div>
+            <div class="pdp__lbl">Terminación</div>
+            <div class="sw" id="v3dsw">
+              <button class="on" style="background:#2A2A2A" data-n="Negro mate"></button>
+              <button style="background:#0C0C0C" data-n="Negro brillante"></button>
+              <button style="background:#E30016" data-n="Rojo Okinoi"></button>
+              <button style="background:#8A8A8A" data-n="Gris titanio"></button>
+              <button style="background:#F0EDE6" data-n="Blanco perla"></button>
+            </div>
+            <span class="pdp__sel" id="v3dsel">Negro mate</span>
+            <div class="pdp__fit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Talle L disponible · Envío a todo el país</div>
+            <button class="pdp__b">Agregar al carrito</button>
+            <div class="pdp__specs">
+              <div><span>Certificación</span><b>ECE 22.06</b></div>
+              <div><span>Calota</span><b>Termoplástica ABS</b></div>
+              <div><span>Visor</span><b>Antirrayas, con pinlock</b></div>
+              <div><span>Peso</span><b>1.450 g</b></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="mock__cap rv">EL VISOR ES INTERACTIVO: ARRASTRÁ SOBRE LA IMAGEN Y ELEGÍ UNA TERMINACIÓN</p>
+
     <h3 style="font-size:26px;font-weight:800;margin-top:72px" class="rv" id="p2-app">Una aplicación para cada cliente</h3>
     <p class="lede rv" style="margin-top:12px">Cada comercio de la red de Okinoi con su propia aplicación: pide, ve su cuenta corriente, sigue el pedido y consulta su historial. El viajante deja de ser el único canal, y el teléfono de Okinoi deja de ser la mesa de entrada.</p>
     <div class="mock rv">
@@ -1882,6 +1960,50 @@ body{padding-left:var(--side-w)}
       setTimeout(paso, borrando?18:(38+Math.random()*45));
     }
     paso();
+  })();
+
+
+  // ---- visor 3D de la ficha de producto ----
+  (function(){
+    var v=document.getElementById('v3d'); if(!v) return;
+    var img=document.getElementById('v3dimg'), deg=document.getElementById('v3ddeg'),
+        ring=document.getElementById('v3dring'), sel=document.getElementById('v3dsel');
+    var a=0, arrastrando=false, x0=0, a0=0;
+    function pintar(){
+      var r=((a%360)+360)%360;
+      deg.textContent=Math.round(r)+'\u00b0';
+      ring.style.width=(8+(r/360)*84)+'%';
+      if(!reduce){
+        var t=Math.sin(r*Math.PI/180);
+        img.style.transform='perspective(900px) rotateY('+(t*26)+'deg) scale('+(1-Math.abs(t)*0.06)+')';
+      }
+      var i=Math.round(r/90)%4;
+      [].forEach.call(document.querySelectorAll('#v3dangs .ang'),function(e,k){e.classList.toggle('on',k===i)});
+    }
+    function inicio(e){ arrastrando=true; x0=(e.touches?e.touches[0].clientX:e.clientX); a0=a; e.preventDefault(); }
+    function mover(e){
+      if(!arrastrando) return;
+      var x=(e.touches?e.touches[0].clientX:e.clientX);
+      a=a0+(x-x0)*0.8; pintar();
+    }
+    function fin(){ arrastrando=false; }
+    v.addEventListener('mousedown',inicio); v.addEventListener('touchstart',inicio,{passive:false});
+    window.addEventListener('mousemove',mover); window.addEventListener('touchmove',mover,{passive:true});
+    window.addEventListener('mouseup',fin); window.addEventListener('touchend',fin);
+    [].forEach.call(document.querySelectorAll('#v3dangs .ang'),function(e,k){
+      e.addEventListener('click',function(){ a=k*90; pintar(); });
+    });
+    [].forEach.call(document.querySelectorAll('#v3dsw button'),function(b){
+      b.addEventListener('click',function(){
+        [].forEach.call(document.querySelectorAll('#v3dsw button'),function(o){o.classList.remove('on')});
+        b.classList.add('on'); sel.textContent=b.dataset.n;
+        img.style.filter = b.dataset.n==='Negro mate' ? 'none'
+          : 'hue-rotate('+({'Negro brillante':0,'Rojo Okinoi':-8,'Gris titanio':0,'Blanco perla':0}[b.dataset.n]||0)+'deg) '
+            + 'brightness('+({'Negro brillante':.85,'Rojo Okinoi':1.05,'Gris titanio':1.5,'Blanco perla':2.1}[b.dataset.n]||1)+') '
+            + 'saturate('+({'Rojo Okinoi':3.2,'Gris titanio':.2,'Blanco perla':.1}[b.dataset.n]||1)+')';
+      });
+    });
+    pintar();
   })();
 
   // ---- pestañas laterales: scrollspy, progreso, teclado y menu movil ----
