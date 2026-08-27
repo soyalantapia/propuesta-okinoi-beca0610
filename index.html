@@ -481,6 +481,89 @@ table.t tbody tr:hover{background:var(--surface)}
   .tab::before{transition:none}
 }
 
+
+
+
+/* ---- mockup animado de la solucion ---- */
+.sol{margin-top:44px;border:1px solid var(--line-strong);border-radius:10px;background:var(--paper);box-shadow:var(--shadow-lg);overflow:hidden}
+.sol__b{padding:clamp(22px,3.4vw,34px);position:relative}
+.sol__via{position:relative;height:190px}
+.sol__box{position:absolute;top:50%;transform:translateY(-50%);width:min(29%,210px);background:var(--surface);border:1px solid var(--line);border-radius:9px;padding:15px 16px}
+.sol__box.b1{left:0}
+.sol__box.b2{left:50%;transform:translate(-50%,-50%);background:var(--signal-wash);border-color:var(--signal);z-index:2}
+.sol__box.b3{right:0}
+.sol__box b{display:block;font-family:var(--f-display);font-size:14.5px;font-weight:700;margin-bottom:5px;letter-spacing:-.01em}
+.sol__box span{font-size:12.5px;color:var(--muted);line-height:1.45;display:block}
+.sol__box.b2 b{color:var(--signal-ink)}
+.sol__wire{position:absolute;top:50%;height:2px;background:var(--line);z-index:1}
+.sol__wire.w1{left:min(29%,210px);right:calc(50% + min(14.5%,105px))}
+.sol__wire.w2{left:calc(50% + min(14.5%,105px));right:min(29%,210px)}
+.sol__dot{position:absolute;top:50%;width:9px;height:9px;margin-top:-4.5px;border-radius:50%;background:var(--signal);box-shadow:0 0 0 4px var(--signal-wash);z-index:3;offset-rotate:0deg}
+.sol__dot.d1{animation:viajar1 3.4s cubic-bezier(.5,0,.5,1) infinite}
+.sol__dot.d2{animation:viajar2 3.4s cubic-bezier(.5,0,.5,1) infinite}
+@keyframes viajar1{0%,6%{left:min(29%,210px);opacity:0}12%{opacity:1}44%{left:calc(50% - min(14.5%,105px));opacity:1}50%,100%{left:calc(50% - min(14.5%,105px));opacity:0}}
+@keyframes viajar2{0%,50%{left:calc(50% + min(14.5%,105px));opacity:0}56%{opacity:1}92%{left:calc(100% - min(29%,210px));opacity:1}98%,100%{left:calc(100% - min(29%,210px));opacity:0}}
+.sol__cap{font-family:var(--f-mono);font-size:11px;letter-spacing:.06em;color:var(--muted);text-align:center;margin-top:6px}
+@media (max-width:700px){
+  .sol__via{height:auto;display:flex;flex-direction:column;gap:12px}
+  .sol__box{position:static;transform:none;width:100%}
+  .sol__box.b2{transform:none}
+  .sol__wire,.sol__dot{display:none}
+}
+@media (prefers-reduced-motion:reduce){.sol__dot{animation:none;opacity:0}}
+
+/* ---- hero centrado ---- */
+.cover{align-items:center;text-align:center;min-height:100vh;justify-content:center;gap:0}
+.cover__top{width:100%;justify-content:center}
+.cover__mid{max-width:940px;padding:26px 0 34px}
+.cover h1{font-size:clamp(38px,7.4vw,88px)}
+.cover__sub{margin:24px auto 0;max-width:52ch}
+.brandline{justify-content:center}
+
+/* ---- mockup de IA del hero ---- */
+.ai{width:min(660px,100%);margin:38px auto 0;background:var(--paper);border:1px solid var(--line-strong);border-radius:14px;box-shadow:var(--shadow-lg);overflow:hidden;text-align:left}
+.ai__h{display:flex;align-items:center;gap:10px;padding:12px 18px;border-bottom:1px solid var(--line);background:var(--surface)}
+.ai__glyph{width:24px;height:24px;border-radius:7px;background:var(--signal);color:var(--on-signal);display:flex;align-items:center;justify-content:center;flex-shrink:0;position:relative}
+.ai__glyph svg{width:14px;height:14px}
+.ai__glyph::after{content:"";position:absolute;inset:-4px;border-radius:11px;border:1.5px solid var(--signal);opacity:0;animation:pulso 2.6s ease-out infinite}
+@keyframes pulso{0%{opacity:.6;transform:scale(.9)}70%,100%{opacity:0;transform:scale(1.35)}}
+.ai__h b{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.ai__b{padding:20px 22px 22px}
+.ai__q{font-size:17px;color:var(--ink);line-height:1.45;min-height:2.9em;font-weight:500}
+.ai__cur{display:inline-block;width:2px;height:18px;background:var(--signal);vertical-align:-3px;margin-left:2px;animation:parpadeo 1s step-end infinite}
+@keyframes parpadeo{50%{opacity:0}}
+.ai__r{display:flex;gap:9px;flex-wrap:wrap;margin-top:18px;padding-top:16px;border-top:1px solid var(--line);opacity:0;transition:opacity .5s}
+.ai__r.on{opacity:1}
+.ai__chip{display:flex;align-items:center;gap:7px;font-size:12.5px;background:var(--surface);border:1px solid var(--line);border-radius:99px;padding:6px 12px;color:var(--ink-2)}
+.ai__chip i{width:6px;height:6px;border-radius:50%;background:var(--ok);display:block;flex-shrink:0}
+
+/* ---- tira de logotipos ---- */
+.roster{width:100%;padding:8px 0 4px;text-align:center}
+.roster__t{font-family:var(--f-mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:18px}
+.roster__l{display:flex;align-items:center;justify-content:center;gap:clamp(24px,5vw,54px);flex-wrap:wrap}
+.roster__l img{height:24px;width:auto;opacity:.55;filter:grayscale(1);transition:opacity .3s,filter .3s}
+.roster__l img:hover{opacity:1;filter:grayscale(0)}
+:root[data-theme="dark"] .roster__l img,
+:root:not([data-theme="light"]) .roster__l img{filter:grayscale(1) brightness(2.4)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .roster__l img{filter:grayscale(1) brightness(2.4)}}
+@media (prefers-reduced-motion:reduce){.ai__glyph::after,.ai__cur{animation:none}}
+
+/* ---- impacto: hoy / con el ecosistema ---- */
+.imp{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin-top:40px}
+.imp__i{background:var(--paper);padding:26px 24px 28px;display:flex;flex-direction:column;gap:14px;transition:background .3s}
+.imp__i:hover{background:var(--surface)}
+.imp__i .ico{width:28px;height:28px;color:var(--signal)}
+.imp__i h4{font-family:var(--f-display);font-size:17.5px;font-weight:700;letter-spacing:-.01em;line-height:1.25}
+.imp__ad{display:grid;gap:14px}
+.imp__a,.imp__d{display:flex;flex-direction:column;gap:6px}
+.imp__a span,.imp__d span{font-family:var(--f-mono);font-size:9.5px;letter-spacing:.15em;text-transform:uppercase}
+.imp__a span{color:var(--muted)}
+.imp__d span{color:var(--signal-ink)}
+.imp__a p{font-size:14.5px;color:var(--muted);line-height:1.55}
+.imp__d{border-left:2px solid var(--signal);padding-left:13px}
+.imp__d p{font-size:14.5px;color:var(--ink-2);line-height:1.55}
+.imp__q{font-style:normal;color:var(--ink);border-left:2px solid var(--line-strong);padding-left:11px;display:block;margin-top:7px;font-size:14px;line-height:1.5}
+
 /* ---- que es Xnod ---- */
 .xn{display:grid;grid-template-columns:repeat(auto-fit,minmax(212px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin-top:44px}
 .xn__i{background:var(--paper);padding:26px 22px;display:flex;flex-direction:column;gap:11px;transition:background .3s}
@@ -652,16 +735,42 @@ body{padding-left:var(--side-w)}
       <span class="ln"><span>venda como</span></span>
       <span class="ln"><em>vende un vendedor.</em></span>
     </h1>
-    <p class="cover__sub">Un potenciador de ecommerce para la tienda de Okinoi — y el ecosistema tecnológico que puede venir detrás.</p>
+    <p class="cover__sub">Un potenciador de ecommerce para la tienda de Okinoi, y el ecosistema tecnológico que puede venir detrás.</p>
+
+    <div class="ai rv">
+      <div class="ai__h">
+        <span class="ai__glyph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a2.5 2.5 0 0 1 2.5 2.5v.7A5 5 0 0 1 17 10.5V16H7v-5.5a5 5 0 0 1 2.5-4.3v-.7A2.5 2.5 0 0 1 12 3Z"/><path d="M9.5 19h5"/></svg></span>
+        <b>Vendedor Okinoi</b>
+      </div>
+      <div class="ai__b">
+        <p class="ai__q" id="aiq"><span class="ai__cur"></span></p>
+        <div class="ai__r" id="air">
+          <span class="ai__chip"><i></i>Producto identificado</span>
+          <span class="ai__chip"><i></i>Compatibilidad verificada</span>
+          <span class="ai__chip"><i></i>Precio de tu lista</span>
+          <span class="ai__chip"><i></i>Carrito armado</span>
+        </div>
+      </div>
+    </div>
+
   </div>
 
+
+  <div class="roster rv">
+    <div class="roster__t">Plataformas que Xnod tiene hoy en producción</div>
+    <div class="roster__l">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHgAAAAaCAYAAAB8WJiDAAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAeKADAAQAAAABAAAAGgAAAADrEHHDAAALAklEQVRoBe1Ze3BVxRnfPefm5mUegCDhERICQi0g7ciAWNsOSgtURaC0aCsFhBgpndqOr2nFqRb7mFLLDC1qkYdF6HQK0hcUEKmiASml2CIgb4ghvAkJCTe5956z/f0u54TN3nNJcOofQb6ZH/vt9337OPs9dm+Q4holnUDtxL4domGnU7Yd79goRCfbcc8ez0wr7z13P7pti0Jta7sf/24jU3sUR0V0YoYlJglpFeXZUtS68t+dLjQMx+ptzsHWx39kbWeFcw8XtotJe4xliXFplixylRJ1MbcmLqyJeQsqz7adL7m002sO9s6i5sFu7aUTmqSEeCAkZf9GVwkphKNc91sd5u/feenI2hZ3zcHwlxovbGGFRypXfC7dlgOjcG5WSIqYEo/VWdHXz5eV9IPj4e+2R9ccDJ+dzy8ZDO/1D1liJJ0btqSoj6l5udnRF3NUxsh4g1MJPXzc9qjZI0sp1RWfMAYYAnT2PucY2nLgNSnlScpgdzOaieQDKAoZ7f4DlGNMI+wZ/Y8A3YCW6H0Y1AJDWzKE/hSwGbgnwNaB7ATwHrAZ+7gQYCOqJxXlO0INsZS4w7ZkZhghH4mpf+W9fPDb56aWzM8OyxERmfiWu84p1S5PiMcxTzhgrnrIZgGjgNsN/TvoNwB3GvKWuhyzDbgthWEE8p8DPN8ngXSgGVGRIDhhHJi5QMFFSdK/hyApw0Gtg+194JclWSQLtkA0DWN2YMwu8J9KNkmSrIXkKDAlSZMsoN2vgZ8mq5pJdqD3NPbxp2ZSdKqn9pyMhP1Shi0nxJG9OKpjSqiRcUd8JTvNeo5pG3HcgyLSMD33x+sqRI9+vI+bzk2bj4fdEZgNlGlysi8B54FH2bkCYpAuBKalGBODvBCwgQogqSInBDj8W6BcAqRyLlSiGFgB25vQBmYDjQwajP5yjLkebZ2hS9XlmTamUhpy2sYNWVC3P4Tcxzd1Zc3UoiGWlD2lFKNYmjNQo2OOmukolZFuW7MicbiaK7hiqxJutyP5/ZhRrj6HxvOwSRxhEmWsbFdKrAqp1uNcuo7BkER+iZ4BTaam3Qj+eSAbYDT6JacGPJ12GtCJ0cuMpmN6A8MARhXpRmACYDqtHLLdgEksqXSITnvR4Z5MOgGBOS/L+ytADjAaaAeQuJ+5cPK7yOT9FLhSDrKE2yPDtnKZkvhJtDqvJmtJbX5kFX4qyTT8Bm5w1C7wOyINdatituAhrgTuBsxyuBUyBts2gNnK9UkfANTxHEgMhL8DBcAgQCcG0GqgBOA1SP9wPM/KLNNMMu6FZ89EXQHwevX3xStyH5C4U7fgw3Vagk6ep8sE/wQwDMj3ZOPB63QcnaYAAb9eV4JfALxtyL7BuYIIdvMN23lBdpTBbophe9C3hfwLQL2h5zUkzk8uvKmmtGRW7bSSo9GHS1R9ac+DddOLOtdMK34qWpboq7rSksqaaT2f4StamzMX85005mT3a7RBawG7KPDoWU8+x+vjKlcZwASvrzdVnu0MT4if4qoP0B4448n8JgKmL+1J4AcDMU8ZRTuQcj+DmZk6sZR9GUbMsC3AOmArIp+RGURMAEYOF2U59rPGt2W0maVrFGyv8w28djvW+KchY/dm2D5kyI/C9m+QcW2dJGyzoasH3gK/BsqxmsGIf+CAY5O72zbWD9uyS8xV1Y2OvMd2ZGHItmbyN7CNuh1z3dVSWLtzXjzwvjae32muSXWaZ8Mz1fX+GTO7CWZwBuDbg20i7j2MHjOStqwYYXzHWciXgy8FfOIc9NNTnuBBtP5am8D/l3JfsAz8cAo04oOB+DzwGFCFRZ7HYr8EbzqLDl0FPTdUBHQHdHodnc/qAvD3e9DFnDvIwUMhJ3R6Bx06uCXaDAPdwQVfFOIGubhyB/648awIZWyAQw9Jx6lUadZ62xJhG/5pdNROeKnCssWGlhZopX427BYBPCMmCp0YRKyES4E3AJ6zX5Hmg58M6IExFmf+DGRMlLsBnxbBTy47/iJLwM8BGDWpqAsUszEhF+FdoRMXpQNuB0zn/g6y1QAjvyUyA+dy9q215R2lE+9iZongnx8PnE5fYws3y0qzZ+An0mccZK+j+IpXK3FIbyJ7T+qDPyqPuY4DO4EPADoZ8RNIePfJM57tLrT+WW+D9UZjBEs0S/EdQGdPV4X2rx5/MYO9Bb8H5zHC7gdGAL0APrJM+j4EvzCF6OsHzofPIWAxMAfzxzG3+UEs/fsAnfgYCaIDEDITddLLpi43eTPgeF3U+kYF7SKZQlm9hFSlEv+74OI2c+LqD4j98twFB1glTOJ36t/q683v8+X/lxZniCNUL2EyOtMnrjkR6OYL0C6HbdPfzUMYxMzKAQqBEmA1DJ6EvAj8AOC7wDDAJ77+bvA7XluPdjzAaOfH1wEVmCcRfZgr6OPnQc/sbg2th21Zaww9G2YIHx68p+7yZH6zF8wpvyOVHGZL9SjSpjuc6zourhpL7MuLOe/6NkbL4CVMSjxKIeS3ssz6xIAKoliAkGfnZ2yAOlEJmRS9NeVk8P5Vyzlf0XQJBR3zK6A9YAG80CegfROHehh8D/C6g7kBOlQnHug22F9JOSvG3H0xznQ+7yczQzqmsI3CliVXJ/Y7wZ4fPRP4tK4E/yr2mbifzpb2LLSUOykzZA9EiRENMbUO+rUxJ7xULt6T6kHJb0cJb5Y16IrRWPM1tLcATAKfzCrFwOOeBvkGWsuAvBf6NdhjtSZPsJDxF8EidH6i6bI1fhP497R+wsFvQEAH0bkkOnotcBCT8U4uBnRajw4/0KTEvWYKL9Pn4f8gQM/7wwyUeyEzM5FD9wMLyWjUBTzvK2aR/vE04QEsJkOyhBqcbsk78aAScVdUWdIqj7tyU8eFKZ0rGBw4l5UYPjgxyaV/hoPltcEHj38WLJUbAZOmQ0CYxMfqMuA2gHsNolchfBzID1A2Pa58HS/0Y+g8BOilhFnFct0H8DcLVuwCfgiYWWf2aWuSacNM49xBMG0ZfEF2vF5MW857PWA6lyX3vkQWTOmTc+Y7vXKVK0eGbJmFv1c5QrpLXam2t1uwfzvsWqIXYBDkOCaHf15Mmie88zXnS1QQU6j1zQrWpMJ8H6LDADOJfvyLKUzUbgz6M6JyBJRPA0OBLMPwOPorgOe4YdjeCp4f4JPO+zKzpU1r7Fg1rsSWh5VqXr6gmeW/B17A3hNltz4UvTWtQQywbWssMhe/d8VhRMmHuRkWq1OLhHlqcQajYfgIMAYoBlgx6JgagBWEj8s1aIPoDIQVQQpPdrl7mCa/BVjV/LuXMl491WR0MqOf90NvGBCMRh52FbAbg0+hTRBsWB56eF02POA9sOElH0gYcyMU+uMj0A5CHhDX7ZDKQJPzscPDYlk2iY6vBar0fakHBmSfz6z/KvYzMytklUTibj1e0POk6y7KefnIbnOSlvqYJw02vHPzAK55GuudQJuSMIaVx8/0ILsLmCNV0CbsMUdXMKxsPnFdBnQz0iMgoYDRPjBESoLNOSiJVhPG7G218UXDyiuwbwq+lsZUZ9Z1CCnZLzMkLzpXiN9gb1uu63ZkT0tjg/QYy6C+XDYmDcMYBibxkQlzHG3NYD0CWmPf5m3w58iwkurreHywnpbjf4k2ROzMdfJHzf5nps1/p/8BSRnsK67WFv8VMC4v3e5e0+BU4A8bb+eeO7xe/jHlHd7mj+ET5eBDk4oykLbD66PuWty7y/H+futqdi6j8xPl4IJwqGuDiv4su6Biw9Vaks2S8z/9WKzEMy6KVwAAAABJRU5ErkJggg==" alt="Speed">
+      <img src="data:image/png;base64,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" alt="CCM">
+      <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1NjQiIGhlaWdodD0iMTI4IiB2aWV3Qm94PSIwIDAgMjgyIDY0IiByb2xlPSJpbWciIGFyaWEtbGFiZWw9Ik15IEFscXVpbGVyIj4KICA8c3R5bGU+QGltcG9ydCB1cmwoJ2h0dHBzOi8vZm9udHMuZ29vZ2xlYXBpcy5jb20vY3NzMj9mYW1pbHk9U3BhY2UrR3JvdGVzazp3Z2h0QDcwMCZhbXA7ZGlzcGxheT1zd2FwJyk7PC9zdHlsZT4KICA8cmVjdCB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHJ4PSIxNiIgZmlsbD0iIzdDM0FFRCIvPgogIDxwYXRoIGQ9Ik0zMiAxNCBMNTAgMjkgTDUwIDUwIEwxNCA1MCBMMTQgMjkgWiIgZmlsbD0iI2ZmZmZmZiIvPgogIDxjaXJjbGUgY3g9IjMyIiBjeT0iMzQiIHI9IjQuNCIgZmlsbD0iIzdDM0FFRCIvPgogIDxwYXRoIGQ9Ik0yOSAzNy41IEgzNSBMMzQgNTAgSDMwIFoiIGZpbGw9IiM3QzNBRUQiLz4KICA8dGV4dCB4PSI3OCIgeT0iNDIiIGZvbnQtZmFtaWx5PSInU3BhY2UgR3JvdGVzaycsJ1NlZ29lIFVJJyxzYW5zLXNlcmlmIiBmb250LXdlaWdodD0iNzAwIiBmb250LXNpemU9IjMwIiBsZXR0ZXItc3BhY2luZz0iLTAuNiI+PHRzcGFuIGZpbGw9IiNBNzhCRkEiPk15PC90c3Bhbj48dHNwYW4gZmlsbD0iI2ZmZmZmZiI+IEFscXVpbGVyPC90c3Bhbj48L3RleHQ+Cjwvc3ZnPgo=" alt="MyAlquiler">
+    </div>
+  </div>
 </header>
 
 <section id="sec-xnod" class="band">
   <div class="wrap">
     <div class="eyebrow rv">Quiénes somos</div>
     <h2 class="h-sec rv">Qué es Xnod</h2>
-    <p class="lede rv">Una fábrica de software con equipo propio de desarrollo. Construimos sistemas de gestión y canales de venta para operaciones que fabrican, importan y distribuyen — y les agregamos inteligencia artificial donde de verdad reemplaza una tarea, no como demostración.</p>
+    <p class="lede rv">Una fábrica de software con equipo propio de desarrollo. Construimos sistemas de gestión y canales de venta para operaciones que fabrican, importan y distribuyen, y les agregamos inteligencia artificial donde de verdad reemplaza una tarea, no como demostración.</p>
     <div class="xn">
       <article class="xn__i rv">
         <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 21h20M4 21V9l5-3.5V21M13 21V6l7 4v11"/><path d="M7 12h.01M7 16h.01M16 13h.01M16 17h.01"/></svg>
@@ -752,6 +861,21 @@ body{padding-left:var(--side-w)}
         <span>Menos consultas sin respuesta y menos carga manual.</span>
       </div>
     </div>
+    <div class="sol rv">
+      <div class="sol__b">
+        <div class="sol__via">
+          <div class="sol__box b1"><b>Lo que pide el cliente</b><span>«cadena para la 125 y dos cascos talle L»</span></div>
+          <div class="sol__wire w1"></div>
+          <span class="sol__dot d1"></span>
+          <div class="sol__box b2"><b>La capa que agregamos</b><span>Entiende, verifica compatibilidad y aplica la lista de precios</span></div>
+          <div class="sol__wire w2"></div>
+          <span class="sol__dot d2"></span>
+          <div class="sol__box b3"><b>Lo que recibe</b><span>El carrito armado, con precio y stock verificados</span></div>
+        </div>
+        <p class="sol__cap">LA TIENDA NO SE TOCA. LA CAPA LEE DE ELLA Y LE ESCRIBE EL PEDIDO.</p>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -760,7 +884,7 @@ body{padding-left:var(--side-w)}
   <div class="wrap">
     <div class="eyebrow rv">Propuestas</div>
     <h2 class="h-sec rv">Dos propuestas</h2>
-    <p class="lede rv">La primera resuelve la puerta de entrada: la venta. La segunda es todo lo que hay detrás de esa puerta. No compiten — la segunda es el camino natural si la primera funciona.</p>
+    <p class="lede rv">La primera resuelve la puerta de entrada: la venta. La segunda es todo lo que hay detrás de esa puerta. No compiten, la segunda es el camino natural si la primera funciona.</p>
     <div class="opts">
       <article class="opt opt--rec rv">
         <svg class="opt__ico ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/><path d="M12 2a3 3 0 0 1 3 3"/></svg>
@@ -796,7 +920,7 @@ body{padding-left:var(--side-w)}
 <section id="sec-p1" class="band band--tint">
   <div class="wrap">
     <div class="pnum rv">01</div>
-    <div class="eyebrow rv">Propuesta N.º 1 — Proyecto cerrado</div>
+    <div class="eyebrow rv">Propuesta N.º 1, Proyecto cerrado</div>
     <h2 class="h-sec rv">Potenciador de ecommerce</h2>
     <p class="lede rv">El cliente escribe o dicta lo que necesita, como se lo diría a un vendedor del mostrador. El sistema lo entiende, verifica que le sirva a su moto, aplica la lista de precios que le corresponde y le deja el carrito listo para confirmar.</p>
 
@@ -874,7 +998,7 @@ body{padding-left:var(--side-w)}
 
     <!-- MOCKUP 2: panel de demanda -->
     <div class="mock rv">
-      <div class="mock__bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><div class="mock__url">tienda.okinoi.com.ar / panel — qué se pidió y no había</div></div>
+      <div class="mock__bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><div class="mock__url">tienda.okinoi.com.ar / panel, qué se pidió y no había</div></div>
       <div class="mock__body">
         <div style="overflow-x:auto">
           <table class="t">
@@ -889,6 +1013,52 @@ body{padding-left:var(--side-w)}
         </div>
         <p class="mock__cap">DATOS DE EJEMPLO · EL PANEL SE ARMA CON LA DEMANDA REAL DE LA TIENDA</p>
       </div>
+    </div>
+
+
+    <h3 style="font-size:26px;font-weight:800;margin-top:72px" class="rv">Qué cambia en la tienda</h3>
+    <p class="lede rv" style="margin-top:12px">Cinco momentos concretos de la venta online, antes y después.</p>
+    <div class="imp">
+      <article class="imp__i rv">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/><path d="M8.5 11h5"/></svg>
+        <h4>La consulta que hoy no encuentra nada</h4>
+        <div class="imp__ad">
+          <div class="imp__a"><span>Hoy</span><p>El cliente busca «cadena para la 125» y el buscador no devuelve nada, porque el producto se llama «Kit de transmisión DID YBR 125». El producto está cargado y no se vende.</p></div>
+          <div class="imp__d"><span>Con el potenciador</span><p>La consulta se interpreta como la escribe el cliente y devuelve el producto real del catálogo. Lo que ya está cargado empieza a encontrarse.</p></div>
+        </div>
+      </article>
+      <article class="imp__i rv">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+        <h4>La duda de si le entra a su moto</h4>
+        <div class="imp__ad">
+          <div class="imp__a"><span>Hoy</span><p>En repuestos, la duda de compatibilidad frena la compra. El cliente cierra la pestaña o llama para preguntar.</p></div>
+          <div class="imp__d"><span>Con el potenciador</span><p>La compatibilidad se responde en la misma ficha, por modelo de moto. La duda deja de depender de que alguien esté disponible para contestar.</p></div>
+        </div>
+      </article>
+      <article class="imp__i rv">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2.5"/><path d="M12 18h.01"/><path d="M9 6h6"/></svg>
+        <h4>El pedido que llega por mensaje</h4>
+        <div class="imp__ad">
+          <div class="imp__a"><span>Hoy</span><p>El comercio del interior manda la lista por teléfono y alguien de Okinoi la tipea en el sistema. Es tiempo del equipo puesto en transcribir, y cada paso a mano puede fallar.</p></div>
+          <div class="imp__d"><span>Con el potenciador</span><p>El comercio manda la lista igual que siempre y le vuelve el carrito armado con sus precios. Nadie de Okinoi transcribe el pedido.</p></div>
+        </div>
+      </article>
+      <article class="imp__i rv">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M3 12h18M3 18h12"/><circle cx="19" cy="18" r="2.6"/></svg>
+        <h4>El precio que hay que averiguar</h4>
+        <div class="imp__ad">
+          <div class="imp__a"><span>Hoy</span><p>El mismo producto tiene precios distintos según zona, canal y forma de pago. Esa regla la resuelve una persona cada vez.</p></div>
+          <div class="imp__d"><span>Con el potenciador</span><p>La tienda aplica sola la lista que le corresponde a ese cliente. La regla se define una vez y deja de ser una consulta.</p></div>
+        </div>
+      </article>
+      <article class="imp__i rv">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-5 4 3 5-7"/><circle cx="20" cy="4" r="1.4"/></svg>
+        <h4>Lo que se pidió y no había</h4>
+        <div class="imp__ad">
+          <div class="imp__a"><span>Hoy</span><p>Cuando la tienda no puede resolver una consulta, esa demanda se pierde sin dejar rastro. No hay forma de saber qué se está dejando de vender.</p></div>
+          <div class="imp__d"><span>Con el potenciador</span><p>Cada consulta sin respuesta queda registrada: qué pidieron, cuántas veces y por qué no se resolvió. Es la lista de reposición y de altas de catálogo, armada sola.</p></div>
+        </div>
+      </article>
     </div>
 
     <h3 style="font-size:26px;font-weight:800;margin-top:64px" class="rv">Hitos y forma de pago</h3>
@@ -928,7 +1098,7 @@ body{padding-left:var(--side-w)}
 <section id="sec-p2" class="band">
   <div class="wrap">
     <div class="pnum rv">02</div>
-    <div class="eyebrow rv">Propuesta N.º 2 — Abono mensual</div>
+    <div class="eyebrow rv">Propuesta N.º 2, Abono mensual</div>
     <h2 class="h-sec rv">Ecosistema tecnológico</h2>
     <p class="lede rv">Potenciar la venta resuelve la puerta de entrada. Detrás de cada pedido está el stock real, la producción, el viajante que lo trajo, la comisión que le corresponde, la garantía que puede volver y el asiento contable. Xnod ya construyó esa plataforma completa para una operación de vehículos, hoy en producción, y puede adaptarla a Okinoi con su marca y sus procesos.</p>
 
@@ -1009,14 +1179,14 @@ body{padding-left:var(--side-w)}
           </div>
           <div class="acols">
             <div class="acard">
-              <div class="acard__h"><b>Pedidos de hoy — todos los canales</b><a href="#p2">Ver todos →</a></div>
+              <div class="acard__h"><b>Pedidos de hoy, todos los canales</b><a href="#p2">Ver todos →</a></div>
               <div style="overflow-x:auto">
                 <table class="atab">
                   <thead><tr><th>Pedido</th><th>Canal</th><th>Cliente</th><th class="num">Monto</th><th>Estado</th></tr></thead>
                   <tbody>
-                    <tr><td><strong>PD-8841</strong><span class="sub">26/08</span></td><td>Tienda online</td><td>Comercio — zona norte</td><td class="num">$ 354.380</td><td><span class="pill">Facturado</span></td></tr>
-                    <tr><td><strong>PD-8842</strong><span class="sub">26/08</span></td><td>Viajante</td><td>Comercio — zona sur</td><td class="num">$ 1.204.900</td><td><span class="pill mut">En control</span></td></tr>
-                    <tr><td><strong>PD-8843</strong><span class="sub">26/08</span></td><td>Teléfono</td><td>Comercio — interior</td><td class="num">$ 486.200</td><td><span class="pill warn">Falta stock</span></td></tr>
+                    <tr><td><strong>PD-8841</strong><span class="sub">26/08</span></td><td>Tienda online</td><td>Comercio, zona norte</td><td class="num">$ 354.380</td><td><span class="pill">Facturado</span></td></tr>
+                    <tr><td><strong>PD-8842</strong><span class="sub">26/08</span></td><td>Viajante</td><td>Comercio, zona sur</td><td class="num">$ 1.204.900</td><td><span class="pill mut">En control</span></td></tr>
+                    <tr><td><strong>PD-8843</strong><span class="sub">26/08</span></td><td>Teléfono</td><td>Comercio, interior</td><td class="num">$ 486.200</td><td><span class="pill warn">Falta stock</span></td></tr>
                     <tr><td><strong>PD-8844</strong><span class="sub">26/08</span></td><td>Mostrador</td><td>Consumidor final</td><td class="num">$ 90.000</td><td><span class="pill">Entregado</span></td></tr>
                   </tbody>
                 </table>
@@ -1054,7 +1224,7 @@ body{padding-left:var(--side-w)}
         <div class="shop__crumb">Inicio › <b>Compatibles con Yamaha YBR 125</b></div>
         <div class="shop__ai">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2a3 3 0 0 1 3 3v1a6 6 0 0 1 3 5v6H6v-6a6 6 0 0 1 3-5V5a3 3 0 0 1 3-3z"/><path d="M9 20h6"/></svg>
-          <span>Entendí tu pedido. Te muestro <strong>lo que le sirve a una Yamaha YBR 125</strong> — 34 productos compatibles, con tu lista de precios de comercio</span>
+          <span>Entendí tu pedido. Te muestro <strong>lo que le sirve a una Yamaha YBR 125</strong>, 34 productos compatibles, con tu lista de precios de comercio</span>
         </div>
         <div class="chips">
           <span class="chip on">Compatibles</span><span class="chip">Repuestos</span><span class="chip">Cascos</span><span class="chip">Cubiertas</span><span class="chip">Con stock</span><span class="chip">Marca OKN</span>
@@ -1076,7 +1246,7 @@ body{padding-left:var(--side-w)}
     <h3 style="font-size:26px;font-weight:800;margin-top:72px" class="rv">Una aplicación para cada cliente</h3>
     <p class="lede rv" style="margin-top:12px">Cada comercio de la red de Okinoi con su propia aplicación: pide, ve su cuenta corriente, sigue el pedido y consulta su historial. El viajante deja de ser el único canal, y el teléfono de Okinoi deja de ser la mesa de entrada.</p>
     <div class="mock rv">
-      <div class="mock__bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><div class="mock__url">App Okinoi — comercios de la red</div></div>
+      <div class="mock__bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><div class="mock__url">App Okinoi, comercios de la red</div></div>
       <div class="phones" style="background:var(--app-bg)">
         <div class="phone">
           <div class="phone__st"><span>9:41</span><span class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M2 20h3v-6H2zM7 20h3V9H7zM12 20h3V4h-3zM17 20h3v-9h-3z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 19l-2-2a3 3 0 0 1 4 0zM7 14l-2-2a10 10 0 0 1 14 0l-2 2a7 7 0 0 0-10 0z"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="8" width="17" height="9" rx="2"/><path d="M21 11v3"/><rect x="4" y="10" width="12" height="5" fill="currentColor" stroke="none"/></svg></span></div>
@@ -1106,6 +1276,82 @@ body{padding-left:var(--side-w)}
       </div>
     </div>
     <p class="mock__cap rv">DATOS DE EJEMPLO · LA APP SE ENTREGA CON LA MARCA DE OKINOI</p>
+
+
+    <h3 style="font-size:26px;font-weight:800;margin-top:72px" class="rv">El mismo circuito, hoy y a dónde apunta</h3>
+    <p class="lede rv" style="margin-top:12px">Esto no es una lista de funcionalidades. Son ocho circuitos de la operación de Okinoi y qué cambia en cada uno.</p>
+    <div class="imp">
+      <article class="imp__i rv">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 3h2.2l2.1 10.3a1.6 1.6 0 0 0 1.6 1.3h8.4a1.6 1.6 0 0 0 1.6-1.3L20 6.2H6"/><circle cx="9.5" cy="19" r="1.5"/><circle cx="17" cy="19" r="1.5"/></svg>
+        <h4>El pedido del comercio de la red</h4>
+        <div class="imp__ad">
+          <div class="imp__a"><span>Hoy</span><p>El comercio del interior compra cuando pasa el viajante o cuando llama. Entre visita y visita, el pedido espera.</p></div>
+          <div class="imp__d"><span>Con el ecosistema</span><p>Cada comercio con su propia aplicación: el catálogo, la lista de precios que Okinoi definió para él, su cuenta corriente y sus compras anteriores. Un canal más, abierto siempre, el viajante y el teléfono siguen igual.</p></div>
+        </div>
+      </article>
+      <article class="imp__i rv">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 12.5a7.5 7.5 0 0 1-10.6 6.8L4 21l1.7-5.6A7.5 7.5 0 1 1 20.5 12.5Z"/><path d="M9 11h6"/><path d="M9 14h3.5"/></svg>
+        <h4>El pedido escrito como se dicta</h4>
+        <div class="imp__ad">
+          <div class="imp__a"><span>Hoy</span><p>Para comprar en la tienda hay que saber el nombre exacto: «kit de transmisión DID YBR 125». El que no lo sabe, pregunta, y esa consulta cae en alguien de Okinoi.</p></div>
+          <div class="imp__d"><span>Con el ecosistema</span><p>El vendedor recibe la pregunta como la hace el cliente y la traduce a productos reales del catálogo, en la web y desde el teléfono. Propone y arma el carrito; la persona confirma. No factura solo.</p></div>
+        </div>
+      </article>
+      <article class="imp__i rv">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 12.6 12.4 20.7a1.7 1.7 0 0 1-2.4 0l-6.7-6.7a1.7 1.7 0 0 1-.5-1.4l.6-6.1a1.7 1.7 0 0 1 1.5-1.5l6.1-.6a1.7 1.7 0 0 1 1.4.5l6.7 6.7a1.7 1.7 0 0 1 0 2.4Z"/><circle cx="8.4" cy="8.4" r="1.4"/></svg>
+        <h4>El precio según el cliente</h4>
+        <div class="imp__ad">
+          <div class="imp__a"><span>Hoy</span><p>El mismo artículo tiene varios precios, y la regla vive en la cabeza del equipo.<span class="imp__q">«muchos precios distintos si el norte si el sur si es Mercado libre si lo paga con tarjeta si lo paga con cuotas», Bruno, marzo 2025</span></p></div>
+          <div class="imp__d"><span>Con el ecosistema</span><p>Las reglas de precio pasan a ser una tabla que Okinoi edita: cliente o grupo, zona, canal, medio de pago, cuotas. Los canales le preguntan a esa tabla en vez de mantener cada uno la suya. Los números los sigue poniendo Okinoi.</p></div>
+        </div>
+      </article>
+      <article class="imp__i rv">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="8.5" cy="7" r="3"/><path d="M2.5 20a6 6 0 0 1 12 0"/><path d="M16 4.5a3 3 0 0 1 0 5.8"/><path d="M17.8 14.2A5.6 5.6 0 0 1 21.5 20"/></svg>
+        <h4>El pedido que toma el viajante</h4>
+        <div class="imp__ad">
+          <div class="imp__a"><span>Hoy</span><p>El viajante toma el pedido en el comercio, y en algún punto del camino ese pedido se carga en el sistema.</p></div>
+          <div class="imp__d"><span>Con el ecosistema</span><p>El pedido nace cargado en el punto donde se toma, identificado con el viajante y con el cliente, y con la lista de precios y el estado de cuenta a la vista. El circuito generación → control → facturación no se toca.</p></div>
+        </div>
+      </article>
+      <article class="imp__i rv">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.7l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.7l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="M3.3 7 12 12l8.7-5M12 22V12"/></svg>
+        <h4>El stock que se publica</h4>
+        <div class="imp__ad">
+          <div class="imp__a"><span>Hoy</span><p>La tienda y el sistema de gestión son dos mundos. Lo que se publica online y lo que hay en el depósito se mantienen sincronizados a pulmón.</p></div>
+          <div class="imp__d"><span>Con el ecosistema</span><p>La tienda lee el stock real, con varios depósitos, mínimos y reposición. Lo que se publica es lo que hay, y lo que se vende descuenta donde corresponde.</p></div>
+        </div>
+      </article>
+      <article class="imp__i rv">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-5 4 3 5-7"/><circle cx="20" cy="4" r="1.4"/></svg>
+        <h4>El informe puntual</h4>
+        <div class="imp__ad">
+          <div class="imp__a"><span>Hoy</span><p>Cada corte nuevo que pide la dirección es un desarrollo.<span class="imp__q">«[Alejandro pidió] un informe de la deuda que tenían los viajantes… y eso fue un desarrollo que le demoró a [el proveedor] como una semana y media», Bruno, marzo 2025</span></p></div>
+          <div class="imp__d"><span>Con el ecosistema</span><p>Las preguntas que se repiten dejan de ser desarrollos y pasan a ser pantallas con filtros. Y las que no se repiten se responden preguntándole al sistema en lenguaje común, sin abrir un pedido de desarrollo.</p></div>
+        </div>
+      </article>
+      <article class="imp__i rv">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h4"/></svg>
+        <h4>Cobros y el módulo de pagos</h4>
+        <div class="imp__ad">
+          <div class="imp__a"><span>Hoy</span><p>El módulo de pagos existe pero no se usa. Es trabajo ya construido que no está rindiendo.<span class="imp__q">«no es que no está desarrollando, no se usa», Bruno, marzo 2025</span></p></div>
+          <div class="imp__d"><span>Con el ecosistema</span><p>Los pagos entran en el mismo lugar donde vive la cuenta corriente del cliente, y desde ahí se concilian y generan su asiento. Un módulo se adopta cuando es el único camino para hacer algo que hay que hacer igual.</p></div>
+        </div>
+      </article>
+      <article class="imp__i rv">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="7" rx="2"/><rect x="2" y="14" width="20" height="7" rx="2"/><path d="M6 6.5h.01M6 17.5h.01"/></svg>
+        <h4>Dónde vive el dato</h4>
+        <div class="imp__ad">
+          <div class="imp__a"><span>Hoy</span><p>La operación está partida entre dos bases, con una migración empezada y sin terminar. Y no hay servidor propio: el respaldo es un disco externo compartido.</p></div>
+          <div class="imp__d"><span>Con el ecosistema</span><p>Infraestructura administrada por Xnod: servidores, base de datos, respaldos automáticos y monitoreo, incluidos en el abono. Es lo más ambicioso de las dos propuestas y por eso va con acompañamiento permanente.</p></div>
+        </div>
+      </article>
+    </div>
+    <div class="fine rv">
+      <strong>Cómo leer esta sección.</strong> Xnod asume una <strong>obligación de medios, no de resultados</strong>: comprometemos el mecanismo, el equipo y la cadencia. No garantizamos resultados comerciales ni que la red adopte las herramientas sola, la adopción es el riesgo principal, y por eso proponemos arrancar por un grupo chico de comercios que elijan ustedes.<br><br>
+      <strong>Acá no hay ninguna cifra de Okinoi, y es a propósito:</strong> no conocemos su volumen de pedidos, su cantidad de viajantes ni el tamaño de la red, y no los vamos a estimar para que la propuesta quede linda. Cuántos informes como el de Alejandro se pidieron en el último año, cuántos pedidos entran por cada canal y cuántas listas de precio conviven hoy son los campos que completa Okinoi, y la cuenta que salga de ahí es de ustedes.<br><br>
+      <strong>Tres circuitos los describió Bruno en marzo de 2025 y van citados; los otros cinco son reconstrucción nuestra.</strong> Si alguno describe mal la operación, se corrige o se cae, y esa corrección es la primera tarea del arranque.<br><br>
+      <strong>Lo más caro es la migración</strong> de los datos que hoy viven entre las dos bases: no está incluida en el abono y se cotiza aparte cuando se defina el alcance, igual que el consumo de IA. La columna de la derecha describe a dónde apunta cada circuito, no el alcance del primer mes: <strong>qué se ataca primero lo define Okinoi</strong> en la reunión quincenal.
+    </div>
 
     <h3 style="font-size:26px;font-weight:800;margin-top:72px" class="rv">Qué cubre el abono</h3>
     <div class="deliv">
@@ -1146,18 +1392,18 @@ body{padding-left:var(--side-w)}
 
     <div class="inv">
       <article class="price price--rec rv">
-        <div><div class="price__lbl">Propuesta N.º 1 — Potenciador de ecommerce</div><h3 style="margin-top:10px">Llave en mano</h3></div>
+        <div><div class="price__lbl">Propuesta N.º 1, Potenciador de ecommerce</div><h3 style="margin-top:10px">Llave en mano</h3></div>
         <div><div class="price__big"><sup>USD</sup><span class="js-num" data-to="9000">0</span></div><div class="price__unit">Pago único, en tres hitos</div></div>
         <ul class="price__split">
-          <li><span class="k">Hito 1 — antes de iniciar</span><span class="v">40% · 3.600</span></li>
-          <li><span class="k">Hito 2 — al aprobar</span><span class="v">30% · 2.700</span></li>
-          <li><span class="k">Hito 3 — contra entrega</span><span class="v">30% · 2.700</span></li>
+          <li><span class="k">Hito 1, antes de iniciar</span><span class="v">40% · 3.600</span></li>
+          <li><span class="k">Hito 2, al aprobar</span><span class="v">30% · 2.700</span></li>
+          <li><span class="k">Hito 3, contra entrega</span><span class="v">30% · 2.700</span></li>
           <li><span class="k">Soporte posterior</span><span class="v">30 días sin cargo</span></li>
           <li><span class="k">Plazo estimado</span><span class="v">60 días</span></li>
         </ul>
       </article>
       <article class="price rv">
-        <div><div class="price__lbl">Propuesta N.º 2 — Ecosistema</div><h3 style="margin-top:10px">Abono mensual</h3></div>
+        <div><div class="price__lbl">Propuesta N.º 2, Ecosistema</div><h3 style="margin-top:10px">Abono mensual</h3></div>
         <div><div class="price__big"><sup>USD</sup><span class="js-num" data-to="3500">0</span></div><div class="price__unit">Por mes</div></div>
         <ul class="price__split">
           <li><span class="k">Sistema de gestión integral</span><span class="v">Incluido</span></li>
@@ -1297,6 +1543,34 @@ body{padding-left:var(--side-w)}
       });
     });
   }
+
+
+  // ---- hero: el vendedor escribiendo consultas reales ----
+  (function(){
+    var q=document.getElementById('aiq'), r=document.getElementById('air');
+    if(!q) return;
+    var frases=[
+      'Necesito una cadena para una YBR 125 y dos cascos rebatibles talle L',
+      'Que cubierta le entra a una Titan 150 trasera',
+      'Mandame el pedido de siempre pero con cuatro cascos mas',
+      'Tenes pastillas de freno para la CBF 250'
+    ];
+    if(reduce){ q.textContent=frases[0]; r.classList.add('on'); return; }
+    var cur=document.createElement('span'); cur.className='ai__cur';
+    var fi=0,ci=0,borrando=false;
+    function paso(){
+      var f=frases[fi];
+      if(!borrando){
+        ci++; if(ci>f.length){ r.classList.add('on'); setTimeout(function(){borrando=true;paso()},2600); return; }
+      }else{
+        r.classList.remove('on');
+        ci-=3; if(ci<=0){ ci=0; borrando=false; fi=(fi+1)%frases.length; }
+      }
+      q.textContent=f.slice(0,ci); q.appendChild(cur);
+      setTimeout(paso, borrando?18:(38+Math.random()*45));
+    }
+    paso();
+  })();
 
   // ---- pestañas laterales: scrollspy, progreso, teclado y menu movil ----
   var tabs=[].slice.call(document.querySelectorAll('.tab'));
