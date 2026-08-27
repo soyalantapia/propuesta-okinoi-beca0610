@@ -578,6 +578,12 @@ table.t tbody tr:hover{background:var(--surface)}
 
 
 
+
+.fine ul{list-style:none;padding:0;margin:11px 0 0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px 26px}
+.fine li{position:relative;padding-left:15px;line-height:1.55}
+.fine li::before{content:"";position:absolute;left:0;top:8px;width:5px;height:5px;border-radius:50%;background:var(--signal);opacity:.65}
+@media (max-width:820px){.fine ul{grid-template-columns:1fr}}
+
 /* ---- ficha de producto con visor 3D ---- */
 .pdp{display:grid;grid-template-columns:1.15fr 1fr;gap:0;background:var(--app-line)}
 .pdp__v{background:var(--app-bg);padding:22px;display:flex;flex-direction:column;gap:14px}
@@ -1375,7 +1381,7 @@ body{padding-left:var(--side-w)}
         <h4>Del idioma del cliente al nombre del catálogo</h4>
         <div class="imp__ad">
           <div class="imp__a"><span>Hoy</span><p>Los productos se publican con su nombre técnico: KIT TRANSMISION DID YAMAHA YBR 125 (45T-14T), CUBIERTA CELIMO 100/80-14 TL TUBELESS HD 523. Al comercio que conoce la medida le alcanza y le sobra. Quien no conoce esa nomenclatura tiene que acercarse a ella para llegar al producto.</p></div>
-          <div class="imp__d"><span>Con el ecosistema</span><p>Una capa de IA interpreta la frase escrita («cadena para la 125») y la descompone en campos antes de buscar: rubro, tipo de pieza, modelo de moto declarado, posición si corresponde. Recién con esos campos consulta el catálogo. El camino técnico no se pierde: quien busca HD 523 lo tiene que seguir encontrando escribiendo HD 523.</p></div>
+          <div class="imp__d"><span>Con el ecosistema</span><p>Una capa de IA interpreta la frase escrita («cadena para la 125») y la descompone en campos antes de buscar: rubro, tipo de pieza, modelo de moto declarado, posición si corresponde. Recién con esos campos consulta el catálogo.</p></div>
         </div>
       </article>
     
@@ -1384,7 +1390,7 @@ body{padding-left:var(--side-w)}
         <h4>La compatibilidad la decide una tabla, no el modelo</h4>
         <div class="imp__ad">
           <div class="imp__a"><span>Hoy</span><p>El criterio de qué le entra a cada moto lo tiene Okinoi. Si ese criterio está escrito en algún sistema consultable o si vive en la práctica de quien atiende es lo primero que hay que revisar juntos, porque de eso depende cuánto trabajo es esta pieza.</p></div>
-          <div class="imp__d"><span>Con el ecosistema</span><p>Una tabla de compatibilidad entre modelo de moto y producto, cargada dentro del sistema de gestión. La IA propone candidatos y la tabla filtra: lo que se muestra es lo que pasó ese filtro. Un modelo de lenguaje puede afirmar con total soltura que una cubierta le entra a una Titan y equivocarse, y en repuestos una sugerencia verosímil y errada es peor que no devolver nada.</p></div>
+          <div class="imp__d"><span>Con el ecosistema</span><p>Una tabla de compatibilidad entre modelo de moto y producto, cargada dentro del sistema de gestión. La IA propone candidatos y la tabla filtra: lo que se muestra es lo que pasó ese filtro.</p></div>
         </div>
       </article>
     
@@ -1393,7 +1399,7 @@ body{padding-left:var(--side-w)}
         <h4>El precio que corresponde a quien está mirando</h4>
         <div class="imp__ad">
           <div class="imp__a"><span>Hoy</span><p>Es el primer dolor que planteó Bruno en marzo de 2025: «muchos precios distintos si el norte si el sur si es Mercado Libre si lo paga con tarjeta si lo paga con cuotas». La tienda muestra un precio de lista por producto, por ejemplo CASCO AVX FS-V6 MATT BLACK CAFE RACER a $ 350.000.</p></div>
-          <div class="imp__d"><span>Con el ecosistema</span><p>El precio deja de ser un campo del producto y pasa a ser el cruce entre el producto y una lista. Zona, canal, medio de pago y financiación son condiciones de esa lista. El criterio de diseño es que el ecommerce no tenga lista propia, sino que consulte la del sistema de gestión, para no mantener dos y sincronizarlas después. La sincronización con Mercado Libre no forma parte de este alcance.</p></div>
+          <div class="imp__d"><span>Con el ecosistema</span><p>El precio deja de ser un campo del producto y pasa a ser el cruce entre el producto y una lista. Zona, canal, medio de pago y financiación son condiciones de esa lista.</p></div>
         </div>
       </article>
     
@@ -1402,7 +1408,7 @@ body{padding-left:var(--side-w)}
         <h4>Un segundo eje de navegación: por moto</h4>
         <div class="imp__ad">
           <div class="imp__a"><span>Hoy</span><p>La tienda se recorre por rubro: cubiertas, cascos, indumentaria, repuestos y accesorios. Es el orden que sirve a quien ya sabe qué medida o qué código busca.</p></div>
-          <div class="imp__d"><span>Con el ecosistema</span><p>Se agrega la entrada por marca, modelo y año, que muestra lo que esté cargado como compatible con esa moto. La cobertura es la que esté cargada, no el catálogo entero, y se enciende de a poco sobre lo ya mapeado. Lo que no depende del modelo, como cascos e indumentaria, sigue ofreciéndose por talle, sin fingir una compatibilidad que no existe.</p></div>
+          <div class="imp__d"><span>Con el ecosistema</span><p>Se agrega la entrada por marca, modelo y año, que muestra lo que esté cargado como compatible con esa moto. La cobertura es la que esté cargada, no el catálogo entero, y se enciende de a poco sobre lo ya mapeado.</p></div>
         </div>
       </article>
     
@@ -1411,7 +1417,7 @@ body{padding-left:var(--side-w)}
         <h4>La consulta que no encuentra producto queda registrada</h4>
         <div class="imp__ad">
           <div class="imp__a"><span>Hoy</span><p>Cuando alguien pide «cubierta trasera para una Titan» y lo cargado es una CUBIERTA KINGTYRE 2.75-18 CROSS DELANTERA, el sistema no puede hacer de cuenta que sirve. Qué estadísticas de búsqueda ofrece hoy la plataforma es algo que todavía no revisamos y conviene mirar antes de comparar.</p></div>
-          <div class="imp__d"><span>Con el ecosistema</span><p>Cada búsqueda sin respuesta se guarda tal como fue escrita, con el modelo de moto detectado, la fecha, el canal y el desenlace, y queda agrupada por modelo y por rubro. Es una señal de intención, no una orden de compra: puede ser un producto que falta, uno mal nombrado o alguien que escribió mal. Por eso sirve leída en conjunto y no caso por caso.</p></div>
+          <div class="imp__d"><span>Con el ecosistema</span><p>Cada búsqueda sin respuesta se guarda tal como fue escrita, con el modelo de moto detectado, la fecha, el canal y el desenlace, y queda agrupada por modelo y por rubro.</p></div>
         </div>
       </article>
     
@@ -1420,7 +1426,7 @@ body{padding-left:var(--side-w)}
         <h4>Los cortes previstos, sin pedir un desarrollo</h4>
         <div class="imp__ad">
           <div class="imp__a"><span>Hoy</span><p>Es el segundo dolor: un informe puntual que, en palabras de Bruno, «fue un desarrollo que le demoró a [el proveedor] como una semana y media».</p></div>
-          <div class="imp__d"><span>Con el ecosistema</span><p>Los datos nacen dentro del sistema de gestión, con los mismos campos que el resto: marca propia, rubro, modelo de moto, canal. Los cortes previstos se cambian desde la vista del panel. Cuáles quedan previstos se acuerda al armar el panel. Un cruce no contemplado entra por la reunión semanal de trabajo y se prioriza dentro de las hasta 80 horas mensuales, junto con el resto del backlog.</p></div>
+          <div class="imp__d"><span>Con el ecosistema</span><p>Los datos nacen dentro del sistema de gestión, con los mismos campos que el resto: marca propia, rubro, modelo de moto, canal. Los cortes previstos se cambian desde la vista del panel. Cuáles quedan previstos se acuerda al armar el panel.</p></div>
         </div>
       </article>
     
@@ -1429,7 +1435,7 @@ body{padding-left:var(--side-w)}
         <h4>El mismo motor, también desde el teléfono</h4>
         <div class="imp__ad">
           <div class="imp__a"><span>Hoy</span><p>La red de comercios del interior compra hablando con un viajante, y los otros canales son el mostrador y Mercado Libre. En agosto de 2026 pidieron un vendedor adentro del carrito que entienda el pedido en lenguaje natural y lo traduzca, «también desde el teléfono».</p></div>
-          <div class="imp__d"><span>Con el ecosistema</span><p>La interpretación del pedido vive en el sistema y no en la pantalla, así que se expone en la tienda pública y en la aplicación propia de cada comercio de la red sin duplicar la lógica. Como consulta el mismo catálogo y las mismas listas, el pedido armado en el celular es el mismo que se vería en la computadora. La app no reemplaza al viajante: le baja la parte administrativa de tomar el pedido.</p></div>
+          <div class="imp__d"><span>Con el ecosistema</span><p>La interpretación del pedido vive en el sistema y no en la pantalla, así que se expone en la tienda pública y en la aplicación propia de cada comercio de la red sin duplicar la lógica.</p></div>
         </div>
       </article>
     
@@ -1438,7 +1444,7 @@ body{padding-left:var(--side-w)}
         <h4>La ficha que se puede girar</h4>
         <div class="imp__ad">
           <div class="imp__a"><span>Hoy</span><p>La ficha se apoya en fotos fijas y una lista de características: el comprador ve las vistas que se eligieron al fotografiar. En un casco eso suele dejar fuera de cuadro la nuca y la zona de ventilación; en una cubierta, el perfil completo; en un repuesto, el encastre, que es lo que define si entra.</p></div>
-          <div class="imp__d"><span>Con el ecosistema</span><p>Un visor 3D en el que el comprador elige su propia vista: gira, acerca, mira desde atrás. La condición es que cada modelo se construya midiendo la pieza física, porque un dibujo hecho a ojo queda verosímil y es falso, y eso es peor que la foto. El visor suma a la galería, no la reemplaza, y no habla de talle, horma, comodidad ni homologación: eso sigue resuelto por la tabla de talles y la información de norma de la ficha.</p></div>
+          <div class="imp__d"><span>Con el ecosistema</span><p>Un visor 3D en el que el comprador elige su propia vista: gira, acerca, mira desde atrás. La condición es que cada modelo se construya midiendo la pieza física, porque un dibujo hecho a ojo queda verosímil y es falso, y eso es peor que la foto.</p></div>
         </div>
       </article>
     
@@ -1447,7 +1453,7 @@ body{padding-left:var(--side-w)}
         <h4>Color y terminación sobre el modelo ya construido</h4>
         <div class="imp__ad">
           <div class="imp__a"><span>Hoy</span><p>Cada variante de color se comunica con las fotos que existan de esa variante. En marcas propias (OKINOI, OKN, AVX y MAXIM) el grupo decide qué colores y terminaciones salen, así que es donde más variantes hay para mostrar.</p></div>
-          <div class="imp__d"><span>Con el ecosistema</span><p>Sobre un modelo 3D ya construido, el color y la terminación pasan a ser parámetros: se elige negro brillante o negro mate y se ve aplicado sobre la misma pieza. Construir el modelo es el trabajo pesado; cargar una variante encima es trabajo chico. Con una salvedad: cómo se ve un color depende del dispositivo, así que el visor no es referencia exacta de color para producción ni para un reclamo.</p></div>
+          <div class="imp__d"><span>Con el ecosistema</span><p>Sobre un modelo 3D ya construido, el color y la terminación pasan a ser parámetros: se elige negro brillante o negro mate y se ve aplicado sobre la misma pieza. Construir el modelo es el trabajo pesado; cargar una variante encima es trabajo chico.</p></div>
         </div>
       </article>
     
@@ -1499,7 +1505,17 @@ body{padding-left:var(--side-w)}
     </div>
     <p class="mock__cap rv">EL VISOR ES INTERACTIVO: ARRASTRÁ SOBRE LA IMAGEN Y ELEGÍ UNA TERMINACIÓN</p>
 
-    <div class="fine rv"><strong>Lo que hay que decir de frente, antes de firmar.</strong> El 3D no se aplica al catálogo entero: modelar cada producto es trabajo de modelado real, se hace por tandas, se arranca por un grupo acotado que define Okinoi en la reunión semanal (nuestra sugerencia es empezar por las marcas propias, porque el producto físico está a mano para medir y no hace falta permiso de un tercero), y el resto del catálogo sigue con foto hasta que le toque, exactamente como se ve hoy. Todavía no tenemos horas por producto y no las vamos a inventar: se estiman con el primer casco medido y ese primero sirve de referencia. Esas horas salen de las mismas hasta 80 horas mensuales de evolución continua, así que compiten semana a semana contra el resto del backlog, y si en la primera reunión el 3D compite contra el precio por lista o contra el buscador, el 3D pierde. Tres exclusiones más, para que no queden implícitas: el consumo de los modelos de IA se factura aparte del abono de USD 3.500 mensuales y se implementa con límites de uso y caché de consultas repetidas desde el arranque; la migración y la carga del dato de compatibilidad tampoco están incluidas, se cotizan aparte o las hace el equipo de Okinoi con nuestro acompañamiento; y la tienda actual corre sobre Tiendanube, donde un buscador que consulta listas por cliente y canal más una tabla de compatibilidad propia no es una configuración de la plataforma, así que hay que definir si Tiendanube consulta contra el sistema de gestión o si la tienda se muda, definición que impacta en los tiempos y todavía no está tomada. No prometemos ninguna cifra de venta, de conversión ni de devoluciones: lo que cambia es el mecanismo, y cuánto mueve eso se mide después, con la reportería andando.</div>
+    <div class="fine rv"><strong>Lo que hay que decir de frente.</strong>
+      <ul>
+        <li>El 3D va <b>por tandas</b>, no al catálogo entero. Arranca por un grupo que define Okinoi y el resto sigue con foto.</li>
+        <li>Sus horas salen de las <b>mismas 80 mensuales</b> y compiten contra el resto del backlog.</li>
+        <li>Todavía no hay horas por producto. Se estiman con el primer casco medido.</li>
+        <li>El <b>consumo de IA se factura aparte</b> del abono.</li>
+        <li>La <b>migración y la carga de compatibilidad no están incluidas</b>.</li>
+        <li>La tienda corre sobre <b>Tiendanube</b>: falta definir si consulta contra gestión o si se muda. Impacta en los tiempos.</li>
+      </ul>
+      <p style="margin-top:12px">No prometemos cifras de venta ni de conversión. Cambia el mecanismo; cuánto mueve se mide después.</p>
+    </div>
 
     <h3 style="font-size:26px;font-weight:800;margin-top:72px" class="rv" id="p2-app">Una aplicación para cada cliente</h3>
     <p class="lede rv" style="margin-top:12px">Cada comercio de la red de Okinoi con su propia aplicación: pide, ve su cuenta corriente, sigue el pedido y consulta su historial. El viajante deja de ser el único canal, y el teléfono de Okinoi deja de ser la mesa de entrada.</p>
@@ -1686,11 +1702,15 @@ body{padding-left:var(--side-w)}
         </div>
       </article>
     </div>
-    <div class="fine rv">
-      <strong>Cómo leer esta sección.</strong> Xnod asume una <strong>obligación de medios, no de resultados</strong>: comprometemos el mecanismo, el equipo y la cadencia. No garantizamos resultados comerciales ni que la red adopte las herramientas sola, la adopción es el riesgo principal, y por eso proponemos arrancar por un grupo chico de comercios que elijan ustedes.<br><br>
-      <strong>Las pantallas de esta sección llevan datos de ejemplo inventados por nosotros para mostrar la forma, no el tamaño de Okinoi:</strong> ni un solo número de esas pantallas es una estimación de su operación. Fuera de los mockups no hay ninguna cifra de Okinoi en toda la propuesta, y es a propósito: no conocemos su volumen de pedidos, su cantidad de viajantes ni el tamaño de la red, y no los vamos a estimar para que la propuesta quede linda. Cuántos informes como el de Alejandro se pidieron en el último año, cuántos pedidos entran por cada canal y cuántas listas de precio conviven hoy son los campos que completa Okinoi, y la cuenta que salga de ahí es de ustedes.<br><br>
-      <strong>Tres circuitos los describió Bruno en marzo de 2025 y van citados; los otros cinco son reconstrucción nuestra.</strong> Si alguno describe mal la operación, se corrige o se cae, y esa corrección es la primera tarea del arranque.<br><br>
-      <strong>Lo más caro es la migración</strong> de los datos que hoy viven entre las dos bases: no está incluida en el abono y se cotiza aparte cuando se defina el alcance, igual que el consumo de IA. La columna de la derecha describe a dónde apunta cada circuito, no el alcance del primer mes: <strong>qué se ataca primero lo define Okinoi</strong> en la reunión semanal.
+    <div class="fine rv"><strong>Cómo leer esta sección.</strong>
+      <ul>
+        <li><b>Obligación de medios, no de resultados.</b> No garantizamos resultados comerciales.</li>
+        <li>La <b>adopción es el riesgo principal</b>. Proponemos arrancar por un grupo chico de comercios que elijan ustedes.</li>
+        <li><b>Ninguna cifra de Okinoi acá</b>, a propósito: no conocemos su volumen. Los números de los mockups son inventados.</li>
+        <li><b>Tres circuitos los citó Bruno</b> en marzo de 2025. Los otros cinco son reconstrucción nuestra.</li>
+        <li>Lo más caro es la <b>migración</b>, que va aparte del abono, igual que el consumo de IA.</li>
+        <li>El <b>orden lo define Okinoi</b> en la reunión semanal.</li>
+      </ul>
     </div>
 
     <h3 style="font-size:26px;font-weight:800;margin-top:72px" class="rv">Los primeros 90 días del abono</h3>
