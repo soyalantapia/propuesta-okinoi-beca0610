@@ -548,6 +548,32 @@ table.t tbody tr:hover{background:var(--surface)}
 .imp__a p .imp__q,.imp__q{font-style:normal;color:var(--ink);border-left:2px solid var(--line-strong);padding-left:11px;display:block;margin-top:7px;font-size:14px;line-height:1.5}
 
 
+
+/* ---- columnas que SIEMPRE dividen a la cantidad de items ----
+   4 items nunca en 3 columnas · 6 nunca en 4 · 9 nunca en 2 ni 4 */
+.xn,.prob-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+.deliv,.imp,.mods{grid-template-columns:repeat(3,minmax(0,1fr))}
+.deliv--2{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (max-width:1180px){
+  .xn,.prob-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:1040px){
+  .imp,.deliv{grid-template-columns:repeat(1,minmax(0,1fr))}
+  .deliv--2{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:900px){
+  .xn,.prob-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .imp,.deliv{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .deliv--2{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:820px){
+  .mods{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .imp,.deliv{grid-template-columns:repeat(1,minmax(0,1fr))}
+}
+@media (max-width:660px){
+  .xn,.prob-grid,.deliv,.deliv--2,.imp,.mods{grid-template-columns:repeat(1,minmax(0,1fr))}
+}
+
 /* ---- clientes dentro de Que es Xnod ---- */
 .cli{margin-top:38px;border:1px solid var(--line);background:var(--surface)}
 .cli__t{font-family:var(--f-mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);padding:18px 22px 0}
@@ -1109,7 +1135,7 @@ body{padding-left:var(--side-w)}
     <h2 class="h-sec rv">Ecosistema tecnológico</h2>
     <p class="lede rv">Potenciar la venta resuelve la puerta de entrada. Detrás de cada pedido está el stock real, la producción, el viajante que lo trajo, la comisión que le corresponde, la garantía que puede volver y el asiento contable. Xnod ya construyó esa plataforma completa para una operación de vehículos, hoy en producción, y puede adaptarla a Okinoi con su marca y sus procesos.</p>
 
-    <div class="mods" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr))">
+    <div class="mods">
       <div class="mod rv"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg><strong>Ventas y mostrador</strong><span>El pedido web, el del viajante y el del mostrador en un solo circuito.</span></div>
       <div class="mod rv"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="M3.3 7L12 12l8.7-5M12 22V12"/></svg><strong>Stock real y multi-depósito</strong><span>Lo que la tienda publica es lo que hay. Mínimos y reposición automática.</span></div>
       <div class="mod rv"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 7h-3V4H3v13h2"/><circle cx="7.5" cy="17.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/><path d="M10 17h5M17 7l4 4v6h-1"/></svg><strong>Producción y armado</strong><span>Cada unidad con su orden, su etapa y su trazabilidad.</span></div>
@@ -1404,7 +1430,7 @@ body{padding-left:var(--side-w)}
     </div>
 
     <h3 style="font-size:26px;font-weight:800;margin-top:72px" class="rv">Qué cubre el abono</h3>
-    <div class="deliv" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,430px),1fr))">
+    <div class="deliv deliv--2">
       <div class="deliv__i rv">
         <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
         <span class="qty">Permanente</span><h4>Soporte técnico</h4>
