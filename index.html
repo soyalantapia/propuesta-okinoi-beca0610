@@ -425,6 +425,13 @@ table.t tbody tr:hover{background:var(--surface)}
 
 .rv{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.2,.7,.3,1),transform .7s cubic-bezier(.2,.7,.3,1)}
 .rv.in{opacity:1;transform:none}
+@media print{
+  .rv,.chat .bub,.cart .ci,.cover__sub{opacity:1!important;transform:none!important;animation:none!important}
+  .cover h1 .ln > span{transform:none!important;animation:none!important}
+  .goal__fill{width:62%!important}
+  .mock,.opt,.price{break-inside:avoid;box-shadow:none}
+  .band{padding:38px 0}
+}
 @media (prefers-reduced-motion:reduce){
   .rv{opacity:1;transform:none;transition:none}
   .typing i,.cover__glow{animation:none}
@@ -488,6 +495,7 @@ table.t tbody tr:hover{background:var(--surface)}
 </style>
 </head>
 <body>
+<noscript><style>.rv,.chat .bub,.cart .ci,.cover__sub{opacity:1!important;transform:none!important}.cover h1 .ln > span{transform:none!important}.goal__fill{width:62%}</style></noscript>
 <div class="rail"><div class="rail__fill" id="railFill"></div></div>
 
 <!-- ============ PORTADA ============ -->
@@ -1129,6 +1137,28 @@ table.t tbody tr:hover{background:var(--surface)}
     });
   },{threshold:.5});
   document.querySelectorAll('.js-num').forEach(function(e){ioN.observe(e)});
+
+  // red de seguridad: nada puede quedar invisible por un observer que no disparo
+  function revelarTodo(){
+    document.querySelectorAll('.rv:not(.in)').forEach(function(e){e.style.transitionDelay='0ms';e.classList.add('in')});
+    document.querySelectorAll('.js-chat,.js-cart,.js-goal').forEach(function(e){e.classList.add('in')});
+    document.querySelectorAll('.js-num').forEach(function(e){ if(e.textContent==='0') e.textContent=(parseFloat(e.dataset.to)||0).toLocaleString('es-AR'); });
+  }
+  // cada 1.5s revela lo que ya deberia estar visible y el observer no alcanzo a marcar
+  setInterval(function(){
+    var vh=window.innerHeight;
+    document.querySelectorAll('.rv:not(.in)').forEach(function(e){
+      var r=e.getBoundingClientRect();
+      if(r.top < vh*0.92){ e.style.transitionDelay='0ms'; e.classList.add('in'); }
+    });
+    document.querySelectorAll('.js-chat,.js-cart,.js-goal').forEach(function(e){
+      if(e.classList.contains('in')) return;
+      if(e.getBoundingClientRect().top < vh*0.9) e.classList.add('in');
+    });
+  },1500);
+  window.addEventListener('beforeprint',revelarTodo);
+  window.addEventListener('error',revelarTodo);
+  document.addEventListener('keydown',function(e){ if((e.metaKey||e.ctrlKey)&&e.key==='p') revelarTodo(); });
 })();
 </script>
 </body>
