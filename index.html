@@ -47,6 +47,7 @@
   --f-mono:'IBM Plex Mono',ui-monospace,'SF Mono',Menlo,monospace;
   --col:1120px;
   --pad:clamp(20px,5vw,64px);
+  --side-w:252px;
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
@@ -425,7 +426,51 @@ table.t tbody tr:hover{background:var(--surface)}
 
 .rv{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.2,.7,.3,1),transform .7s cubic-bezier(.2,.7,.3,1)}
 .rv.in{opacity:1;transform:none}
+
+/* ================= SHELL CON PESTAÑAS LATERALES ================= */
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{padding-left:var(--side-w)}
+.content{min-width:0}
+.side{position:fixed;left:0;top:0;bottom:0;width:var(--side-w);z-index:70;background:var(--foot-bg);color:var(--foot-ink);display:flex;flex-direction:column;padding:26px 0 18px;border-right:1px solid var(--foot-line)}
+.side__logo{display:flex;align-items:center;gap:9px;padding:0 24px 24px;text-decoration:none;border-bottom:1px solid var(--foot-line);margin-bottom:16px}
+.side__logo .brandimg{height:21px;filter:brightness(0) invert(1)}
+.side__x{color:var(--signal);font-family:var(--f-display);font-weight:700;font-size:15px}
+.side__xn{font-family:var(--f-display);font-weight:900;font-size:15px;letter-spacing:-.02em;color:var(--foot-ink)}
+.tabs{display:flex;flex-direction:column;gap:2px;padding:0 12px;flex:1;overflow-y:auto}
+.tab{display:flex;align-items:center;gap:13px;padding:11px 13px;border-radius:7px;text-decoration:none;color:var(--foot-ink);opacity:.5;transition:opacity .25s,background .25s;position:relative}
+.tab__n{font-family:var(--f-mono);font-size:10px;letter-spacing:.1em;flex-shrink:0;opacity:.75}
+.tab__x{font-size:13.5px;font-weight:500;line-height:1.25}
+.tab:hover{opacity:.92;background:rgba(255,255,255,.07)}
+.tab.is-on{opacity:1;background:var(--signal);color:var(--on-signal)}
+.tab.is-on .tab__x{font-weight:600}
+.side__f{padding:16px 24px 0;margin-top:14px;border-top:1px solid var(--foot-line);display:flex;align-items:center;gap:11px}
+.side__prog{flex:1;height:3px;background:var(--foot-line);border-radius:99px;overflow:hidden}
+.side__prog i{display:block;height:100%;width:0;background:var(--signal);border-radius:99px;transition:width .12s linear}
+.side__f span{font-family:var(--f-mono);font-size:10.5px;opacity:.6;font-variant-numeric:tabular-nums;min-width:34px;text-align:right}
+.side__hint{padding:12px 24px 0;font-family:var(--f-mono);font-size:9.5px;letter-spacing:.08em;opacity:.38;line-height:1.6}
+.burger{display:none}
+.scrim{display:none}
+.cover{min-height:86vh;padding-top:clamp(44px,9vh,100px)}
+@media (max-width:900px){
+  :root{--side-w:0px}
+  body{padding-left:0;padding-top:56px}
+  .side{width:min(300px,86vw);transform:translateX(-102%);transition:transform .3s cubic-bezier(.2,.7,.3,1);box-shadow:0 0 60px rgba(0,0,0,.45)}
+  .side.open{transform:none}
+  .burger{display:flex;flex-direction:column;justify-content:center;gap:5px;position:fixed;top:0;left:0;right:0;height:56px;z-index:80;background:var(--foot-bg);border:none;padding:0 20px;cursor:pointer}
+  .burger span{display:block;width:22px;height:2px;background:var(--foot-ink);border-radius:2px;transition:transform .25s,opacity .25s}
+  .burger[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .burger[aria-expanded="true"] span:nth-child(2){opacity:0}
+  .burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+  .scrim{display:block;position:fixed;inset:0;background:rgba(0,0,0,.5);opacity:0;pointer-events:none;transition:opacity .3s;z-index:69}
+  .scrim.on{opacity:1;pointer-events:auto}
+  .cover{min-height:auto;padding-top:40px}
+  .side__hint{display:none}
+}
+
 @media print{
+  body{padding-left:0}
+  .side,.burger,.scrim{display:none!important}
   .rv,.chat .bub,.cart .ci,.cover__sub{opacity:1!important;transform:none!important;animation:none!important}
   .cover h1 .ln > span{transform:none!important;animation:none!important}
   .goal__fill{width:62%!important}
@@ -494,22 +539,41 @@ table.t tbody tr:hover{background:var(--surface)}
 }
 </style>
 </head>
-<body>
+<body><button class="burger" id="burger" aria-label="Abrir el índice" aria-expanded="false">
+  <span></span><span></span><span></span>
+</button>
+<div class="scrim" id="scrim"></div>
+<aside class="side" id="side">
+  <a class="side__logo" href="#top"><img class="brandimg" src="%LOGO%" alt="Okinoi"><span class="side__x">×</span><span class="side__xn">XNOD</span></a>
+  <nav class="tabs" id="tabs">
+    <a class="tab is-on" href="#top" data-t="top"><span class="tab__n">00</span><span class="tab__x">Inicio</span></a>
+      <a class="tab" href="#sec-problema" data-t="sec-problema"><span class="tab__n">01</span><span class="tab__x">La situación</span></a>
+      <a class="tab" href="#sec-solucion" data-t="sec-solucion"><span class="tab__n">02</span><span class="tab__x">La solución</span></a>
+      <a class="tab" href="#sec-propuestas" data-t="sec-propuestas"><span class="tab__n">03</span><span class="tab__x">Las propuestas</span></a>
+      <a class="tab" href="#sec-p1" data-t="sec-p1"><span class="tab__n">04</span><span class="tab__x">Potenciador de ecommerce</span></a>
+      <a class="tab" href="#sec-p2" data-t="sec-p2"><span class="tab__n">05</span><span class="tab__x">Ecosistema tecnológico</span></a>
+      <a class="tab" href="#sec-inversion" data-t="sec-inversion"><span class="tab__n">06</span><span class="tab__x">Inversión</span></a>
+      <a class="tab" href="#sec-reco" data-t="sec-reco"><span class="tab__n">07</span><span class="tab__x">Recomendación</span></a>
+  </nav>
+  <div class="side__hint">J / K &nbsp;·&nbsp; ↑ ↓ &nbsp; PARA MOVERSE</div>
+  <div class="side__f">
+    <div class="side__prog"><i id="prog"></i></div>
+    <span id="progtxt">0%</span>
+  </div>
+</aside>
+<main class="content" id="content">
+
 <noscript><style>.rv,.chat .bub,.cart .ci,.cover__sub{opacity:1!important;transform:none!important}.cover h1 .ln > span{transform:none!important}.goal__fill{width:62%}</style></noscript>
-<div class="rail"><div class="rail__fill" id="railFill"></div></div>
 
 <!-- ============ PORTADA ============ -->
+<span id="top"></span>
 <header class="cover">
   <div class="cover__glow"></div>
   <div class="cover__top">
     <div class="brandline">OKINOI <span class="x">×</span> XNOD</div>
-    <div style="display:flex;gap:9px;flex-wrap:wrap">
-      <span class="tag">Confidencial</span>
-      <span class="tag">Validez 30 días</span>
-    </div>
+
   </div>
   <div class="cover__mid">
-    <div class="cover__kicker">Propuesta comercial · Agosto 2026</div>
     <h1>
       <span class="ln"><span>Que la tienda</span></span>
       <span class="ln"><span>venda como</span></span>
@@ -517,17 +581,11 @@ table.t tbody tr:hover{background:var(--surface)}
     </h1>
     <p class="cover__sub">Un potenciador de ecommerce para la tienda de Okinoi — y el ecosistema tecnológico que puede venir detrás.</p>
   </div>
-  <dl class="cover__meta">
-    <div><dt>Preparado para</dt><dd>Okinoi — Córdoba</dd></div>
-    <div><dt>Presentado por</dt><dd>Xnod LLC</dd></div>
-    <div><dt>Fecha</dt><dd>28 de agosto de 2026</dd></div>
-    <div><dt>Modalidad</dt><dd>Dos propuestas</dd></div>
-    <div><dt>Moneda</dt><dd>Dólares (USD)</dd></div>
-  </dl>
+
 </header>
 
 <!-- ============ PROBLEMA ============ -->
-<section class="band">
+<section id="sec-problema" class="band">
   <div class="wrap">
     <div class="eyebrow rv">La situación actual</div>
     <h2 class="h-sec rv">La tienda funciona.<br>Le falta el vendedor.</h2>
@@ -564,7 +622,7 @@ table.t tbody tr:hover{background:var(--surface)}
 </section>
 
 <!-- ============ SOLUCION ============ -->
-<section class="band band--tint">
+<section id="sec-solucion" class="band band--tint">
   <div class="wrap">
     <div class="eyebrow rv">La solución</div>
     <h2 class="h-sec rv">Un vendedor adentro<br>del carrito.</h2>
@@ -589,7 +647,7 @@ table.t tbody tr:hover{background:var(--surface)}
 </section>
 
 <!-- ============ LAS DOS PROPUESTAS ============ -->
-<section class="band">
+<section id="sec-propuestas" class="band">
   <div class="wrap">
     <div class="eyebrow rv">Propuestas</div>
     <h2 class="h-sec rv">Dos propuestas</h2>
@@ -624,7 +682,7 @@ table.t tbody tr:hover{background:var(--surface)}
 </section>
 
 <!-- ============ PROPUESTA 1 ============ -->
-<section class="band band--tint">
+<section id="sec-p1" class="band band--tint">
   <div class="wrap">
     <div class="pnum rv">01</div>
     <div class="eyebrow rv">Propuesta N.º 1 — Proyecto cerrado</div>
@@ -756,7 +814,7 @@ table.t tbody tr:hover{background:var(--surface)}
 </section>
 
 <!-- ============ PROPUESTA 2 ============ -->
-<section class="band">
+<section id="sec-p2" class="band">
   <div class="wrap">
     <div class="pnum rv">02</div>
     <div class="eyebrow rv">Propuesta N.º 2 — Abono mensual</div>
@@ -969,7 +1027,7 @@ table.t tbody tr:hover{background:var(--surface)}
 </section>
 
 <!-- ============ INVERSION ============ -->
-<section class="band band--tint" id="p2">
+<section class="band band--tint" id="sec-inversion">
   <div class="wrap">
     <div class="eyebrow rv">Inversión</div>
     <h2 class="h-sec rv">Los números</h2>
@@ -1028,14 +1086,13 @@ table.t tbody tr:hover{background:var(--surface)}
       <strong>Defecto y cambio no son lo mismo.</strong> Un defecto es una desviación respecto de lo documentado y se corrige sin cargo. Un cambio es funcionalidad no incluida en el alcance original y genera honorarios adicionales, cotizados antes de ejecutarse.<br><br>
       <strong>Dependencias de Okinoi.</strong> Para cumplir los plazos Xnod necesita acceso al catálogo de la tienda, las reglas de precio vigentes y un referente designado. La entrega se extiende un día hábil por cada día hábil de demora en estas dependencias.<br><br>
       <strong>Aceptación.</strong> Okinoi revisa cada entregable dentro de los diez días hábiles y notifica por escrito las no conformidades. La falta de rechazo en ese plazo constituye aceptación, al igual que el uso productivo de cualquier entregable.<br><br>
-      <strong>Obligación de medios.</strong> Este servicio constituye una obligación de medios. Xnod no garantiza resultados comerciales específicos, sino la entrega funcional de un sistema conforme al alcance técnico acordado.<br><br>
-      <strong>Vigencia.</strong> Esta propuesta tiene validez de 30 días desde la fecha de presentación. La disponibilidad del equipo queda sujeta a confirmación dentro de ese plazo.
+      <strong>Obligación de medios.</strong> Este servicio constituye una obligación de medios. Xnod no garantiza resultados comerciales específicos, sino la entrega funcional de un sistema conforme al alcance técnico acordado.
     </div>
   </div>
 </section>
 
 <!-- ============ RECOMENDACION ============ -->
-<section class="band">
+<section id="sec-reco" class="band">
   <div class="wrap">
     <div class="eyebrow rv">Nuestra recomendación</div>
     <h2 class="h-sec rv">Por cuál empezaríamos</h2>
@@ -1068,27 +1125,15 @@ table.t tbody tr:hover{background:var(--surface)}
     <div><dl>
       <dt>Contacto</dt><dd>Alan Tapia</dd>
       <dt>Correo</dt><dd>alantapia@xnod.tech</dd>
-      <dt>Presentado</dt><dd>28 de agosto de 2026</dd>
     </dl></div>
   </div>
-  <div class="foot__legal">
-    <span>DOCUMENTO CONFIDENCIAL · SOLO PARA USO DEL DESTINATARIO</span>
-    <span>OKINOI × XNOD · VALIDEZ 30 DÍAS</span>
-  </div>
+
 </footer>
 
 <script>
 (function(){
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // rail de progreso
-  var fill=document.getElementById('railFill');
-  function onScroll(){
-    var h=document.documentElement.scrollHeight-window.innerHeight;
-    fill.style.height=(h>0?(window.scrollY/h)*100:0)+'%';
-  }
-  window.addEventListener('scroll',onScroll,{passive:true});
-  onScroll();
 
   function activarTodo(){
     ['.rv','.js-chat','.js-cart','.js-goal'].forEach(function(s){
@@ -1138,6 +1183,46 @@ table.t tbody tr:hover{background:var(--surface)}
   },{threshold:.5});
   document.querySelectorAll('.js-num').forEach(function(e){ioN.observe(e)});
 
+
+  // ---- pestañas laterales: scrollspy, progreso, teclado y menu movil ----
+  var tabs=[].slice.call(document.querySelectorAll('.tab'));
+  var prog=document.getElementById('prog'), progtxt=document.getElementById('progtxt');
+  var side=document.getElementById('side'), burger=document.getElementById('burger'), scrim=document.getElementById('scrim');
+  var destinos=tabs.map(function(t){return document.getElementById(t.dataset.t)});
+
+  function marcar(){
+    var y=window.scrollY+window.innerHeight*0.3, activo=0;
+    destinos.forEach(function(d,i){ if(d && d.getBoundingClientRect().top+window.scrollY<=y) activo=i; });
+    tabs.forEach(function(t,i){ t.classList.toggle('is-on', i===activo) });
+    var alto=document.documentElement.scrollHeight-window.innerHeight;
+    var p=alto>0?Math.min(100,Math.round(window.scrollY/alto*100)):0;
+    if(prog) prog.style.width=p+'%';
+    if(progtxt) progtxt.textContent=p+'%';
+  }
+  window.addEventListener('scroll',marcar,{passive:true});
+  window.addEventListener('resize',marcar);
+  marcar();
+
+  function cerrar(){ side.classList.remove('open'); scrim.classList.remove('on'); burger.setAttribute('aria-expanded','false'); }
+  burger.addEventListener('click',function(){
+    var ab=side.classList.toggle('open');
+    scrim.classList.toggle('on',ab); burger.setAttribute('aria-expanded',ab?'true':'false');
+  });
+  scrim.addEventListener('click',cerrar);
+  tabs.forEach(function(t){ t.addEventListener('click',cerrar) });
+  function mover(d){
+    var i=tabs.findIndex(function(t){return t.classList.contains('is-on')});
+    var j=Math.max(0,Math.min(tabs.length-1,i+d));
+    if(destinos[j]) destinos[j].scrollIntoView({behavior:'smooth',block:'start'});
+  }
+  document.addEventListener('keydown',function(e){
+    if(e.metaKey||e.ctrlKey||e.altKey) return;
+    if(e.target && /INPUT|TEXTAREA|SELECT/.test(e.target.tagName)) return;
+    if(e.key==='Escape'){ cerrar(); return; }
+    if(e.key==='j'||e.key==='J'||e.key==='ArrowDown'){ e.preventDefault(); mover(1); }
+    if(e.key==='k'||e.key==='K'||e.key==='ArrowUp'){ e.preventDefault(); mover(-1); }
+  });
+
   // red de seguridad: nada puede quedar invisible por un observer que no disparo
   function revelarTodo(){
     document.querySelectorAll('.rv:not(.in)').forEach(function(e){e.style.transitionDelay='0ms';e.classList.add('in')});
@@ -1161,5 +1246,7 @@ table.t tbody tr:hover{background:var(--surface)}
   document.addEventListener('keydown',function(e){ if((e.metaKey||e.ctrlKey)&&e.key==='p') revelarTodo(); });
 })();
 </script>
+
+</main>
 </body>
 </html>
