@@ -427,6 +427,78 @@ table.t tbody tr:hover{background:var(--surface)}
 .rv{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.2,.7,.3,1),transform .7s cubic-bezier(.2,.7,.3,1)}
 .rv.in{opacity:1;transform:none}
 
+
+
+/* ---- iconos que se dibujan solos al aparecer ---- */
+.rv .ico path,.rv .ico circle,.rv .ico rect,.rv .ico line,.rv .ico polyline,
+.rv .prob__ico path,.rv .prob__ico circle,.rv .prob__ico rect{
+  stroke-dasharray:var(--dash,120);stroke-dashoffset:var(--dash,120);
+}
+.rv.in .ico path,.rv.in .ico circle,.rv.in .ico rect,.rv.in .ico line,.rv.in .ico polyline,
+.rv.in .prob__ico path,.rv.in .prob__ico circle,.rv.in .prob__ico rect{
+  animation:trazo .9s cubic-bezier(.3,.8,.4,1) forwards;
+}
+@keyframes trazo{to{stroke-dashoffset:0}}
+.rv.in .ico [style*="--dash"],.rv.in .prob__ico [style*="--dash"]{stroke-dashoffset:0}
+
+/* ---- linea del eyebrow que crece ---- */
+.eyebrow::after{width:0;transition:width .8s cubic-bezier(.2,.7,.3,1) .15s}
+.rv.in.eyebrow::after,.in .eyebrow::after{width:120px}
+
+/* ---- icono en los pasos y en las tarjetas de opcion ---- */
+.paso__ico{width:26px;height:26px;color:var(--signal);margin-bottom:10px;display:block}
+.opt__ico{width:32px;height:32px;color:var(--signal);margin-bottom:2px}
+
+/* ---- flechas del flujo que laten ---- */
+.flow__arrow svg{animation:latir 2.6s ease-in-out infinite}
+.flow__arrow:nth-of-type(4) svg{animation-delay:.5s}
+@keyframes latir{0%,100%{transform:translateX(0);opacity:.55}50%{transform:translateX(4px);opacity:1}}
+
+/* ---- brillo sutil al pasar por las tarjetas de precio ---- */
+.price{position:relative;overflow:hidden}
+.price::after{
+  content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;
+  background:linear-gradient(100deg,transparent,var(--signal-wash),transparent);
+  opacity:0;transition:opacity .3s;pointer-events:none;
+}
+.price:hover::after{opacity:.9;animation:brillo 1.1s ease-out}
+@keyframes brillo{to{left:120%}}
+
+/* ---- indicador deslizante en las pestañas ---- */
+.tab::before{
+  content:"";position:absolute;left:0;top:12%;bottom:12%;width:2px;background:var(--signal);
+  border-radius:2px;transform:scaleY(0);transition:transform .25s cubic-bezier(.2,.7,.3,1);
+}
+.tab:hover::before{transform:scaleY(1)}
+.tab.is-on::before{transform:scaleY(0)}
+
+@media (prefers-reduced-motion:reduce){
+  .rv .ico path,.rv .ico circle,.rv .ico rect,.rv .ico line,.rv .ico polyline,
+  .rv .prob__ico path,.rv .prob__ico circle,.rv .prob__ico rect{stroke-dasharray:none;stroke-dashoffset:0;animation:none}
+  .eyebrow::after{width:120px;transition:none}
+  .flow__arrow svg{animation:none}
+  .price:hover::after{animation:none;opacity:0}
+  .tab::before{transition:none}
+}
+
+/* ---- que es Xnod ---- */
+.xn{display:grid;grid-template-columns:repeat(auto-fit,minmax(212px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin-top:44px}
+.xn__i{background:var(--paper);padding:26px 22px;display:flex;flex-direction:column;gap:11px;transition:background .3s}
+.xn__i:hover{background:var(--surface)}
+.xn__i .ico{width:28px;height:28px;color:var(--signal)}
+.xn__i strong{font-family:var(--f-display);font-size:16.5px;font-weight:700;letter-spacing:-.01em;line-height:1.25}
+.xn__i span{font-size:14.5px;color:var(--muted);line-height:1.55}
+.xn__n{display:flex;gap:34px;flex-wrap:wrap;margin-top:34px;padding-top:24px;border-top:1px solid var(--line)}
+.xn__n div{display:flex;flex-direction:column;gap:3px}
+.xn__n dt{font-family:var(--f-mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted)}
+.xn__n dd{margin:0;font-family:var(--f-display);font-weight:800;font-size:20px;letter-spacing:-.02em;color:var(--ink)}
+/* ---- footer minimo ---- */
+.foot{padding:24px var(--pad)}
+.foot .wrap{display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap}
+.foot .fl{display:flex;align-items:center;gap:10px;font-family:var(--f-mono);font-size:11px;letter-spacing:.07em;opacity:.75}
+.foot .fl img{height:14px;opacity:.9}
+.foot .fr{font-family:var(--f-mono);font-size:11px;letter-spacing:.07em;opacity:.5}
+
 /* ================= SHELL CON PESTAÑAS LATERALES ================= */
 html{scroll-behavior:smooth}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
@@ -547,13 +619,14 @@ body{padding-left:var(--side-w)}
   <a class="side__logo" href="#top"><img class="brandimg" src="data:image/png;base64,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" alt="Okinoi"><span class="side__x">×</span><span class="side__xn">XNOD</span></a>
   <nav class="tabs" id="tabs">
     <a class="tab is-on" href="#top" data-t="top"><span class="tab__n">00</span><span class="tab__x">Inicio</span></a>
-      <a class="tab" href="#sec-problema" data-t="sec-problema"><span class="tab__n">01</span><span class="tab__x">La situación</span></a>
-      <a class="tab" href="#sec-solucion" data-t="sec-solucion"><span class="tab__n">02</span><span class="tab__x">La solución</span></a>
-      <a class="tab" href="#sec-propuestas" data-t="sec-propuestas"><span class="tab__n">03</span><span class="tab__x">Las propuestas</span></a>
-      <a class="tab" href="#sec-p1" data-t="sec-p1"><span class="tab__n">04</span><span class="tab__x">Potenciador de ecommerce</span></a>
-      <a class="tab" href="#sec-p2" data-t="sec-p2"><span class="tab__n">05</span><span class="tab__x">Ecosistema tecnológico</span></a>
-      <a class="tab" href="#sec-inversion" data-t="sec-inversion"><span class="tab__n">06</span><span class="tab__x">Inversión</span></a>
-      <a class="tab" href="#sec-reco" data-t="sec-reco"><span class="tab__n">07</span><span class="tab__x">Recomendación</span></a>
+    <a class="tab" href="#sec-xnod" data-t="sec-xnod"><span class="tab__n">01</span><span class="tab__x">Qué es Xnod</span></a>
+    <a class="tab" href="#sec-problema" data-t="sec-problema"><span class="tab__n">02</span><span class="tab__x">La situación</span></a>
+    <a class="tab" href="#sec-solucion" data-t="sec-solucion"><span class="tab__n">03</span><span class="tab__x">La solución</span></a>
+    <a class="tab" href="#sec-propuestas" data-t="sec-propuestas"><span class="tab__n">04</span><span class="tab__x">Las propuestas</span></a>
+    <a class="tab" href="#sec-p1" data-t="sec-p1"><span class="tab__n">05</span><span class="tab__x">Potenciador de ecommerce</span></a>
+    <a class="tab" href="#sec-p2" data-t="sec-p2"><span class="tab__n">06</span><span class="tab__x">Ecosistema tecnológico</span></a>
+    <a class="tab" href="#sec-inversion" data-t="sec-inversion"><span class="tab__n">07</span><span class="tab__x">Inversión</span></a>
+    <a class="tab" href="#sec-reco" data-t="sec-reco"><span class="tab__n">08</span><span class="tab__x">Cómo seguimos</span></a>
   </nav>
   <div class="side__hint">J / K &nbsp;·&nbsp; ↑ ↓ &nbsp; PARA MOVERSE</div>
   <div class="side__f">
@@ -583,6 +656,42 @@ body{padding-left:var(--side-w)}
   </div>
 
 </header>
+
+<section id="sec-xnod" class="band">
+  <div class="wrap">
+    <div class="eyebrow rv">Quiénes somos</div>
+    <h2 class="h-sec rv">Qué es Xnod</h2>
+    <p class="lede rv">Una fábrica de software con equipo propio de desarrollo. Construimos sistemas de gestión y canales de venta para operaciones que fabrican, importan y distribuyen — y les agregamos inteligencia artificial donde de verdad reemplaza una tarea, no como demostración.</p>
+    <div class="xn">
+      <article class="xn__i rv">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 21h20M4 21V9l5-3.5V21M13 21V6l7 4v11"/><path d="M7 12h.01M7 16h.01M16 13h.01M16 17h.01"/></svg>
+        <strong>Operaciones industriales</strong>
+        <span>Producción, depósito, importación y postventa. No es software genérico adaptado: es el circuito de una empresa que fabrica y además distribuye.</span>
+      </article>
+      <article class="xn__i rv">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2a3 3 0 0 1 3 3v1a6 6 0 0 1 3 5v6H6v-6a6 6 0 0 1 3-5V5a3 3 0 0 1 3-3z"/><path d="M9 20h6"/></svg>
+        <strong>IA aplicada, no demostrativa</strong>
+        <span>La usamos donde reemplaza algo concreto: entender un pedido, resolver una compatibilidad, contestar una consulta. Si no reemplaza nada, no la ponemos.</span>
+      </article>
+      <article class="xn__i rv">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+        <strong>Entregamos en producción</strong>
+        <span>Cada hito lleva un criterio de aceptación objetivo. Se aprueba porque funciona con datos reales, no porque se presentó bien.</span>
+      </article>
+      <article class="xn__i rv">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="4" width="20" height="12" rx="2"/><path d="M8 20h8M12 16v4M6 8h5M6 11h8"/></svg>
+        <strong>Una plataforma ya en marcha</strong>
+        <span>Tenemos en producción un sistema de gestión integral para una operación de vehículos: fábrica, concesionarios, repuestos, postventa y administración. Es la base de la Propuesta N.º 2.</span>
+      </article>
+    </div>
+    <dl class="xn__n rv">
+      <div><dt>Razón social</dt><dd>XNOD LLC</dd></div>
+      <div><dt>Equipo</dt><dd>Desarrollo propio</dd></div>
+      <div><dt>Contacto</dt><dd>Alan Tapia</dd></div>
+    </dl>
+  </div>
+</section>
+
 
 <!-- ============ PROBLEMA ============ -->
 <section id="sec-problema" class="band">
@@ -654,6 +763,7 @@ body{padding-left:var(--side-w)}
     <p class="lede rv">La primera resuelve la puerta de entrada: la venta. La segunda es todo lo que hay detrás de esa puerta. No compiten — la segunda es el camino natural si la primera funciona.</p>
     <div class="opts">
       <article class="opt opt--rec rv">
+        <svg class="opt__ico ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/><path d="M12 2a3 3 0 0 1 3 3"/></svg>
         <div class="opt__n">Propuesta N.º 1</div>
         <h3>Potenciador de ecommerce</h3>
         <p class="opt__p">Llave en mano. El vendedor virtual sobre la tienda que Okinoi ya tiene, entregado funcionando y con la gente capacitada.</p>
@@ -663,9 +773,10 @@ body{padding-left:var(--side-w)}
           <li>Se mide contra ventas: se ve si funciona o no</li>
           <li>El desarrollo queda como activo de Okinoi</li>
         </ul>
-        <div class="opt__foot">Proyecto cerrado · 7 semanas</div>
+        <div class="opt__foot">Proyecto cerrado · 60 días</div>
       </article>
       <article class="opt rv">
+        <svg class="opt__ico ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><path d="M10 6.5h4M6.5 10v4M17.5 10v4M10 17.5h4"/></svg>
         <div class="opt__n">Propuesta N.º 2</div>
         <h3>Ecosistema tecnológico</h3>
         <p class="opt__p">La plataforma completa: el sistema de gestión, un ecommerce con inteligencia artificial y una aplicación propia para cada cliente de Okinoi.</p>
@@ -675,7 +786,7 @@ body{padding-left:var(--side-w)}
           <li>Una app para cada comercio de la red</li>
           <li>Infraestructura, base de datos y soporte incluidos</li>
         </ul>
-        <div class="opt__foot">Abono mensual · Mínimo 6 meses</div>
+        <div class="opt__foot">Abono mensual</div>
       </article>
     </div>
   </div>
@@ -1036,25 +1147,24 @@ body{padding-left:var(--side-w)}
     <div class="inv">
       <article class="price price--rec rv">
         <div><div class="price__lbl">Propuesta N.º 1 — Potenciador de ecommerce</div><h3 style="margin-top:10px">Llave en mano</h3></div>
-        <div><div class="price__big"><sup>USD</sup>9.000</div><div class="price__unit">Pago único, en tres hitos</div></div>
+        <div><div class="price__big"><sup>USD</sup><span class="js-num" data-to="9000">0</span></div><div class="price__unit">Pago único, en tres hitos</div></div>
         <ul class="price__split">
           <li><span class="k">Hito 1 — antes de iniciar</span><span class="v">40% · 3.600</span></li>
           <li><span class="k">Hito 2 — al aprobar</span><span class="v">30% · 2.700</span></li>
           <li><span class="k">Hito 3 — contra entrega</span><span class="v">30% · 2.700</span></li>
           <li><span class="k">Soporte posterior</span><span class="v">30 días sin cargo</span></li>
-          <li><span class="k">Plazo estimado</span><span class="v">7 semanas</span></li>
+          <li><span class="k">Plazo estimado</span><span class="v">60 días</span></li>
         </ul>
       </article>
       <article class="price rv">
         <div><div class="price__lbl">Propuesta N.º 2 — Ecosistema</div><h3 style="margin-top:10px">Abono mensual</h3></div>
-        <div><div class="price__big"><sup>USD</sup>3.500</div><div class="price__unit">Por mes</div></div>
+        <div><div class="price__big"><sup>USD</sup><span class="js-num" data-to="3500">0</span></div><div class="price__unit">Por mes</div></div>
         <ul class="price__split">
           <li><span class="k">Sistema de gestión integral</span><span class="v">Incluido</span></li>
           <li><span class="k">Ecommerce con IA</span><span class="v">Incluido</span></li>
           <li><span class="k">App para cada cliente</span><span class="v">Incluida</span></li>
           <li><span class="k">Soporte, base de datos e infra</span><span class="v">Incluidos</span></li>
           <li><span class="k">Evolución continua</span><span class="v">Hasta 80 h/mes</span></li>
-          <li><span class="k">Compromiso mínimo</span><span class="v">6 meses</span></li>
         </ul>
       </article>
     </div>
@@ -1094,19 +1204,13 @@ body{padding-left:var(--side-w)}
 <!-- ============ RECOMENDACION ============ -->
 <section id="sec-reco" class="band">
   <div class="wrap">
-    <div class="eyebrow rv">Nuestra recomendación</div>
-    <h2 class="h-sec rv">Por cuál empezaríamos</h2>
-    <div class="reco rv">
-      <h3>Propuesta N.º 1, y el ecosistema después</h3>
-      <p>El potenciador de ecommerce ataca lo que Okinoi ya pidió, no toca nada de lo que hoy funciona y se mide contra ventas: a las siete semanas se sabe si más gente cierra el pedido o no. Es la inversión más chica que puede demostrar un resultado.</p>
-      <p>Si funciona, el ecosistema deja de ser una decisión de fe. El paso natural es que el stock que la tienda publica sea el stock real, que el pedido web y el del viajante entren al mismo circuito, que cada comercio tenga su app y que la comisión se liquide sola. Eso es la Propuesta N.º 2, y conviene decidirla con el primer resultado sobre la mesa, no antes.</p>
-    </div>
-
-    <h3 style="font-size:26px;font-weight:800;margin-top:66px" class="rv">Cómo seguimos</h3>
+    <div class="eyebrow rv">Cómo seguimos</div>
+    <h2 class="h-sec rv">Los próximos tres pasos</h2>
+    
     <div class="pasos">
-      <div class="paso rv"><h4>Okinoi elige una propuesta</h4><p>Con quien decide presente, para que la elección no tenga que traducirse después.</p></div>
-      <div class="paso rv"><h4>Acceso al catálogo y referente</h4><p>Xnod confirma el alcance final del hito 1 en cinco días hábiles.</p></div>
-      <div class="paso rv"><h4>Firma y acreditación del hito 1</h4><p>Ninguna tarea comienza sin la acreditación del primer pago. A partir de ahí corre el plazo.</p></div>
+      <div class="paso rv"><svg class="paso__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg><h4>Okinoi elige una propuesta</h4><p>Con quien decide presente, para que la elección no tenga que traducirse después.</p></div>
+      <div class="paso rv"><svg class="paso__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg><h4>Acceso al catálogo y referente</h4><p>Xnod confirma el alcance final del hito 1 en cinco días hábiles.</p></div>
+      <div class="paso rv"><svg class="paso__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M20 12V8H4v12h9"/><path d="M4 8l8-5 8 5"/><path d="M16 18l2 2 4-4"/></svg><h4>Firma y acreditación del hito 1</h4><p>Ninguna tarea comienza sin la acreditación del primer pago. A partir de ahí corre el plazo.</p></div>
     </div>
   </div>
 </section>
@@ -1114,20 +1218,9 @@ body{padding-left:var(--side-w)}
 <!-- ============ CIERRE ============ -->
 <footer class="foot">
   <div class="wrap">
-    <div>
-      <h3>Quién es Xnod</h3>
-      <p>Una fábrica de software con foco en operaciones industriales y comerciales: plataformas de gestión, canales de venta y capas de inteligencia sobre los datos que las empresas ya tienen. Trabajamos con equipo propio de desarrollo y entregamos en producción, no en presentaciones.</p>
-    </div>
-    <div><dl>
-      <dt>Razón social</dt><dd>XNOD LLC</dd>
-      <dt>Domicilio</dt><dd>1209 Mountain Road Pl NE, Ste N<br>Albuquerque, NM 87110, USA</dd>
-    </dl></div>
-    <div><dl>
-      <dt>Contacto</dt><dd>Alan Tapia</dd>
-      <dt>Correo</dt><dd>alantapia@xnod.tech</dd>
-    </dl></div>
+    <div class="fl"><img src="data:image/png;base64,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" alt="Okinoi"> &nbsp;×&nbsp; XNOD LLC</div>
+    <div class="fr">Alan Tapia · alantapia@xnod.tech</div>
   </div>
-
 </footer>
 
 <script>
@@ -1183,6 +1276,27 @@ body{padding-left:var(--side-w)}
   },{threshold:.5});
   document.querySelectorAll('.js-num').forEach(function(e){ioN.observe(e)});
 
+
+
+  // ---- medir cada trazo de icono para que termine dibujado completo ----
+  if(!reduce){
+    document.querySelectorAll('.ico, .prob__ico').forEach(function(svg){
+      svg.querySelectorAll('path,circle,rect,line,polyline').forEach(function(el){
+        var L=0;
+        try{ L=el.getTotalLength ? el.getTotalLength() : 0; }catch(e){ L=0; }
+        if(!L || !isFinite(L)){
+          // circle/rect no siempre tienen getTotalLength: lo estimamos
+          if(el.tagName==='circle'){ L=2*Math.PI*(parseFloat(el.getAttribute('r'))||8); }
+          else if(el.tagName==='rect'){ L=2*((parseFloat(el.getAttribute('width'))||10)+(parseFloat(el.getAttribute('height'))||10)); }
+          else L=90;
+        }
+        L=Math.ceil(L)+1;
+        el.style.setProperty('--dash', L);
+        el.style.strokeDasharray=L;
+        el.style.strokeDashoffset=L;
+      });
+    });
+  }
 
   // ---- pestañas laterales: scrollspy, progreso, teclado y menu movil ----
   var tabs=[].slice.call(document.querySelectorAll('.tab'));
