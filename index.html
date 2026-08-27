@@ -2119,8 +2119,8 @@ body{padding-left:var(--side-w)}
         [].forEach.call(document.querySelectorAll('#v3dsw button'),function(o){o.classList.remove('on')});
         b.classList.add('on'); sel.textContent=b.dataset.n;
         var c=b.dataset.c;
-        if(c){ tint.style.background=c; tint.classList.add('on'); img.style.filter='grayscale(1) contrast(1.1)'; }
-        else { tint.classList.remove('on');
+        if(c){ tint.style.background=c; tint.style.opacity='.72'; img.style.filter='grayscale(1) contrast(1.1)'; }
+        else { tint.style.opacity='0';
                img.style.filter = b.dataset.n==='Negro brillante' ? 'brightness(.82) contrast(1.2)' : 'none'; }
       });
     });
