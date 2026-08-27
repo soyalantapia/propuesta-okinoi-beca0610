@@ -652,6 +652,27 @@ table.t tbody tr:hover{background:var(--surface)}
 .tab.has-sub.is-on{border-radius:7px 7px 0 0}
 .tab__n--sub{font-family:var(--f-mono);font-size:9px;letter-spacing:.1em;opacity:.6}
 
+
+/* ---- la tarifa flat ---- */
+.flat{margin-top:40px;border:1px solid var(--line-strong);background:var(--surface)}
+.flat__h{padding:24px 26px 20px;border-bottom:1px solid var(--line)}
+.flat__k{font-family:var(--f-mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--signal-ink);margin-bottom:9px}
+.flat__t{font-family:var(--f-display);font-size:clamp(21px,2.5vw,27px);font-weight:800;letter-spacing:-.02em;line-height:1.2}
+.flat__s{margin-top:10px;font-size:15.5px;color:var(--muted);line-height:1.6;max-width:66ch}
+.flat__g{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+.flat__c{padding:22px 26px}
+.flat__c+.flat__c{border-left:1px solid var(--line)}
+.flat__c h5{font-family:var(--f-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:13px}
+.flat__c.si h5{color:var(--ok)}
+.flat__c.no h5{color:var(--muted)}
+.flat__c ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px}
+.flat__c li{font-size:14.5px;line-height:1.55;padding-left:22px;position:relative;color:var(--ink-2)}
+.flat__c li svg{position:absolute;left:0;top:3px;width:14px;height:14px}
+.flat__c.si li svg{color:var(--ok)}
+.flat__c.no li svg{color:var(--muted)}
+.flat__f{border-top:1px solid var(--line);padding:16px 26px;font-size:14px;color:var(--ink-2);line-height:1.6}
+@media (max-width:820px){.flat__g{grid-template-columns:1fr}.flat__c+.flat__c{border-left:none;border-top:1px solid var(--line)}}
+
 /* ---- funciones a medida ---- */
 .med{margin-top:40px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
 .med__i{background:var(--paper);padding:26px 24px;display:flex;flex-direction:column;gap:11px}
@@ -1093,6 +1114,21 @@ body{padding-left:var(--side-w)}
         <h4>Qué se pidió y no había</h4>
         <p>Todo lo que los clientes buscaron y la tienda no pudo resolver. Es la lista de las consultas que la tienda no pudo resolver: qué pidieron, cuántas veces y por qué.</p>
       </div>
+      <div class="deliv__i rv">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.2 2.4c-.5.2-.7.6-.7 1.1v.5"/><path d="M12 17h.01"/></svg>
+        <span class="qty">Asesoramiento</span><h4>De qué se trata cada producto</h4>
+        <p>Qué es, para qué sirve y en qué se diferencia de otro modelo. El cliente que no sabe de repuestos deja de tener que aprender el vocabulario para poder comprar.</p>
+      </div>
+      <div class="deliv__i rv">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"/><path d="M4 8l8-4 8 4"/><path d="M4 8v3a4 4 0 0 0 8 0V8"/><path d="M12 8v3a4 4 0 0 0 8 0V8"/></svg>
+        <span class="qty">Asesoramiento</span><h4>Cuál le conviene, entre dos que le sirven</h4>
+        <p>Compara los dos por lo que de verdad cambia: el material de la calota, el peso, la certificación, el tipo de uso. Y si el más barato le alcanza, lo dice.</p>
+      </div>
+      <div class="deliv__i rv">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h2l2.4 12.1a2 2 0 0 0 2 1.6h8.5a2 2 0 0 0 2-1.6L21.5 8H6"/><circle cx="10" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M13 3.5l2 2 3.5-3.5"/></svg>
+        <span class="qty">Lo define Okinoi</span><h4>Lo que la empresa quiere mover</h4>
+        <p>Cuando hay dos productos que sirven igual, propone primero el que Okinoi marcó: exceso de stock, temporada anterior, marca propia. Nunca ofrece algo que no le sirve al cliente.</p>
+      </div>
     </div>
 
     <!-- MOCKUP 1: el vendedor -->
@@ -1147,6 +1183,33 @@ body{padding-left:var(--side-w)}
       </div>
     </div>
 
+
+
+    <h3 class="rv h-sub2">El asesoramiento, no sólo la venta</h3>
+    <p class="lede rv" style="margin-top:12px">Un vendedor bueno no le vende lo más caro al que entra: le explica la diferencia y le dice cuál le sirve. Eso es lo que separa a un buscador con IA de un vendedor, y es lo que hoy en la tienda no existe.</p>
+    <div class="mock rv">
+      <div class="mock__bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="mock__url">tienda.okinoi.com.ar · asesoramiento</span></div>
+      <div class="mock__body">
+        <div class="chat">
+          <div class="bub bub--me">Ando mucho en ruta. ¿Cuál me conviene, el AVX FS-V6 o el Street Fighter?</div>
+          <div class="bub bub--bot">Los dos son AVX, marca nuestra. El FS-V6 tiene calota de fibra, pesa menos y en viaje largo eso se siente en el cuello. El Street Fighter es ABS: aguanta muy bien el golpe seco y sale bastante menos, pero pesa unos 300 gramos más. Si hacés muchos kilómetros seguidos, el FS-V6.</div>
+          <div class="bub bub--me">¿Y en plata cómo quedan?</div>
+          <div class="bub bub--bot">FS-V6 $ 350.000, Street Fighter $ 150.000. Si el presupuesto manda, el Street Fighter cumple igual: la diferencia es comodidad en viaje largo, no seguridad. Los dos están certificados.</div>
+          <div class="bub bub--me">Buenísimo. Necesito también una cubierta trasera para una Titan 150</div>
+          <div class="bub bub--bot">Te entran dos. Te propongo primero la Kingtyre, que es la que tenemos con más stock y esta semana está mejor de precio. Si querés te paso la otra opción y las comparás.</div>
+        </div>
+      </div>
+    </div>
+    <p class="mock__cap rv">EJEMPLO DE CONVERSACIÓN CON PRODUCTOS Y PRECIOS REALES DE LA TIENDA</p>
+
+    <div class="fine rv">
+      <ul>
+        <li><b>El asesoramiento lo configura Okinoi, no lo inventa el modelo.</b> Las diferencias entre productos salen de una ficha técnica cargada por ustedes, no de lo que el modelo crea saber.</li>
+        <li><b>La prioridad comercial también es de Okinoi.</b> Marcan qué quieren mover y por qué: exceso de stock, temporada anterior, marca propia. El asistente lo propone primero cuando hay más de una opción válida.</li>
+        <li><b>El límite es duro:</b> nunca ofrece un producto que no le sirve al cliente para ganar una venta. Si sólo hay uno que le entra, es ese, esté o no en la lista de prioridades.</li>
+        <li><b>Sobre seguridad no opina.</b> En cascos repite lo que dice la certificación del fabricante y nada más.</li>
+      </ul>
+    </div>
 
     <h3 class="rv h-sub">Qué cambia en la tienda</h3>
     <p class="lede rv" style="margin-top:12px">Cinco momentos concretos de la venta online, antes y después.</p>
@@ -1241,6 +1304,37 @@ body{padding-left:var(--side-w)}
     <div class="eyebrow rv">Propuesta N.º 2, Abono mensual</div>
     <h2 class="h-sec rv">Ecosistema tecnológico</h2>
     <p class="lede rv">Potenciar la venta resuelve la puerta de entrada. Detrás de cada pedido está el stock real, la producción, el viajante que lo trajo, la comisión que le corresponde, la garantía que puede volver y el asiento contable. Xnod ya construyó esa plataforma completa para una operación de vehículos, hoy en producción, y puede adaptarla a Okinoi con su marca y sus procesos.</p>
+
+    <div class="flat rv">
+      <div class="flat__h">
+        <div class="flat__k">Una sola tarifa</div>
+        <div class="flat__t">USD 3.500 por mes es el precio final, no el punto de partida</div>
+        <p class="flat__s">No hay costo de implementación, ni de puesta en marcha, ni licencia por usuario, ni por sucursal, ni por depósito. Todo lo que se construya, se adapte o se personalice durante el abono entra en esa cifra. Cuando Okinoi pide una pantalla nueva, una regla nueva o un reporte que no existía, no llega un presupuesto aparte: entra en la banda de horas del mes.</p>
+      </div>
+      <div class="flat__g">
+        <div class="flat__c si">
+          <h5>Adentro de los USD 3.500</h5>
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>El sistema de gestión integral, el ecommerce con inteligencia artificial y la aplicación para cada comercio de la red.</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><b>El desarrollo.</b> Pantallas nuevas, reglas nuevas, reportes nuevos, ajustes sobre lo que ya existe.</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><b>La adaptación.</b> La plataforma se acomoda a cómo trabaja Okinoi, no al revés.</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><b>La personalización.</b> La marca, los circuitos, los permisos y las pantallas son de ustedes, no una configuración genérica.</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Servidores, base de datos, respaldos automáticos y monitoreo.</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Soporte técnico directo y reunión semanal de trabajo.</li>
+          </ul>
+        </div>
+        <div class="flat__c no">
+          <h5>Fuera, y se dice desde ahora</h5>
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>El <b>consumo de inteligencia artificial</b>, que Okinoi paga directo al proveedor según uso.</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>La <b>migración</b> de los datos que hoy viven entre las dos bases. Se cotiza aparte cuando se define el alcance.</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>Un <b>módulo entero nuevo</b> que hoy no esté en la plataforma, acordado por escrito antes.</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>Exceder de forma sostenida la banda de 80 horas mensuales, también acordado antes.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="flat__f"><strong>Por qué importa la diferencia.</strong> En el modelo habitual, cada pedido que hace el cliente se cotiza, se aprueba y se factura aparte, así que pedir mejoras cuesta plata y se termina pidiendo menos de lo que hace falta. Acá la cuenta no cambia: <strong>el número es el mismo pidan poco o pidan mucho</strong>, y el único límite es la banda de horas del mes, que se prioriza en conjunto todas las semanas.</div>
+    </div>
 
     <div class="mods">
       <div class="mod rv"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg><strong>Ventas y mostrador</strong><span>El pedido web, el del viajante y el del mostrador en un solo circuito.</span></div>
