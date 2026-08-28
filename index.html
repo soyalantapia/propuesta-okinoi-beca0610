@@ -393,7 +393,8 @@ table.t tbody tr:hover{background:var(--surface)}
 
 
 .pasos{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;margin-top:48px;counter-reset:p}
-.paso{border-top:2px solid var(--signal);padding-top:20px;counter-increment:p}
+.paso{border-top:2px solid var(--signal);padding-top:20px;counter-increment:p;display:flex;flex-direction:column}
+#sec-reco .paso .fase__crit{margin-top:auto}
 .paso::before{content:counter(p,decimal-leading-zero);font-family:var(--f-mono);font-size:12px;letter-spacing:.14em;color:var(--signal-ink);display:block;margin-bottom:11px}
 .paso h4{font-size:18px;font-weight:700;margin-bottom:8px}
 .paso p{font-size:15px;color:var(--muted);line-height:1.6}
@@ -630,7 +631,7 @@ table.t tbody tr:hover{background:var(--surface)}
 .cimp{background:var(--app-card,var(--surface));border:1px solid var(--app-line);padding:16px 18px}
 .cimp h6{font-family:var(--f-mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;font-weight:500}
 .cimp__r{display:flex;justify-content:space-between;gap:14px;padding:7px 0;font-size:12.5px;color:var(--ink-2);border-bottom:1px solid var(--app-line)}
-.cimp__r:last-of-type{border-bottom:none}
+.cimp__r:last-of-type,.cimp__r:has(+ .cimp__t){border-bottom:none}
 .cimp__r b{font-family:var(--f-mono);font-variant-numeric:tabular-nums;font-weight:500}
 .cimp__t{display:flex;justify-content:space-between;gap:14px;margin-top:12px;padding-top:12px;border-top:2px solid var(--signal);font-family:var(--f-display);font-weight:800;font-size:15px}
 .cimp__t span:last-child{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
@@ -699,6 +700,7 @@ table.t tbody tr:hover{background:var(--surface)}
 @media (max-width:1040px){.ciclo{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:820px){.med{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media (max-width:660px){.med,.ciclo,.sube{grid-template-columns:repeat(1,minmax(0,1fr))}}
+@media (max-width:400px){.cli__w,.roster__w{white-space:normal;font-size:14px}.cli__l{gap:14px 20px;padding:14px 18px 20px}}
 
 /* ---- clientes dentro de Que es Xnod ---- */
 .cli{margin-top:38px;border:1px solid var(--line);background:var(--surface)}
@@ -852,7 +854,7 @@ body{padding-left:var(--side-w)}
     <a class="tab" href="#sec-p1" data-t="sec-p1"><span class="tab__n">05</span><span class="tab__x">Potenciador de ecommerce</span></a>
     <a class="tab has-sub" href="#sec-p2" data-t="sec-p2"><span class="tab__n">06</span><span class="tab__x">Ecosistema tecnológico</span></a>
     <a class="tab tab--sub" href="#p2-centro" data-t="p2-centro"><span class="tab__n tab__n--sub">06.1</span><span class="tab__x">Centro de operaciones</span></a>
-    <a class="tab tab--sub" href="#p2-ecommerce" data-t="p2-ecommerce"><span class="tab__n tab__n--sub">06.2</span><span class="tab__x">Ecommerce con IA</span></a>
+    <a class="tab tab--sub" href="#p2-ecommerce" data-t="p2-ecommerce"><span class="tab__n tab__n--sub">06.2</span><span class="tab__x">Ecommerce con IA y 3D</span></a>
     <a class="tab tab--sub" href="#p2-app" data-t="p2-app"><span class="tab__n tab__n--sub">06.3</span><span class="tab__x">App para cada cliente</span></a>
     <a class="tab tab--sub" href="#p2-contable" data-t="p2-contable"><span class="tab__n tab__n--sub">06.4</span><span class="tab__x">Sistema contable</span></a>
     <a class="tab tab--sub" href="#p2-circuitos" data-t="p2-circuitos"><span class="tab__n tab__n--sub">06.5</span><span class="tab__x">Los nueve circuitos</span></a>
@@ -888,7 +890,7 @@ body{padding-left:var(--side-w)}
 
     <div class="ai rv">
       <div class="ai__h">
-        <span class="ai__glyph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a2.5 2.5 0 0 1 2.5 2.5v.7A5 5 0 0 1 17 10.5V16H7v-5.5a5 5 0 0 1 2.5-4.3v-.7A2.5 2.5 0 0 1 12 3Z"/><path d="M9.5 19h5"/></svg></span>
+        <span class="ai__glyph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a2.5 2.5 0 0 1 2.5 2.5v.7A5 5 0 0 1 17 10.5V16H7v-5.5a5 5 0 0 1 2.5-4.3v-.7A2.5 2.5 0 0 1 12 3Z"/><path d="M9.5 19h5"/></svg></span>
         <b>Vendedor Okinoi</b><span class="ai__from">Mensaje entrante</span>
       </div>
       <div class="ai__b">
@@ -927,24 +929,24 @@ body{padding-left:var(--side-w)}
     <p class="lede rv">Una fábrica de software con equipo propio de desarrollo. Construimos sistemas de gestión y canales de venta para operaciones que fabrican, importan y distribuyen.</p>
     <div class="xn">
       <article class="xn__i rv">
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 21h20M4 21V9l5-3.5V21M13 21V6l7 4v11"/><path d="M7 12h.01M7 16h.01M16 13h.01M16 17h.01"/></svg>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 21h20M4 21V9l5-3.5V21M13 21V6l7 4v11"/><path d="M7 12h.01M7 16h.01M16 13h.01M16 17h.01"/></svg>
         <strong>Operaciones industriales</strong>
         <span>Producción, depósito, importación y postventa. No es software genérico adaptado: es el circuito de una empresa que fabrica y además distribuye.</span>
       </article>
       <article class="xn__i rv">
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2a3 3 0 0 1 3 3v1a6 6 0 0 1 3 5v6H6v-6a6 6 0 0 1 3-5V5a3 3 0 0 1 3-3z"/><path d="M9 20h6"/></svg>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2a3 3 0 0 1 3 3v1a6 6 0 0 1 3 5v6H6v-6a6 6 0 0 1 3-5V5a3 3 0 0 1 3-3z"/><path d="M9 20h6"/></svg>
         <strong>IA aplicada, no demostrativa</strong>
         <span>La usamos donde reemplaza algo concreto: entender un pedido, resolver una compatibilidad, contestar una consulta. Si no reemplaza nada, no la ponemos.</span>
       </article>
       <article class="xn__i rv">
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
         <strong>Entregamos en producción</strong>
         <span>Cada hito lleva un criterio de aceptación objetivo. Se aprueba porque funciona con datos reales, no porque se presentó bien.</span>
       </article>
       <article class="xn__i rv">
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="4" width="20" height="12" rx="2"/><path d="M8 20h8M12 16v4M6 8h5M6 11h8"/></svg>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="12" rx="2"/><path d="M8 20h8M12 16v4M6 8h5M6 11h8"/></svg>
         <strong>Una plataforma ya en marcha</strong>
-        <span>Tenemos en producción un sistema de gestión integral para una operación de vehículos: fábrica, concesionarios, repuestos, postventa y administración. Es la base de la Propuesta N.º 2.</span>
+        <span>Tenemos en producción un sistema de gestión integral para una operación de vehículos: fábrica, concesionarios, repuestos, postventa y administración. Es la base de la Propuesta N.º 2, el ecosistema tecnológico.</span>
       </article>
     </div>
     <div class="cli rv">
@@ -973,22 +975,22 @@ body{padding-left:var(--side-w)}
 
     <div class="prob-grid">
       <article class="prob rv">
-        <svg class="prob__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        <svg class="prob__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
         <h3>El cliente busca como cliente, no como catálogo</h3>
         <p>Nadie escribe «KIT TRANSMISION DID YAMAHA YBR 125 (45T-14T)». Escribe «cadena para la 125». Si el buscador no traduce eso, el producto está cargado y no se vende.</p>
       </article>
       <article class="prob rv">
-        <svg class="prob__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17h2.2a3 3 0 0 0 5.6 0h4.4a3 3 0 0 0 5.6 0"/><path d="M6.5 17V9.5h4l3 4.5"/><circle cx="7" cy="17" r="2.6"/><circle cx="18" cy="17" r="2.6"/><path d="M13 9.5h4"/></svg>
+        <svg class="prob__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 17h2.2a3 3 0 0 0 5.6 0h4.4a3 3 0 0 0 5.6 0"/><path d="M6.5 17V9.5h4l3 4.5"/><circle cx="7" cy="17" r="2.6"/><circle cx="18" cy="17" r="2.6"/><path d="M13 9.5h4"/></svg>
         <h3>Nadie está seguro de que le vaya a su moto</h3>
         <p>En repuestos, la duda de compatibilidad frena la compra. Un vendedor la resuelve en diez segundos. Una ficha de producto, no. Esa duda es carrito abandonado.</p>
       </article>
       <article class="prob rv">
-        <svg class="prob__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 6h18M3 12h18M3 18h12"/><circle cx="19" cy="18" r="2.5"/></svg>
+        <svg class="prob__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h12"/><circle cx="19" cy="18" r="2.5"/></svg>
         <h3>Un mismo producto tiene muchos precios</h3>
         <p>Cambia si el cliente es del norte o del sur, si es un comercio o un consumidor final, si paga con tarjeta o en cuotas. Esa lógica hoy la tiene la gente en la cabeza, no la tienda.</p>
       </article>
       <article class="prob rv">
-        <svg class="prob__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        <svg class="prob__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
         <h3>El pedido llega por teléfono y se carga a mano</h3>
         <p>El comercio del interior manda la lista por mensaje y alguien de Okinoi la pasa al sistema. Es tiempo del equipo puesto en tipear, y cada paso a mano es un error posible.</p>
       </article>
@@ -1009,12 +1011,12 @@ body{padding-left:var(--side-w)}
         <span class="flow__lbl">Ya existe</span><strong>Su tienda online</strong>
         <span>Catálogo, precios, stock y pagos. Queda tal cual está.</span>
       </div>
-      <div class="flow__arrow"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      <div class="flow__arrow"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
       <div class="flow__node flow__node--hi">
         <span class="flow__lbl">Lo que agregamos</span><strong>El vendedor</strong>
         <span>Entiende el pedido, resuelve compatibilidad y arma el carrito.</span>
       </div>
-      <div class="flow__arrow"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      <div class="flow__arrow"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
       <div class="flow__node">
         <span class="flow__lbl">Lo que cambia</span><strong>Su cliente</strong>
         <span>Menos consultas sin respuesta y menos carga manual.</span>
@@ -1029,7 +1031,7 @@ body{padding-left:var(--side-w)}
           <div class="sol__box b2"><b>La capa que agregamos</b><span>Entiende, verifica compatibilidad y aplica la lista de precios</span></div>
           <div class="sol__wire w2"></div>
           <span class="sol__dot d2"></span>
-          <div class="sol__box b3"><b>Lo que recibe</b><span>El carrito armado, con el precio de la lista del cliente</span></div>
+          <div class="sol__box b3"><b>Lo que recibe el cliente</b><span>El carrito armado, con el precio de la lista del cliente</span></div>
         </div>
         <p class="sol__cap">LA TIENDA NO SE TOCA. LA CAPA LEE SU CATÁLOGO Y SUS PRECIOS, Y LE ESCRIBE EL PEDIDO ARMADO.</p>
       </div>
@@ -1046,7 +1048,7 @@ body{padding-left:var(--side-w)}
     <p class="lede rv">La primera resuelve la puerta de entrada: la venta. La segunda es todo lo que hay detrás de esa puerta. No compiten, Xnod sugiere empezar por la N.º 1.</p>
     <div class="opts">
       <article class="opt opt--rec rv">
-        <svg class="opt__ico ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/><path d="M12 2a3 3 0 0 1 3 3"/></svg>
+        <svg class="opt__ico ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/><path d="M12 2a3 3 0 0 1 3 3"/></svg>
         <div class="opt__n">Propuesta N.º 1</div>
         <h3>Potenciador de ecommerce</h3>
         <p class="opt__p">Llave en mano. El vendedor virtual sobre la tienda que Okinoi ya tiene, entregado funcionando y con la gente capacitada.</p>
@@ -1059,7 +1061,7 @@ body{padding-left:var(--side-w)}
         <div class="opt__foot">USD 9.000 · pago único en tres hitos · 60 días</div>
       </article>
       <article class="opt rv">
-        <svg class="opt__ico ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><path d="M10 6.5h4M6.5 10v4M17.5 10v4M10 17.5h4"/></svg>
+        <svg class="opt__ico ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><path d="M10 6.5h4M6.5 10v4M17.5 10v4M10 17.5h4"/></svg>
         <div class="opt__n">Propuesta N.º 2</div>
         <h3>Ecosistema tecnológico</h3>
         <p class="opt__p">La plataforma completa: el sistema de gestión, un ecommerce con inteligencia artificial y una aplicación propia para cada cliente de Okinoi.</p>
@@ -1087,53 +1089,53 @@ body{padding-left:var(--side-w)}
 
     <div class="deliv">
       <div class="deliv__i rv">
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 9h8M8 13h5"/></svg>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 9h8M8 13h5"/></svg>
         <span class="qty">En la tienda</span>
         <h4>Pedido en lenguaje común</h4>
         <p>«Necesito una cadena para una YBR 125 y dos cascos rebatibles talle L.» El sistema lo traduce a productos reales del catálogo y los carga.</p>
       </div>
       <div class="deliv__i rv">
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
         <span class="qty">Motor propio</span>
         <h4>Compatibilidad por modelo</h4>
         <p>Qué repuesto le va a qué moto. La duda que hoy frena la compra se responde sola, y deja de depender de que alguien atienda.</p>
       </div>
       <div class="deliv__i rv">
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 6h18M3 12h18M3 18h12"/><circle cx="19" cy="18" r="2.5"/></svg>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h12"/><circle cx="19" cy="18" r="2.5"/></svg>
         <span class="qty">Por cliente</span>
         <h4>La lista de precios correcta</h4>
         <p>Zona, tipo de cliente, canal y forma de pago. La regla que hoy vive en la cabeza del equipo pasa a estar en la tienda.</p>
       </div>
       <div class="deliv__i rv">
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg>
         <span class="qty">Un canal más</span>
         <h4>También desde el teléfono</h4>
         <p>Por WhatsApp, el mismo canal que los comercios ya usan hoy. Vuelve el carrito armado con la lista de precios que le corresponde a ese comercio.</p>
       </div>
       <div class="deliv__i rv">
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
         <span class="qty">Automática</span>
         <h4>Venta cruzada</h4>
         <p>Si pide una cadena, ofrece el kit completo. Si pide un casco, el visor de repuesto. Lo que haría un vendedor que conoce el mostrador.</p>
       </div>
       <div class="deliv__i rv">
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 3v18h18"/><path d="M7 15l4-5 4 3 5-7"/></svg>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="M7 15l4-5 4 3 5-7"/></svg>
         <span class="qty">1 panel</span>
         <h4>Qué se pidió y no había</h4>
         <p>Qué pidieron los clientes que la tienda no pudo resolver, cuántas veces y por qué. Sale de ahí la lista de reposición y de altas de catálogo.</p>
       </div>
       <div class="deliv__i rv">
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.2 2.4c-.5.2-.7.6-.7 1.1v.5"/><path d="M12 17h.01"/></svg>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.2 2.4c-.5.2-.7.6-.7 1.1v.5"/><path d="M12 17h.01"/></svg>
         <span class="qty">Asesoramiento</span><h4>De qué se trata cada producto</h4>
         <p>Qué es, para qué sirve y en qué se diferencia de otro modelo. El cliente que no sabe de repuestos deja de tener que aprender el vocabulario para poder comprar.</p>
       </div>
       <div class="deliv__i rv">
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"/><path d="M4 8l8-4 8 4"/><path d="M4 8v3a4 4 0 0 0 8 0V8"/><path d="M12 8v3a4 4 0 0 0 8 0V8"/></svg>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18"/><path d="M4 8l8-4 8 4"/><path d="M4 8v3a4 4 0 0 0 8 0V8"/><path d="M12 8v3a4 4 0 0 0 8 0V8"/></svg>
         <span class="qty">Asesoramiento</span><h4>Cuál le conviene, entre dos que le sirven</h4>
         <p>Compara los dos por lo que de verdad cambia: el material de la calota, el peso, la certificación, el tipo de uso. Y si el más barato le alcanza, lo dice.</p>
       </div>
       <div class="deliv__i rv">
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h2l2.4 12.1a2 2 0 0 0 2 1.6h8.5a2 2 0 0 0 2-1.6L21.5 8H6"/><circle cx="10" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M13 3.5l2 2 3.5-3.5"/></svg>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3h2l2.4 12.1a2 2 0 0 0 2 1.6h8.5a2 2 0 0 0 2-1.6L21.5 8H6"/><circle cx="10" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M13 3.5l2 2 3.5-3.5"/></svg>
         <span class="qty">Lo define Okinoi</span><h4>Lo que la empresa quiere mover</h4>
         <p>Cuando hay dos productos que sirven igual, propone primero el que Okinoi marcó: exceso de stock, temporada anterior, marca propia. Nunca ofrece algo que no le sirve al cliente.</p>
       </div>
@@ -1147,7 +1149,7 @@ body{padding-left:var(--side-w)}
           <div class="bub bub--me">Hola, necesito una cadena para una YBR 125 y dos cascos rebatibles talle L</div>
           <div class="bub bub--bot">Para la YBR 125 el que corresponde es el KIT DID 428HS-118 (45T-14T). ¿Te cargo el kit completo con corona y piñón, o sólo la cadena?</div>
           <div class="bub bub--me">El kit completo</div>
-          <div class="bub bub--bot">Listo, te armé el carrito. En rebatibles talle L tengo el YA-966 C negro brillante con visor fotocromático.<span class="typing" aria-hidden="true"><i></i><i></i><i></i></span></div>
+          <div class="bub bub--bot">Listo, te armé el carrito. En rebatibles talle L tengo el YA-966 C negro brillante con visor fotocromático. Te sumé también el visor de repuesto, que es lo que más se pide después.</div>
         </div>
         <div class="cart js-cart">
           <div class="cart__h"><span>Carrito armado automáticamente</span><b>3 productos</b></div>
@@ -1223,7 +1225,7 @@ body{padding-left:var(--side-w)}
     <p class="lede rv" style="margin-top:12px">Seis momentos concretos de la venta online, antes y después.</p>
     <div class="imp">
       <article class="imp__i rv">
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/><path d="M8.5 11h5"/></svg>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/><path d="M8.5 11h5"/></svg>
         <h4>La consulta que hoy no encuentra nada</h4>
         <div class="imp__ad">
           <div class="imp__a"><span>Hoy</span><p>El cliente busca «cadena para la 125» y el buscador no devuelve nada, porque el producto se llama «Kit de transmisión DID YBR 125». El producto está cargado y no se vende.</p></div>
@@ -1231,7 +1233,7 @@ body{padding-left:var(--side-w)}
         </div>
       </article>
       <article class="imp__i rv">
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
         <h4>La duda de si le entra a su moto</h4>
         <div class="imp__ad">
           <div class="imp__a"><span>Hoy</span><p>En repuestos, la duda de compatibilidad frena la compra. El cliente cierra la pestaña o llama para preguntar.</p></div>
@@ -1239,7 +1241,7 @@ body{padding-left:var(--side-w)}
         </div>
       </article>
       <article class="imp__i rv">
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2.5"/><path d="M12 18h.01"/><path d="M9 6h6"/></svg>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="2.5"/><path d="M12 18h.01"/><path d="M9 6h6"/></svg>
         <h4>El pedido que llega por mensaje</h4>
         <div class="imp__ad">
           <div class="imp__a"><span>Hoy</span><p>El comercio del interior manda la lista por teléfono y alguien de Okinoi la tipea en el sistema. Es tiempo del equipo puesto en transcribir, y cada paso a mano puede fallar.</p></div>
@@ -1247,7 +1249,7 @@ body{padding-left:var(--side-w)}
         </div>
       </article>
       <article class="imp__i rv">
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M3 12h18M3 18h12"/><circle cx="19" cy="18" r="2.6"/></svg>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h12"/><circle cx="19" cy="18" r="2.6"/></svg>
         <h4>El precio que hay que averiguar</h4>
         <div class="imp__ad">
           <div class="imp__a"><span>Hoy</span><p>El mismo producto tiene precios distintos según zona, canal y forma de pago. Esa regla la resuelve una persona cada vez.</p></div>
@@ -1255,7 +1257,7 @@ body{padding-left:var(--side-w)}
         </div>
       </article>
       <article class="imp__i rv">
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-5 4 3 5-7"/><circle cx="20" cy="4" r="1.4"/></svg>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="M7 15l4-5 4 3 5-7"/><circle cx="20" cy="4" r="1.4"/></svg>
         <h4>Lo que se pidió y no había</h4>
         <div class="imp__ad">
           <div class="imp__a"><span>Hoy</span><p>Cuando la tienda no puede resolver una consulta, esa demanda se pierde sin dejar rastro. No hay forma de saber qué se está dejando de vender.</p></div>
@@ -1263,7 +1265,7 @@ body{padding-left:var(--side-w)}
         </div>
       </article>
       <article class="imp__i rv">
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h2l.4 2M7 13h10l3.5-7H5.4"/><circle cx="9" cy="19" r="1.6"/><circle cx="17" cy="19" r="1.6"/><path d="M15 6.5l-3 3-1.6-1.6"/></svg>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3h2l.4 2M7 13h10l3.5-7H5.4"/><circle cx="9" cy="19" r="1.6"/><circle cx="17" cy="19" r="1.6"/><path d="M15 6.5l-3 3-1.6-1.6"/></svg>
         <h4>El pedido que se repite</h4>
         <div class="imp__ad">
           <div class="imp__a"><span>Hoy</span><p>El comercio que compra siempre lo mismo tiene que rearmar el pedido desde cero cada vez, buscando producto por producto lo que ya pidió el mes pasado.</p></div>
@@ -1335,21 +1337,21 @@ body{padding-left:var(--side-w)}
         <div class="flat__c si">
           <h5>Adentro de los USD 3.500</h5>
           <ul>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>El sistema de gestión integral, el ecommerce con inteligencia artificial y la aplicación para cada comercio de la red.</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><b>El desarrollo.</b> Pantallas nuevas, reglas nuevas, reportes nuevos, ajustes sobre lo que ya existe.</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><b>La adaptación.</b> La plataforma se acomoda a cómo trabaja Okinoi, no al revés.</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><b>La personalización.</b> La marca, los circuitos, los permisos y las pantallas son de ustedes, no una configuración genérica.</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Servidores, base de datos, respaldos automáticos y monitoreo.</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Soporte técnico directo y reunión semanal de trabajo.</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>El sistema de gestión integral, el ecommerce con inteligencia artificial y la aplicación para cada comercio de la red.</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><b>El desarrollo.</b> Pantallas nuevas, reglas nuevas, reportes nuevos, ajustes sobre lo que ya existe.</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><b>La adaptación.</b> La plataforma se acomoda a cómo trabaja Okinoi, no al revés.</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><b>La personalización.</b> La marca, los circuitos, los permisos y las pantallas son de ustedes, no una configuración genérica.</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Servidores, base de datos, respaldos automáticos y monitoreo.</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Soporte técnico directo y reunión semanal de trabajo.</li>
           </ul>
         </div>
         <div class="flat__c no">
           <h5>Fuera, y se dice desde ahora</h5>
           <ul>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>El <b>consumo de inteligencia artificial</b>, que Okinoi paga directo al proveedor según uso.</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>La <b>migración</b> de los datos que hoy viven entre las dos bases. Se cotiza aparte cuando se define el alcance.</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>Un <b>módulo entero nuevo</b> que hoy no esté en la plataforma, acordado por escrito antes.</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>Exceder de forma sostenida la banda de 80 horas mensuales, también acordado antes.</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>El <b>consumo de inteligencia artificial</b>, que Okinoi paga directo al proveedor según uso.</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>La <b>migración</b> de los datos que hoy viven entre las dos bases. Se cotiza aparte cuando se define el alcance.</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>Un <b>módulo entero nuevo</b> que hoy no esté en la plataforma, acordado por escrito antes.</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>Exceder de forma sostenida la banda de 80 horas mensuales, también acordado antes.</li>
           </ul>
         </div>
       </div>
@@ -1357,15 +1359,15 @@ body{padding-left:var(--side-w)}
     </div>
 
     <div class="mods">
-      <div class="mod rv"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg><strong>Ventas y mostrador</strong><span>El pedido web, el del viajante y el del mostrador en un solo circuito.</span></div>
-      <div class="mod rv"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="M3.3 7L12 12l8.7-5M12 22V12"/></svg><strong>Stock real y multi-depósito</strong><span>Lo que la tienda publica es lo que hay. Mínimos y reposición automática.</span></div>
-      <div class="mod rv"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 7h-3V4H3v13h2"/><circle cx="7.5" cy="17.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/><path d="M10 17h5M17 7l4 4v6h-1"/></svg><strong>Producción y armado</strong><span>Cada unidad con su orden, su etapa y su trazabilidad.</span></div>
-      <div class="mod rv"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg><strong>Viajantes y comisiones</strong><span>Cartera por vendedor, deuda con corte de fecha y comisión liquidada sola.</span></div>
-      <div class="mod rv"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg><strong>Garantías y postventa</strong><span>Reclamos, cobertura de fábrica y seguimiento hasta el cierre.</span></div>
-      <div class="mod rv"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h4"/></svg><strong>Cobros y cuenta corriente</strong><span>Medios de pago, conciliación y estado de cada cliente.</span></div>
-      <div class="mod rv"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 3v18h18"/><path d="M7 15l4-5 4 3 5-7"/></svg><strong>Importación y costos</strong><span>Del embarque al costo real por artículo, con la inflación adentro.</span></div>
-      <div class="mod rv"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12h4l3 8 4-16 3 8h4"/></svg><strong>Contabilidad</strong><span>Asientos generados desde la operación, sin recarga manual.</span></div>
-      <div class="mod rv"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg><strong>Usuarios y permisos</strong><span>Cada rol ve lo suyo, con auditoría de quién hizo qué.</span></div>
+      <div class="mod rv"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg><strong>Ventas y mostrador</strong><span>El pedido web, el del teléfono, el del viajante y el del mostrador en un solo circuito.</span></div>
+      <div class="mod rv"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="M3.3 7L12 12l8.7-5M12 22V12"/></svg><strong>Stock real y multi-depósito</strong><span>Lo que la tienda publica es lo que hay. Mínimos y reposición automática.</span></div>
+      <div class="mod rv"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 7h-3V4H3v13h2"/><circle cx="7.5" cy="17.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/><path d="M10 17h5M17 7l4 4v6h-1"/></svg><strong>Producción y armado</strong><span>Cada unidad con su orden, su etapa y su trazabilidad.</span></div>
+      <div class="mod rv"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg><strong>Viajantes y comisiones</strong><span>Cartera por vendedor, deuda con corte de fecha y comisión liquidada sola.</span></div>
+      <div class="mod rv"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg><strong>Garantías y postventa</strong><span>Reclamos, cobertura de fábrica y seguimiento hasta el cierre.</span></div>
+      <div class="mod rv"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h4"/></svg><strong>Cobros y cuenta corriente</strong><span>Medios de pago, conciliación y estado de cada cliente.</span></div>
+      <div class="mod rv"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="M7 15l4-5 4 3 5-7"/></svg><strong>Importación y costos</strong><span>Del embarque al costo real por artículo, con la inflación adentro.</span></div>
+      <div class="mod rv"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h4l3 8 4-16 3 8h4"/></svg><strong>Contabilidad</strong><span>Asientos generados desde la operación, sin recarga manual.</span></div>
+      <div class="mod rv"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg><strong>Usuarios y permisos</strong><span>Cada rol ve lo suyo, con auditoría de quién hizo qué.</span></div>
     </div>
 
     <!-- MOCKUP 3: el centro de operaciones (interfaz real con marca Okinoi) -->
@@ -1379,15 +1381,15 @@ body{padding-left:var(--side-w)}
         <aside class="app__side">
           <div class="app__logo"><img class="brandimg" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIoAAAA2CAYAAAAYjwFqAAAACXBIWXMAAAsSAAALEgHS3X78AAAGV0lEQVR4nO1c3ZHjNgz+LpP3qIPoKog7CJ/zEpXAEpwKziXsdaCtIN4Kwu3A14GuA20FyAPJEQWBEmTJP3fDb4aztghBIPgRJCF6PxERCgqW8MujDSj4MVCIUqBCIUqBCoUoBSoUohSoUIhSoEIhSoEKhSgFKhSiFKhQiFKgQiFKgQrPSJQKgHm0EQVjPBNRKgAnAB2A/wC4B9pSwPDrow0AUAM4ArAAfkuutw+wpSCDRxGlAtCE8rdQ/4qBKDV8lLkXDvD2AcAFQH/HZz8tPt3xPMoSOVJ8Dn9fguy3cF/H5Br4jk3Rh/vWwsBPfX8m197CM34kNPDRucLgC7dZKxFdWw5E5IjoTESWiGqh3hLRCxFdaDvOgg0uI9tc2Z4Ul3Bti4/uXU47+WJStkQUh/HoW4vv8BFijY7PGEeVE4AvTOYVfkRdgzjt9PDTzt4w0E1nJvm8xhYD75N43z7RBNgUUST25tATURvYXQm6qlDXLug5svsMq+8y+o+JHS4UrotHl5Z8NJTqTWh/Q/moc0jk0sgnRcbUDzkfXMhH6DV9dJixb1XZqqAJnZNDf2Xj+ow+x2RrVi89q8no4rKN8FypU19m2qsBbwOCLa3w/CifTt1zU2Ik5ond83CigPLrhDPJo1tTbEZnz+Q4UfjzcnokQvFO6gV9JqNvDdpE34Hm129pRDOJjT1N14Q52wyt9/9NiNIJxkmjZk2pZpw355zolIrkkd/S1MGxwyRZLncW5F7Cc2OxGbmIOOXlImdHPiJIdqbE59HuJOg6CToeQhTJwdJIXFtqQW9EKsfJcAnO6di144JNkpOtwqa5jshNeZEAPJL0C/qkAZTWOeFZu+3atiqIi8QUuQXgVr1E3rmpXJeRI/KO0zpKcjInlkSmpQHByeBIJlGvtJUTJb2HR6dO2XZV2ZqZrYVr7UadQP6loEs+WwC/z+iw0GV0K0y36K+YbmEt+/4myHDw+jb8Nex6A90WmNsQM8gHjF9/AMBZoU+PjUyTRuJWndJ0xkdQJYwgCSfF86xwn1HYxGWWRr9L6lK/8Sg55xfe5jrUSeuxWLdL2fr2uNuDrAxt5vo7hlF3xnQEAcAH+/4l3MPT/Cl4iv4d0yTVkX3/Lsgs6U11LN0r6XIYtzkmLKVnvWLvvtnItJPA5C36WkEf0Xg7KMlcaEhV1yQvFKU1gLS74iNRil5W0ZZuRt4wfbn1yVwCLraX65LasLlsVSAZeY2eOYekTpFkHE0XlRVNF7rSbowvmqVsLR8MTtGeVG+bkUmnizQxWZH36wvlp9d0w8B9clLYd3eigKYdsnZLtpR0spQn0pxTrCDPiZDaLnVoTePO0uxO0gi0tAOca7eEjsYv+WpWr13vPIQofKtnlfdVtPy+yJJMJEe6DnNJ4Z2Wjvpch/LEmaZth/A8jaxbaL8LNhwz7U3tu9D2/NVNiQIaj3a3IFuTJ8jcrqUnH375Sv9M+d2GpeWXfakNPfkRamjI5HY0jEpO4tjxRxqn0k90fQcdwvMbGr+fOSt0WuaXm5GEdiRKReNRzzvL0PRFVQ5d0uh4XyM4oqbhvEvHdJxpiCS1YK+lIYQ3NHT8mQYiR1taIvortClnv2ZKMqzMkXiuPhKsD+1bkn0qokBwYhcaosl3pLAzz6jIdxgnxhwuJO9kDA0LylxHzy0oOdKd2YGGN8I5cl1CWyJxJELPEeWmEYSXPY9CGgzHHQ18/iLmPWoMWdwa8xnVrxhnFSsMB4os5PzJHniDt7cL348A/lip4wPb7Is2RHTwvnj4ud17npkFvPNPuF1n/6yIybV4Oq7DQGh3DwPuRRQbytqjk+9KOaeQSY8UdphmLutQDMYRENh25PMe+MAQwVvc4BjnrYhyCMXAT0WaCPIKH2YdniDUrkT6E4+IGtOXpib5XGH91KbFO3zkdnsp3IMoNXy0MOH7mtH3Dk+OM+77251nRCRbBR8V9piev8ITZvPA24MoBv4noBJiSEzDvsPtTrn/LIhkidOJg/eZDfVdImsxRO1vQS49dvAPrvud0wh7TT2Skl0MLLgKDYB/4XdRFk8SUQAfVY7wI+ECT5BuD8UFV6GCXxLsFrXvvT0u+EHxTP/2ouCJUYhSoEIhSoEKhSgFKhSiFKhQiFKgQiFKgQqFKAUqFKIUqFCIUqDC/2s5mVFOZtEPAAAAAElFTkSuQmCC" alt="Okinoi"><small>ADMIN</small></div>
           <nav class="app__nav">
-            <a class="on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>Panel</a>
-            <a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="9" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>Pedidos</a>
-            <a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8l9 5 9-5z"/></svg>Stock</a>
-            <a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M20 7h-3V4H3v13h2"/><circle cx="7.5" cy="17.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg>Producción</a>
-            <a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>Viajantes</a>
-            <a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Garantías</a>
-            <a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>Cobros</a>
-            <a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 2a3 3 0 0 1 3 3v1a6 6 0 0 1 3 5v6H6v-6a6 6 0 0 1 3-5V5a3 3 0 0 1 3-3z"/></svg>Asistente IA</a>
-            <a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 3v18h18"/><path d="M7 15l4-5 4 3 5-7"/></svg>Informes</a>
+            <a class="on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>Panel</a>
+            <a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>Pedidos</a>
+            <a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8l9 5 9-5z"/></svg>Stock</a>
+            <a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 7h-3V4H3v13h2"/><circle cx="7.5" cy="17.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg>Producción</a>
+            <a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>Viajantes</a>
+            <a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Garantías</a>
+            <a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>Cobros</a>
+            <a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2a3 3 0 0 1 3 3v1a6 6 0 0 1 3 5v6H6v-6a6 6 0 0 1 3-5V5a3 3 0 0 1 3-3z"/></svg>Asistente IA</a>
+            <a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="M7 15l4-5 4 3 5-7"/></svg>Informes</a>
           </nav>
           <div class="app__user"><span class="app__av">AZ</span><div><b>Alejandro Z.</b><span>Dirección</span></div></div>
         </aside>
@@ -1402,7 +1404,7 @@ body{padding-left:var(--side-w)}
 
           <div class="goal js-goal">
             <div class="goal__t">
-              <b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/></svg>Objetivo del mes</b>
+              <b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/></svg>Objetivo del mes</b>
               <span><b class="js-num" data-to="62">62</b>% del objetivo alcanzado</span>
             </div>
             <div class="goal__bar"><div class="goal__fill"></div></div>
@@ -1411,27 +1413,27 @@ body{padding-left:var(--side-w)}
 
           <dl class="akpis">
             <div class="akpi">
-              <div class="akpi__h"><dt>Pedidos pendientes</dt><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="9" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg></div>
+              <div class="akpi__h"><dt>Pedidos pendientes</dt><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg></div>
               <dd><span class="js-num" data-to="255">255</span></dd><small>En generación y control</small>
             </div>
             <div class="akpi">
-              <div class="akpi__h"><dt>En producción</dt><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M20 7h-3V4H3v13h2"/><circle cx="7.5" cy="17.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg></div>
+              <div class="akpi__h"><dt>En producción</dt><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 7h-3V4H3v13h2"/><circle cx="7.5" cy="17.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg></div>
               <dd class="hl"><span class="js-num" data-to="11">11</span></dd><small>Unidades en armado</small>
             </div>
             <div class="akpi">
-              <div class="akpi__h"><dt>Cobranza al día</dt><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></div>
+              <div class="akpi__h"><dt>Cobranza al día</dt><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></div>
               <dd class="ok"><span class="js-num" data-to="92">92</span>%</dd><small>De la cartera de viajantes</small>
             </div>
             <div class="akpi">
-              <div class="akpi__h"><dt>Garantías abiertas</dt><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+              <div class="akpi__h"><dt>Garantías abiertas</dt><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
               <dd><span class="js-num" data-to="7">7</span></dd><small>2 esperando fábrica</small>
             </div>
           </dl>
 
           <div class="afil">
-            <div class="asel">Todos los canales<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
-            <div class="asel">Todas las zonas<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
-            <div class="asel">Agosto 2026<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+            <div class="asel">Todos los canales<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></div>
+            <div class="asel">Todas las zonas<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></div>
+            <div class="asel">Agosto 2026<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></div>
           </div>
           <div class="acols">
             <div class="acard">
@@ -1454,8 +1456,8 @@ body{padding-left:var(--side-w)}
               <div class="arow"><div><strong>Cubierta 130/70 R17 sin resultado</strong><em>34 pedidos la buscaron este mes</em></div><span class="pill warn">Reponer</span></div>
               <div class="arow"><div><strong>3 viajantes con deuda vencida</strong><em>Corte al 20/08 · $ 2.140.000</em></div><span class="pill warn">Revisar</span></div>
               <div class="arow"><div><strong>Embarque 4412 demorado</strong><em>Afecta 6 pedidos comprometidos</em></div><span class="pill mut">Seguir</span></div>
-              <div class="qa"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2a3 3 0 0 1 3 3v1a6 6 0 0 1 3 5v6H6v-6a6 6 0 0 1 3-5V5a3 3 0 0 1 3-3z"/></svg>Preguntarle al asistente</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
-              <div class="qa"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 3v18h18"/><path d="M7 15l4-5 4 3 5-7"/></svg>Informe de deuda por viajante</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+              <div class="qa"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2a3 3 0 0 1 3 3v1a6 6 0 0 1 3 5v6H6v-6a6 6 0 0 1 3-5V5a3 3 0 0 1 3-3z"/></svg>Preguntarle al asistente</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+              <div class="qa"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="M7 15l4-5 4 3 5-7"/></svg>Informe de deuda por viajante</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
             </div>
           </div>
         </div>
@@ -1471,15 +1473,15 @@ body{padding-left:var(--side-w)}
       <div class="shop">
         <div class="shop__bar">
           <img class="brandimg" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAABDCAYAAACiC4hJAAAAAXNSR0IArs4c6QAAAHhlWElmTU0AKgAAAAgABAEaAAUAAAABAAAAPgEbAAUAAAABAAAARgEoAAMAAAABAAIAAIdpAAQAAAABAAAATgAAAAAAAACQAAAAAQAAAJAAAAABAAOgAQADAAAAAQABAACgAgAEAAAAAQAAAPCgAwAEAAAAAQAAAEMAAAAAUALgrgAAAAlwSFlzAAAWJQAAFiUBSVIk8AAALMdJREFUeAHtnQecnFW5/89sS+9l03soCT106TaKSlFQEbFw/Vvx7xXvBa96RS+CiljwIiqKjaZiAwXpBCJVmgQIIT2buqmkbHY3u3O/39l5N+/OvjM7m2yWKPPk88s57+nnOU855y2zqdANlA6h7MUQKgaB7WHowIoQRjWF1NCyEKaEUD6sOaQnE081h7CkLKTWlYf0y9tCurYqNC4LYf2a9SFsnwZSIVCkRCUOlDgQcQCd2D10KUr7vhAqQxjcozJU7FcVwpFNIRxbHsJUwjEo8QCUNaQz/1rG4GBaBpQKjSG9OYT08lQom1MR0jO3hKZZvUPFC2vDqkaUuZFy2IUSlTjw+uZAlyswWlVeE0JVZaiejLs8He96Ciw+pCqkeslqXWgTuteRK8UjB5Q9qOQSCr2Jtv5eEVK3knrH5rByBe67oaTIGfaU/nudcqDLFPg36NsxIfRoCNVHVoX0+SjyaSjtUN0kytehwnbEfxW6Muux8eDzUeyfbg1lN9WFFSumo8gd1S/llzjwr8iBXVZgFDSFx+3ZFIYeWREqPpkKzSpuT5UWRdstxPYb75zZZr/SHMqubgj1v3oqrN98js69RCUOvI44sEsK/AJb5UFhyCR846dR3Pexve1fj+LqdbuDOGBn+mJL/kB5aL5kZFj7RHf0W+qjxIE9hQPuTDtNl3IIXR2G9R0Qhl+QCuV3Vob0xznT9ufOcbcpr4NuBGyl6Tp1cH2o4EhcohIHXl8c6LQH/jvudkyo3md7CJfzuOdtsot4t5MD74EObw+pZ9Kh/KJRYfmsbh9EqcMSB15jDhStwJ51F4WBA8pD5fu4mXQJZ9AxDd3sceWVA+YM3NQcUhvAL/D635gSVq1+jflY6r7EgdeEA94P6pAuZae6IAwa0ytUXIQKfZIK5Z51u5MiS8O5dysvgczlbtWVY8PKm7pzDHtKX+l0ms1H6As8Am1JpVJb95SxlcbRvRyI9CJvr5ciJJ8IYyZvDw3XcJPqza+V1+WZcKNeN81z4O0hfeWEsGph3kHvyEi9wo22hjCssn+obRobQt2OrH++WFZx+zPyY8G7AC+3hd+gwD8jLNHrkAMdKvCqMGByU6j6SWUoO8GbVN1JDg4X08R2fROPpZ7C8373Z2HVHZd28Eolo0zNC4P79QuVQ3j540DukE9tCGWrxoXVN9Om977+qQjF7cmA+4E3gA+DtwC9sMTDgHAISlx6Fp5hx+vrv4Jb6HVh0oDNYct3eodwQl03Kq+Ki8dtwuNvRnHnc5Ps571D318ODgs2drQ83mRbFoZO7BvKzkN534kyT+4Rynuw5d66NIy9N4SlyztqY0/IR2l9Ec231waAE8B54EQQKS7RzP3DVYSyrESvQw4UVOAt4dWzq0L527vD80YSGCkuW/UF20Lqlq2h8sa9Qw0fNXRMKGvVklDN+9bNV+C1D/OVTfcMGIA0sdn1YQvvV+/ZlN0m92GU44Ge9iwwA6jQcfLc+wz4PN633gzqZtjItdPeo4mxen5P/zOMdU9mZEEFRmZOtcDu2nNGSiuDKkJZPddbtofmudtC8x+3haobp4ZlNcUy7wGaWByGvrlnSP+oLJSN9qze0m5oRJFX8Lz4sqlh3avFtted5RDmKvqLvO3hxE8DbwUjQRJ5lv8F+B8UYIUFaMMttuWbideQvs30PY0Ym8cBz+6DQSPXm7Jj9PX4DYw7Y4yyaaUADsCjSE/lUUawI8MXZSQyii0oO89UZn/WVSY9R2kbykJ6G3e0NzWE5icxyX9g2/zX0WF1px8LTQoj9uaFkmtpfzTb7mYMgh86bGkMzU+nQsWVo8PyexIn+RoksiB6U18kU2m9KXUQ8Hyr0k4DBdeF/N+B/w+2ZxXCNv4NeD5mwxG+RPrvWGQXvB2RZ98qvGF8SaKyrHvGbr+ar42oYGdC+nW+p4PPAI2NY43uoKvIXwT3gxLBAfilHGjoJgHXaQNwTZvIq2VtNhYUFFb3j3D4JKRtACvauoUrRpmTpILOaK5su0rLtrwO5XoOb/kg7zPfOy6seJ46O30jhjaP7sMXT7idWj6dWIMnf4q+bu8dGu8aHFZ3eHaGKR0STJMHbm/d/rkxqYeJCmFBytaT155fxWgwHRwHjgZTgenF0l0U9Gzs4h4KzgWngojtVxB/EiwCSWTfKpGC4Xzi5LzWgCXgclADuop88ed6oCLHSZFyjXLHEi/zuopnZeYoJv0lcCBwbTVy8kolvhl8uaACzwqrbzmSRzAo2cfwjFOo24va6HW6jDAjLLRkXIn2AMZZMxNv5jteOyFMN3IebdgamhuQjMUkzcM7PiaaQvmLo0NNlzzaYVB/2hiaUd5UE3uGF7njPJ/+u5r2oUGVRUFjLuFxGG0/Cr2KjJ3LMFjeyFvB0MIYMAG4EG6R9wVjwc7SR6l4BtgfqPz2F6fJXHyAsX0VA+OS5NJeJJwHWo1ybgGut4AbQU1C3s4mnUJFeeQ2WSPo2DTateBb4C+gRC0cGE/wU+D6RjQsG/Fejvxrt/DZ/LbB8jBqaFNoPIxz5GFwfCIYCO97IzXs0VIDUBi0Nb0NZd1KGgpUtonQ73fXUU5LvoD+lrKVXT4mLFvbtvV/jiuUoS8jvQccGRsx88t4uUWEK4Bz03B5zpPZ1UDldbtoPIkUYg2Agm3dOLlIGgANQWdpORWOQYEX5lZkLqxfmAWm5+ZlrzcQfhtcRf1oi9umKG1oNMhO3qa3KZy9oI6GSyXWwMhPFXkuuIN2XiTsdsrOw/WS19sYh+tQNGXrew9DfkTkmjbRlkZ9p4h2j6PidcCdluOTNKprwE3gatqvi3dKWseUDidUrAhzB6K4Pdm2lvGMte/WkC7vF5rr6kOPOjxgmnDzlDBvM43nCmS7DphpJZJf2RgG9OgZelTVh+Z2XqEybGtMh/5bXg7LG05s8XTt2tndCTB0An28BCJm7kqXCq431FQUt46rsmHubkRPPwSMACqdcZ7qFU0Xssj/m1Sa+fyQdD15Ljm2n4D/UEByM72mrgKr9+8BHH+0A1GeTFtPXZY1P9FGD8rYl+05z+HAt8oK3v/I9q1BUzkaKa+yFE3Uj4yifcrTQWBv0As8D57sTJu05z0LvaSG1rHIA/khXzTwekvDTbRbtHHI8uSN1LP90UBaCB6lnUczV/xnZ91Kf2eiI0K//pWh18Cm0MzZOjUCDz4Era3mDashcAEFiS9KmlmnNrBaC6tC81IeB60sD+Xr1oTV63Efbr+6hWCoC63XGgdc7HaGhrRCpDFbD1YCvc4/wDPARckoMAvDEX4H0afKOhSMAgeA48GhYDxQUTqiv1LgdNptxyfavoA8FTWXHibhHOo4zkSi7nFkfAv0B5Hx8XymYrnzuJP6VxK2IeqpPPJRA5AGXuuJjwJvBgvA96lbS9iOqC8fDgP2q/FbDlQQ+aYxcJ7yOU6Oyf7kl+vWD6gQk8EhYF+wFzDvHiC/Eg0Xea3EWBz3BHAFOBrYj3NSpzQukQK/QvwJ8CSYD1bSvuU6TVn+6ZHlg7Ss2xR4Thjaj5tM1XzsP4nHOjJuBp0TT8nMYcTx5vmJVeGNrLAUE7aA38ji/Fz5GOs1lw8rlg0PtS7ibiWYR/fhfeBYsA84CLiIxZBb63ngXnA3eI5FdIE7RYyhDxVOAh/Jhl4XIoV8Bn2pGG2Itt5CggoeZ7uK8H7K39qmcOyCepO4vA44jiRyy/1N2vhKbiZ19drvAAqhQqzXmgrkqYrlFvEC6v6WsA1R1/wvgw8BjYDGcAnQ0KjItUA+qzzRnOxDIzgYVIOR2XAsoUYgl2pIOIL+ba8dMQbXW4Oq554BzgW5fNCA2I6h62NZ56ki/xHcCF6ijwbCgkR/jtt5Sxog5y2v5KHt35iZKLMsWx6GTk2FprrlYf0KTHwjmV1CL/Dd8KDQDMMq3kCfp7LF1tqO4KZYZgV92cKRFENqEDfEOCy6Li5W6vGG0PQHuPPw1rBmEZKgFd6tBFPlGV2Fb4LTO+isifyFQIG8kUV7oYPyRWUzhjEU/A44E8iWfCRr30u/v8ktQBsnkHYfKIvluYX03PxqLK01Sp1xXHwZfLg1sW1EL3wX+DRtrIhnUbcn1wrvWfH0WNy+Z4E/U/eOWLpbbHl+DvgZ0FPuLnqJho+mfw1fK9G/ijgBHAmOAfuB/YFKlUvy4BKgIZsADgeWRwcy5Bzl4Sz6yavE9DmZMu8CyprzHw4mAncMXsvfOyv4j9upQ6t51/m73G1eOioM+z0S9+zEUKtl22m6FME4PwwcW8Xrf9y8Og+lO4Y+eKWx5ad2ohctOtOB2pBVXqVuCIM/tSqU0X7qgb5hxA/mh/pZk8P6Tnu2zowBpqcpPxcGK/yFFNjFeRJcBW6jnsPvEqKtGvr/Co1pDEcXaFTldMGTSCHIpbm03U556UsjMQn8B/hAbiWu5YleS4/une82ykuapACfmIm1/0+veRm4lbpJ9lzhte9Cyit/rWtblcC5i87QEgqrgK3E3O37ZPBhIL8R6URy270GzAE3RHyk/jCuVcR/ByqjBkCZuIi8mZRrJxeku2u4FJwHkkhH8FNwQ0aBK0P58cz4ZFeBlTq1V0j/anGovm58WLUgqXZHaQs5x/YII/crC80f4070u+FiX7m6M0qbry9XyvaQwl6M/VTO0wf0ClX/UxuG3jwsrGmzCPna2Nl0GOz2K58nsVmH9wj4LAv0jAm7gVzEWeDdHbQ9Mk++c8hVYsfdhphrPxL0NhcDt25xsrxCy5JnvOsvmW8+A6oXGgSSqIbEe6nbrv9sYed4cFJF0lxrFW8ZqM9eDyDsC1Qet7BDQJK3JLkNebRpVSjmXk3ux8GFYHCbkjsunL/O7nnwMHBNWuWP9mq5vpa2TPsBkJ8HgavAe8DLIJfk9zm5idlrVeky2r3F6wqUNrWMn37FizF7ftsCi85joEu4wzzmAc5amMxt2YpFBc+F6j4oFF5x+39jAA9zRSKvWVQDnSzE+DOKjCUagyO4Ylso30zaLUhmPmHoZA+JxWeQenRiTkui551LYPLuUl6f3yAT6ZcKjCHKcvuXRJNJzFXgqbSp0CuUsDRz9/sthJ8BKmBEm4msByqOXvf3jOdFwkKEKOWlx8ixvXbEeFT69wP8QDtSKTwe/BzYfx1w3RHjjMJNJTwQnASOBM4tH6m4Gt0M0a8G4GPgvwAi3Y7WkbIY3A7uBs/Cgy2E+ehWMt4LTs0WUIn1sF/KXscDFTifp19NnoYiQxWof1/89cGR2THklUT+Tx03KuzFJHg1uUhaiOetCk1vLw9lX8UI8Amf7XQPaZa4QTYYw/OFFWHk3zgiyNyiaW0Y3H9rWNc4trhvhhXqfAxWiHxG93jRne98wWK8Srv7GQinAn5UQrfTSFNo7wF6nLeDc4HeWtFYC1aCp4Dzu595aqwKEv1pRFSgJFLhbCefsKj4ByRUtN6fgYZyTUL+VtL07A/Q/82EetLPgXwGzXk9CzxzayzeCv4d5CpvA2nzgYr7W/r+O2GHRLlttOt4IwW2zjtIu5w8ZSZO0+MXOfHZXNdGaRU9wqjRZaFxTOSuUuQIbi3dt1eYm2gVo8rxEO5X8CXQm6l5Fd58VHcqbzQO+0SJp9WHpneRdlWUXky4JVSclArDtqVD7V3MP58wubgqzXEF2nySvBsL5HdJFuNQCfctorEVCWVGkZakUBqlL4DzwUAwFGgbF4N54EFwL9DbFG3YKT8R7AWSSBl7KCmDOao8GpAkY6nSXsE4kpS3TXOUWUVbXyfxeHBCm8wdFzOJqvDSSPB5MMCLGOlh9X7K1n20m1dOYnXi0TnxC+LjgGuhQchQVr6OiK4TwgfoVyOSoTI85l7cEeaZbAshvKxYan2PkPoe8Sg5m5scMIvU0lB9dsvHBK+N8kYjk6OYz7NfSF70qFi7kBdSzoIP38UIKWyFyPwkj2Adhf07MHijF7uZxtN+oYW2e+1yGw+BgLjEetnRIIk0UFNApLw/J/4h4LNhz16Pgc4oL1Uz3ixXGUyXbgP5vPih5L3FQgn0W9JmJ6QnJmXHfF9iZsv2/QeUieRdA+YxKU569G+DD1HO83pnlde29vO/GLH5bbcOet/9Y2Xi0VVc/D6egKyn90H/XNQMefBh1Z/bGnqzuy6OFobhB/ALlRfzquXo3XneLWY09g9nx00L3FgvkihflQ5lk/DeezMPdhEFaTK5vfKU0Ns9kSevq5NPosHqDhp1PE/nlNmb63NA65rn5McvG7m4C2HV6q+LZxQbz3qUN+YpryHI+9UUeaeDfgl1N5P2h51QIusl0T0kPmMG40UnMneKvYzT/Vyo5G61O02065HkjJyKymju/I4lrU9OuehyFpHF0YVhGQK/V8tn7y3JKCGR9MyJYVFRVpb3pHsj9J9iP3egf43htSZHzxNmzvZNLkRRxByqOTuPz8w8pE5hFoXqjqBRpptIc0ntcEuXWLMTiQiD29t3g0LjtMWZYJkRKatMHyE6KZPQ8X8K2Hupdz7YH2jfO0vjqJDrzaI2VJpHoot4SF/O8ZR4Wiz+LPE2O4tYXqHo+IRMDdN1KKYeVnKOwzOxHf+5Zf35Liivbb4PHLajyUxMj9+qZ8xZuToBKIq5pDH1zF0fz6jg2e9EHvVk0qzF64xsA9NFe5Hm0HQSz2LPeq09bzSprBLW7h36MOHidKk5NEyuCOXDXSWUf3pNGIPw1OTzOG4x89FCGNx6PslXqAvS30EbHW2fPa/58ojb+ojeSuS9oCPFj8oreGcAH+GobHcgZD6r7cwR4TjqDQW5JJ9+RlvrczOy14cTTk3IU+hv6eQYNF79qedYcun3JDwaS1SEcvmzibSnY2WKjtKv5/fTwYUg19tqNFaAiNxR5TN2HhfcBbShCpTX95Az5Kh5tZHFqXolm1Qw4JlrP77r/QRee3BcSgpW2s2ZzoU5MNlFRSsSRuxQ6lW5g8CUDeoZtilw6/IMtVC7nRHsPM0XTkYgOPKET4FcYcit6GLPihKptz/x/wQjo7SccAPXLwKVdhKIlE6xmJjFQYRDaEtvtJp4QaKcHvxUkKsQ1tMgeP5tR9Sz/LtA0lFlHum3t6vUcYIGYd+cYv/g+hrmorGLSAORu44qdaeJeUTbZpU3yRjJ75pYwxqYpPVxTL8E7TxSBSPzG98MtYwyvYbflFqWTSoY8EuP/EGz1HF47YLlujPTkYBZzKW5mH7/HmZUpsMSGNfyaid1+/AseVCBuqvIk6GR3YsX3a2MQCDcvn8O5LPS0ViWE/GjgFdNoN5YgovBUV4n0FrSfghmAhXYGyl66+OBShjRJCKfAYNp023n/CgjTziR9KQ+N5P+Q+rLyySy3skJGfL9FrA0IS9vEmPtQeb5IG4Q7Psq8BxoJcbkr5z8jYQTWxNbXgqRJwtjaQWjtHEwBTRC54ApCYXrSXOHFK2RfD8TGOYS92Qz9wrayZeFM3ewzPH8izKu4s+UbM1tIff6ATrC657Lb1D12ZO8b2NIrUPiGF5xNCmsGLklpA6JjFAqc/c61bNA7ZfJkz/9CpTp8iwEYgiNfhR0dPb1TPVT8BBQeccQfBa8E+jZcklP+hPwXYQpY+Gp8yDXjwH7UwDdBkY0ksgnwADKfZk6hTyxRsBtYS7pQW/LTYxdK8iOO5fkvULfTpBzC+ZcH8H1KbE0Dch1wBdQktpyW30emAAk5/8+5vtEB/OV367TseAD4E2gL8gl+7wL/C6WMYW4HjiX6klwrDW5GV6rwFrfqV4gvCqx1rtDmhSqx3Hj582axD2FWj50aL5vUxjAESCfcW872s2h8ageoaza7bPz53+2yOnWGwttS2euZOQckHtDwsykxTJ9lwihmEgDepCPgUJ9NJN/K/gRglZPvXHE9ZgXgCSj5FHpevALyq8hzBDxOiKzqG+aAhkXfstovN4PFlPm25Rvd6wg3TJ6oFyj8TxpPmpLPKJQbzT5Ko/LEScFWUMzL57YUZz2BlLmk2Botqzt3Ay8o6wiJ5FjvAZcApy/JA/m094thK9Q13ZUWHXIu8YaqmkgMhYHEk8iVeYB4DPsFbECGq0Rsesoej8Rb14lGRpfpUwtQhGPdOXlGK1vjGoWCnluegIfJ4yMPFehst2Rp5RwgnU7cv3UMC/D3I76hSPly0LqVOr6SmlWYprr+BMymW1NUn0YuZVF+zN5SQo8krwyysjOXSbackkOBx8CZ4PBIB85hbvBN+h/GXU1yp8CHwQqU5wUokeByutjnMT5kj6Hdq6ijHONFIBohhRaPfFMYFu5dCQJh+QkLuH6m+CpnPTMZXa+znO/hHz7uZkxJQpyQnmVS/6pGJEB0jD9BlxJO3HlIWkHkec2+uekyLcLwSAwAGgI9gEPka+jU3n7g3FgEtgX7AV6gySyz3vAj+njsagAbY0k7k4nl+aS4FhX5WZE1wygeTavPXLdwheU2cUtSJQsqwllJ1M283tYBQt3U6afJ/JztHdjUmcV2+W8MHwCH26c2JitIBf4pZGtdaEhUaBj7f6J+EfBqFia0bHAxctn2S1TFLGoCs0bwYfBiSDJg5KcIRdPwfBLoNnUnUFcYVMoVLQ4KQyW/QWYSflo+vEy8bjnQYXtbfHEbNz5HgvaKDD9y4MPgr4goqVENAaFnvvuTf6/gXIQp4VcfIuxrownFhHXe6qAKuJGcBP4Hu28QliQKLOGeVxNIeftWkh683eCN4C1wHE6R/Nz+UxShrbwv4r7PHgQ+GMHuf2fSfp0EKc1XHwXPBRPzI1X8Az3HyivHkP5VY0VhoK0JgztQ6EZHWp6wVa6LtOtM953OZ8tfn96WFG08nB+P41HYK2vffpBB9Nfuz30Y3Fcn7z0Ajm3ALenGb5lS44ndCtV9Biy9VoDhIYjfMZzKThngP1aM5MjLsO94Kvg79R/K6HK+xbQA0S0jcjj4M/gTwlCFJVrE1LOd3j/SqJGJFryTcTdAi8CCmYuuY08OZb4MvEfgutpTy/YjuhDT+a4p+VkruZaRXogSqcszRTliYdSZyyYDf4EvPG2mLBY2krB+PpG9UYQEXFy1yc0/vKmFjj2BWAOQM/Cy/RvmVZiLpO50Gi57hGpvNcAz/sRz6O8NiGPkVJz0N71mJIhai7eWEYWpIpQMYQt9GC1/rUmuYsR2szjrP96PKzQWxRFS8MYvrqq/wTPr8udt6Q5xR290NFLLDDVLdblFN8bnAYiGkzkTWB+lFBsSHsqm0qihT8BjANVoBBtJFMr7dlQugpozcd4kSWF6X7wRyB/ljF+ptmesmNw/M2UuTNW4nfEFXwVV3aphBqpDUBBbSXaqObi60BeWOYmoPJq9CrIP5bQ8+EQ8Gv6cZuu8H4JXABSIKKFRD4L/prlufx+L+hJHZVrCfDD+HznYsesEVwPfEafaDzIy0eKhHybCdSLkWAiGA36goieJXIlWA6cs3B8et/N9NtGaUnLEHPoQ+QKcFBLSub/Z/j/MuCcbaMgVYwJtcuWhepFkQLzub2ML0jc+BnOh4c9I8EvWHg3Z3LTLc1HDNf25Zc5ztnhITrstSzUn8kZflLCRxcysEOCuWtZgEsp6IJGXiNF/D2k30S+wl6QKKf9UdmOByeAo4HXceHgMpGeJ/VbQEVTIa8DKt9A4MLPBrPAQ9n4inwCwThUppOAXvMNYCVpj1J+A3HJbfddYLsXpCcuPXUc9xeBivYX8FvwAFgJTgHvAgeDAUDjdCd1Kgg/Bz4IeoGIHPs3wb1Ag+nYLHcAULEci/NcQd5fCX0pZClhK3FdR94j+cbbWjB/xPY1Po5R9ASOXePqPOTVEeBW8Eewjb4649c+Sh3npdzYl+38CDzj2Ak7JAdVx8sc/FWEFFti78SmtDIFiS1rc2YlC5ba/Zl8cOE3zLeht98b0ok/m7I6TBixLWz5CGd4ngHvIObPr1+2fS64Izcx9iypF4NrwZhsicMJP4HgeKe1IZvWGpCu1VUA9gKWPRJMAkOBClAM3UGhy4EfoG+mTftWqFWWOUAjNA+oOGtzx0F5+/H8rvHZB7wJ7AuqgXkTwNcop8e2XcemkXgR2Ec7oqxCuD+w3KfAk6AG6BAuA2eA0cAt4WNAg7AEfBpYXg+3GdjHPeAPoBYcD1T+twL5pLeOk7ycAg5iDF9jrk/FM7lmSfMTdTQkFWBgNtxA6K9j+rOwKuMq0ErZef6DhIfBjeAI8DhltxIWRbRRRsGzwEVAvt0Hfg2c91L7JiyKrMxT8eF4o4y1LIf7/FGx7QcX+jtCq8OYKdtCw1OsbP/OmJuiRlRkIT48wASnZ/HW1cfHhVWzi6yWKbYkDPtCz1D2ZbxvqwK7gnyFtXhQSB/RN6xus2iF2mYxepF/NzgmVm4F8RuAXmgdUAk0jAcBFXY40Osp3AqO+cXSXAqeC/ykL7PQjKEH1xPBdrAJbCRvG2ErUWYYF4cABe5A4HgGARVHBVWQ46QgO3ZlxPZd6lfB+bTdRklIyxB9OCcNQC1lvFuvQn8FqITy6XZwK3C9NC6O/0Tg2By75FgiI+ecNDQaFvlUiJzv0+Bi+p6VVJDxqDj9wGQwHkwBGjDbt0/nqiK+BHx0o6EpSLTpfOspi+oUR9TREH0GaFweAhqtGtpw7TpFyq2K8Ciel59tTTGh5kH8eqRMc7ESqT68uq4s9OSH3DOLn1hmdyaqvM2ZP51SecnYsNzJF02Lw8gZFaH5I8y5VXmt7F1sfpbnsTtC7ZqiG2sp6AKOyamjclwATgMKhF6jJ1AIVRqvFZbOkgv+I9CqvDbAwtcT6HnbEcKyL4mngjcCFUKj4TbQMSjQ+cixJimNH6E/T16kcNZ3Lhoh27TtaZRxh3EWOBxoAK4EPwaewTPGhTLWuR84r6PBhUClUpnkk0pvmWJI/mqcvk67HyVUCR3PWDAB2O7ewHGNABou1044PnnhPDRUR4HjaedawrUgIpV0GfBXJeW5vN9s2ElaT/lrgHXXRG11so1M8YwCPxlqa48K1b9j9BezPe7XGHookIkCYa0x4dVNS0Ovpfy86/CifX2mu13/L1LexlDx2dVh+ROjWxheVMOr+YVMfsXy88xxbK655C52E3/q5c5zOnGOznYqD28ACgvDyZyH9XAqitgCFHiFVnZtAApMZPF7E1dQFZ6OSKVZCYYjXHrHuBJZ17YUTPvVkx0DTgETgNeOcVfpQzQwGSiEkspnn3o2odJH18OJZ2SMcCqYAXyXWiO5CsgT5/5G8FmwH1ARd5ZUdg3G/4LZQM+uM3LuKqrjk++F+KAiOwfPuF8CDSAi56qX/AdzuI7wRTANaCSsNx/MRiHrCAvRBspE/CtUrsO8VqFZHEZMxzPd1TukRm/mL9+NDauuLlR7aRj2E7ahF3TH3w6OxhEpL0b5omVh5SOHtpy3ouwOQ44K/0kb/4337RPf+ithaNaShtBw3KSwYXGHDcUKsJBuPfUW8lJhNH4SeBtQGG8HtwFJIVLIFCCV2GHoHT8OcrewJLUjBegFsBxsBLkKbP+RoCqsCq5QuLqKHIMCGreBslA4N9EqV8QjepVILUC8MkZsLaFeTGXRM04AXTVOx+YY5am8dkxdRc5fo/wyqAGTgXx3ziq36a6Ryr0YaHA9UmisupxkeoZqw8q5I8PQH3N3+SsY1SOi9HxhWSj/G9vYD5PvwHc7qbx0NDMdKr60PKx4rLPKyy9tvIMdw2dyldeBu33mVcq/TAwbXJBOEQujhV4Vq7QQpV7I9Z1AgfSX+BVc3wyKBFSe6QnOBCeBQh6B7Fay3nSgwKv8ClOczC+kRPGyOxu3Dz19PsIWZpRUvijolnecjmtCNrSMxidKL3b+VCmKbK+r24w6dj4ayUPA/iDX8Lo2JwAN1lagbKxj7d0xqcyGyoOh+Xpi4+uRk8y2nHjR5GBaib+eMGpAKLseIZ/KSw4HFfp51powdC/k81EkcrCrsbvIVWeQCGv69/x3+YpQO7uzylsTqo/kVY8f0c4BuVKvRvEcecO20HTahLDukd01j6hdFtLFPx6cDY4D44DT3F3klBWUOKk4egvz4jLgdVI6yZmtZLwd24gEUW/q0cBQT6PiKoyWt/1IUccSF8hOJhxOOBi4a2l1JsT/lUhDJaJdgaE80sCpOvJKBc4oMeEyoCOZC3znuuBWuw3T9glrli8JQ7+IPF1JD+7tHweJNDqsWcjz40dp4LTd9TG/Xpe/IbwRCbiW8Vz/q1A7/9IWoUscU1LiojDqEH6075vI0X5Kp5IUJ/40C5xM3cOP2T0dT+/KOEqrN5gEjgJvBjPAGKAX7gypMEuAC7waRAqjHVJhFIJcUmDctlomIgVHRTWMSEWLFDiebr55th9Pl5Wm2X4URkJpOxGIZsg29Fa9gUbM0O3zUKACuw0dBuLjtI5pkYGzT48eQ4BxYdx2JY8s5ku2H3nh/sRty3zD7iR1TNh3v4SO5ZMKLm/lpUbP7b/r8wqy8xThPcBnw3H+k5QwGTiSqgnDfEzUPDVsnJ8plee/mjDibL4d/jWtFn7Ylqd+vmRn20Lpmfzx78s2cHd4+k78/aOaMPqNPGy6GonYByNT5mrHyX5Iq2Vr/Rb+vtKz8bxdicN0hUcFnQiOBDPA/kCBVWkjwSJaFD1DqZvAw2ARcKFdTBc+mpZhuwUmTVJIcikpzbuqiem5lbviGj6pTCpshEhR483vEIeWVMtG5ZyzcdOkSEmNqywqtmkDsqHrooKrTBoO10EDYVo8tJ5GxnxD8zUwojvJ9dU4aoDvA37j/RhhKzm5dgRXZEiKzHwCkamzPgwcuDlUzWSWByhRu0qulO81b+evEBK9ti5sv3H9zv2tptSiMOxDeNf/5gWVsUnK61h70ldDaP7G3FD7xRNblMHkogjhU3BcdIVDxRwLJoKpsbjbQ4VFAVAYEvlNehItJFHrewd4EOh965KsMOklynIgaxS8ktcRv+MKHqW7fsbzhZEHd31dQ69VZuPVQK/u+p8ORoHdTW67V4Nrgb87rqdunaDxThOKrrf+FHejr97Zu9GROUXRUKb0MhT4D9wcux5pf2Vn/urgS2H0kL6h8RJ+XP7D/Lb1INxJtIht5ufWmX5m8+z35LFh7bI2mUVcICgu2o1gHHBxtT8qqdbbuEjsm/Q4ue30jvIGMA88B9wNzAarwBbgK3p6mxJ1EwdihiDjzOg2CiOlj0T3veRdDVzviPSc3sRaDO4HysR5wKOCHnU5mAVeBtPAO4DGoSNSBtxa3w2+Bx4pRsAol5+88dUnlN3TK6Sm1bXu5vKXj7igwjpjXoX0r4zPYWR/QqX+XB+2z38ybNh0TgfeP7cHjQmPwk5lO3wR3DoMY9A3n8RrcqEtKPC7OcvfQf/5iraUTPifBZ5E8tMgOl8llGpN0nKuB2uzqCFcCvSqppnvorpVcoFFI0rbbdtZ+ivRTnAAOdB4vwecAVTaB4HG2LV9BWiA1bPDwHjgWpuucXbjirhm8t5PeAwYCCSNgI7F8jqJqSAi5eNW8IFdVmAVhz9l8taysP07fMm0j8qhNkSSZwdCxXU/jsLWE9/AixML8YIP1YfU38pCxdM9Qv3GB8KarZ1VXJoM3Kg6uCI0fYzomdxR9kfq27xlZZmIHIuGgzvtl9WF2svgiszoNLFwbo9fAsMLVH6RPLc8jwMXQxYIF0cYl1W+d+t1if4JOYAseDbWg7qedaDdmlKmknRFL7P+ceNMnkrsmV1ZGg1UF9tZAFRylfoa8CYgLQH+HeeHdlmBbQ2FrVoRhkzmx9FP4pnqeEboYIaZx4cSzTzBrUWxeP0yrOJ94xqUdzHllvNV07ZJYb0e2G1kp+iVMKVH77CVm0PN57JVPpk71iPxulrDgu7UDyB45nvzq6Huwn3DJr3fThFMl8m/Ae9MaMDzyu/B18Ai4LuyLlyJShzIywFkKvIvlvGj54xRz6afTdoPwcPgSuAHFI1dosA0Fi7Favw/Dvh1YVAlb3SVVYbmcjfrfRhIYyhv2h7KmreGyqbe6PAUt4ctVsqqRdMLYXpVn7BmNOYKS5Q+mdkdheIO4CaVv6zZ4SExq7z87aOGj47q5BtXSYOEsQeRLlP3AVrKxeAJcBeYBXw4H21GuCxRiQM7xwFkzbvmbBgz229fxcwod5cp8M4Nq3AtPrpHMVMc/Lfvj1E4hNL8FcU0HyOUDWLgvblb7d3dgh436iGrvHdvD/V8vbRxIfXd6e8SwdQKGqgGY8EWsC4bboXBnd5VULdEJQ4kciDrhcsjxY0K7ZQC+0UPnvX9vL00Z2NI35D7jHZxGPWmytB0OHvG1WhJLWfczZw5Ee40XzBltglR/5nQAwBlq9lu92d7PYK96Qgc6ijKTqT+OLIHo4A9+HQQNFs8M+5iNNCCLS+EpO9qCvWfHBs2LugK5aXZVoK5maN/ydu2sqQU6SYO7JQCLwlDPj4sVFzJFrmBN6X+lgqV318flj84neuFYdgIbk79qW9I7VMXUnzhk25CMbcj4dtQ0vbay0RRRMfRkzvTFdQt57zMT/2w7+aTP+ro5VrHWYzSRrxTq6xInV/VhcYvct5eynVnmoiaKoUlDuyRHGhVjM6MbmkYejzPWe9FE/hRvICShm0o3MMcg3mG2eSNLH/wLvPmU9RBR1pTbLlix+neGo+9nhtWl6fC6mvGttzVK7Z6qVyJA/8UHIj0plODRRkrl4Xh1/Em0weiFzh4AaOJ++RN3AmuUHk71WAXFtZd2zmKO7M8lF+6js8O3Rl0YRelpkoc2GM4sFOKhtZzx7XuIpT3BhvwARdn3HJe5Kh6rZTXcfhqJFTD7bmLm0KvMx8OKx8uKa8sKdG/Kgd2ygNHzFjOneDmUH0ebz9dSEP7eeLE83XrIVOPm/2edwPPm3/Fm1zXjg9r5zOekteNFqoU/styYJcUWK64nZ4XBlf3CZVncbPqXJIO5Y5xuQ8/d5cyt3j9lqFzo4sXQ1K/5bXIXzaG2jkTfGmidKMK7pfo9cCBXVbgiEkv8LRmQBjNG1jbD+Lxz5k0fDQ/Gj+dZz4+9skQCp55j0zl7gx5N9mvlKLBcs7eSvxpkm/fHJpuqwprF03A45LW2aY7M4xS2RIH9jgORDrRZQPDI5cvwiv3DCP68aneXjwW2pdz8RHo1l6o4Cjyh7HtHeDHDCq05P8tsR3PixxYVIbz9Xrii9HOBb4/zQH8sS2h6cW9wxrfY/atrqg6lyUqceD1w4EuV+A469Aqd7vlNRxTK0M1j5VSw3geO5y/iDAEJZ7ENS9qpEaiyD0YyBTKlqGoS6i3kZP0Rjzv8yjrAt7CqsWRL+GDna180rN9GqB8ydvGmV2Kvy458H9Ikhh91MTq+QAAAABJRU5ErkJggg==" alt="Okinoi">
-          <div class="shop__search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>necesito cadena y dos cascos para una YBR 125</div>
+          <div class="shop__search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>necesito cadena y dos cascos para una YBR 125</div>
           <div class="shop__icons">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-            <span class="shop__cartbtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="9" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg><b>3</b></span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            <span class="shop__cartbtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg><b>3</b></span>
           </div>
         </div>
         <div class="shop__crumb">Inicio › <b>Compatibles con Yamaha YBR 125</b></div>
         <div class="shop__ai">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2a3 3 0 0 1 3 3v1a6 6 0 0 1 3 5v6H6v-6a6 6 0 0 1 3-5V5a3 3 0 0 1 3-3z"/><path d="M9 20h6"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2a3 3 0 0 1 3 3v1a6 6 0 0 1 3 5v6H6v-6a6 6 0 0 1 3-5V5a3 3 0 0 1 3-3z"/><path d="M9 20h6"/></svg>
           <span>Entendí tu pedido. Te muestro <strong>lo que le sirve a una Yamaha YBR 125</strong>, lo compatible con esa moto, con tu lista de precios de comercio</span>
         </div>
         <div class="chips">
@@ -1501,7 +1503,7 @@ body{padding-left:var(--side-w)}
     <div class="imp">
     
       <article class="imp__i rv">
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M20.5 20.5L15.1 15.1"/><path d="M7.5 9.5h6M7.5 12h4"/></svg>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M20.5 20.5L15.1 15.1"/><path d="M7.5 9.5h6M7.5 12h4"/></svg>
         <h4>Del idioma del cliente al nombre del catálogo</h4>
         <div class="imp__ad">
           <div class="imp__a"><span>Hoy</span><p>Los productos se publican con su nombre técnico: KIT TRANSMISION DID YAMAHA YBR 125 (45T-14T), CUBIERTA CELIMO 100/80-14 TL TUBELESS HD 523. Al comercio que conoce la medida le alcanza y le sobra. Quien no conoce esa nomenclatura tiene que acercarse a ella para llegar al producto.</p></div>
@@ -1510,7 +1512,7 @@ body{padding-left:var(--side-w)}
       </article>
     
       <article class="imp__i rv">
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 9v11"/><path d="M12.5 14.5l2 2 4-4"/></svg>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 9v11"/><path d="M12.5 14.5l2 2 4-4"/></svg>
         <h4>La compatibilidad la decide una tabla, no el modelo</h4>
         <div class="imp__ad">
           <div class="imp__a"><span>Hoy</span><p>El criterio de qué le entra a cada moto lo tiene Okinoi. Si ese criterio está escrito en algún sistema consultable o si vive en la práctica de quien atiende es lo primero que hay que revisar juntos, porque de eso depende cuánto trabajo es esta pieza.</p></div>
@@ -1519,7 +1521,7 @@ body{padding-left:var(--side-w)}
       </article>
     
       <article class="imp__i rv">
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 13.4L12.2 5H5v7.2l8.4 8.4a2 2 0 0 0 2.8 0l4.4-4.4a2 2 0 0 0 0-2.8z"/><circle cx="8.6" cy="8.6" r="1.3"/></svg>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.6 13.4L12.2 5H5v7.2l8.4 8.4a2 2 0 0 0 2.8 0l4.4-4.4a2 2 0 0 0 0-2.8z"/><circle cx="8.6" cy="8.6" r="1.3"/></svg>
         <h4>El precio que corresponde a quien está mirando</h4>
         <div class="imp__ad">
           <div class="imp__a"><span>Hoy</span><p>Es el primer dolor que planteó Bruno en marzo de 2025: «muchos precios distintos si el norte si el sur si es Mercado Libre si lo paga con tarjeta si lo paga con cuotas». La tienda muestra un precio de lista por producto, por ejemplo CASCO AVX FS-V6 MATT BLACK CAFE RACER a $ 350.000.</p></div>
@@ -1528,7 +1530,7 @@ body{padding-left:var(--side-w)}
       </article>
     
       <article class="imp__i rv">
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="5.5" cy="17" r="3.3"/><circle cx="18.5" cy="17" r="3.3"/><path d="M5.5 17h4l3.6-6h3.4"/><path d="M13.5 11l2 6"/><path d="M15 8.6h2.6"/></svg>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5.5" cy="17" r="3.3"/><circle cx="18.5" cy="17" r="3.3"/><path d="M5.5 17h4l3.6-6h3.4"/><path d="M13.5 11l2 6"/><path d="M15 8.6h2.6"/></svg>
         <h4>Un segundo eje de navegación: por moto</h4>
         <div class="imp__ad">
           <div class="imp__a"><span>Hoy</span><p>La tienda se recorre por rubro: cubiertas, cascos, indumentaria, repuestos y accesorios. Es el orden que sirve a quien ya sabe qué medida o qué código busca.</p></div>
@@ -1537,7 +1539,7 @@ body{padding-left:var(--side-w)}
       </article>
     
       <article class="imp__i rv">
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12.5l3-7.5h12l3 7.5V18a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M3 12.5h5l1.2 2.2h5.6L16 12.5h5"/></svg>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12.5l3-7.5h12l3 7.5V18a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M3 12.5h5l1.2 2.2h5.6L16 12.5h5"/></svg>
         <h4>La consulta que no encuentra producto queda registrada</h4>
         <div class="imp__ad">
           <div class="imp__a"><span>Hoy</span><p>Cuando alguien pide «cubierta trasera para una Titan» y lo cargado es una CUBIERTA KINGTYRE 2.75-18 CROSS DELANTERA, el sistema no puede hacer de cuenta que sirve. Qué estadísticas de búsqueda ofrece hoy la plataforma es algo que todavía no revisamos y conviene mirar antes de comparar.</p></div>
@@ -1546,7 +1548,7 @@ body{padding-left:var(--side-w)}
       </article>
     
       <article class="imp__i rv">
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 20.5h17"/><path d="M6.5 20.5V12M11 20.5V5.5M15.5 20.5v-6M20 20.5v-9.5"/></svg>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 20.5h17"/><path d="M6.5 20.5V12M11 20.5V5.5M15.5 20.5v-6M20 20.5v-9.5"/></svg>
         <h4>Los cortes previstos, sin pedir un desarrollo</h4>
         <div class="imp__ad">
           <div class="imp__a"><span>Hoy</span><p>Es el segundo dolor: un informe puntual que, en palabras de Bruno, «fue un desarrollo que le demoró a [el proveedor] como una semana y media».</p></div>
@@ -1555,7 +1557,7 @@ body{padding-left:var(--side-w)}
       </article>
     
       <article class="imp__i rv">
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M10.5 18.5h3"/><path d="M9.5 6.5h5"/></svg>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M10.5 18.5h3"/><path d="M9.5 6.5h5"/></svg>
         <h4>El mismo motor, también desde el teléfono</h4>
         <div class="imp__ad">
           <div class="imp__a"><span>Hoy</span><p>La red de comercios del interior compra hablando con un viajante, y los otros canales son el mostrador y Mercado Libre. En agosto de 2026 pidieron un vendedor adentro del carrito que entienda el pedido en lenguaje natural y lo traduzca, «también desde el teléfono».</p></div>
@@ -1564,7 +1566,7 @@ body{padding-left:var(--side-w)}
       </article>
     
       <article class="imp__i rv">
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5l8.5 4.8v9.4L12 21.5l-8.5-4.8V7.3z"/><path d="M3.5 7.3L12 12.1l8.5-4.8M12 12.1v9.4"/></svg>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.5l8.5 4.8v9.4L12 21.5l-8.5-4.8V7.3z"/><path d="M3.5 7.3L12 12.1l8.5-4.8M12 12.1v9.4"/></svg>
         <h4>La ficha que se puede girar</h4>
         <div class="imp__ad">
           <div class="imp__a"><span>Hoy</span><p>La ficha se apoya en fotos fijas y una lista de características: el comprador ve las vistas que se eligieron al fotografiar. En un casco eso suele dejar fuera de cuadro la nuca y la zona de ventilación; en una cubierta, el perfil completo; en un repuesto, el encastre, que es lo que define si entra.</p></div>
@@ -1573,7 +1575,7 @@ body{padding-left:var(--side-w)}
       </article>
     
       <article class="imp__i rv">
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s6.2 6.4 6.2 10.1A6.2 6.2 0 0 1 12 19.3a6.2 6.2 0 0 1-6.2-6.2C5.8 9.4 12 3 12 3z"/><path d="M9 13.4a3 3 0 0 0 3 3"/></svg>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3s6.2 6.4 6.2 10.1A6.2 6.2 0 0 1 12 19.3a6.2 6.2 0 0 1-6.2-6.2C5.8 9.4 12 3 12 3z"/><path d="M9 13.4a3 3 0 0 0 3 3"/></svg>
         <h4>Color y terminación sobre el modelo ya construido</h4>
         <div class="imp__ad">
           <div class="imp__a"><span>Hoy</span><p>Cada variante de color se comunica con las fotos que existan de esa variante. En marcas propias (OKINOI, OKN, AVX y MAXIM) el grupo decide qué colores y terminaciones salen, así que es donde más variantes hay para mostrar.</p></div>
@@ -1592,7 +1594,7 @@ body{padding-left:var(--side-w)}
         <div class="pdp">
           <div class="pdp__v">
             <div class="viewer" id="v3d">
-              <span class="viewer__360"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4a8 4 0 1 0 0 8 8 4 0 1 0 0-8"/><path d="M9 2l3 2-3 2"/></svg>360°</span>
+              <span class="viewer__360"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4a8 4 0 1 0 0 8 8 4 0 1 0 0-8"/><path d="M9 2l3 2-3 2"/></svg>360°</span>
               <span class="viewer__deg" id="v3ddeg">0°</span>
               <div class="viewer__stage" id="v3dstage"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAASABIAAD/4QBMRXhpZgAATU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAA3KADAAQAAAABAAAA3AAAAAD/7QA4UGhvdG9zaG9wIDMuMAA4QklNBAQAAAAAAAA4QklNBCUAAAAAABDUHYzZjwCyBOmACZjs+EJ+/8AAEQgA3ADcAwEiAAIRAQMRAf/EAB8AAAEFAQEBAQEBAAAAAAAAAAABAgMEBQYHCAkKC//EALUQAAIBAwMCBAMFBQQEAAABfQECAwAEEQUSITFBBhNRYQcicRQygZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2drh4uPk5ebn6Onq8fLz9PX29/j5+v/EAB8BAAMBAQEBAQEBAQEAAAAAAAABAgMEBQYHCAkKC//EALURAAIBAgQEAwQHBQQEAAECdwABAgMRBAUhMQYSQVEHYXETIjKBCBRCkaGxwQkjM1LwFWJy0QoWJDThJfEXGBkaJicoKSo1Njc4OTpDREVGR0hJSlNUVVZXWFlaY2RlZmdoaWpzdHV2d3h5eoKDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uLj5OXm5+jp6vLz9PX29/j5+v/bAEMAAgICAgICAwICAwUDAwMFBgUFBQUGCAYGBgYGCAoICAgICAgKCgoKCgoKCgwMDAwMDA4ODg4ODw8PDw8PDw8PD//bAEMBAgICBAQEBwQEBxALCQsQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEP/dAAQADv/aAAwDAQACEQMRAD8A/fyiiigAooooAKKKKACiiigAooooAKKKz9R1bS9IgN1q15DZQjq80ixr+bECgDQorwnXv2mfgV4bLpqPjCyd06rAzTn/AMhhh+teUaj+3l+z5YFlj1C8uiP+edvgH/vtlpXA+zaK+CZP+CiXwMVsJBqLD18uMf8AtSr1n/wUJ+AlwwE51C3z3MKMP0encdj7oor5W0f9tH9njWGVV8SfZC3/AD3gkX9VDCvZvD3xa+GXivaPD3ijT7126Itwgc/8AYhv0pXCx6HRSAhgGU5B6EUtMQUUUUAFFFFABRRRQAUUUUAf/9D9/KKKKACiiigAooooAKKK+fPjb+0l8PPghp7/ANt3IvdYZcxWELAyH0Mh6IvueT2FAHv008NtE9xcSLFFGCzO5CqoHUkngCvj/wCK/wC238HfhsJrLTro+JNTjyPKtGHkqw/vTH5f++Q1fkn8c/2wfiX8XrmaxlvTp+kEnZZWxKRAdt/dz7tn8K+SZbqa4YyTuZGPrQFz9B/iP/wUJ+LvippbbwxLF4ds2yALVcy495Xy2f8AdxXxx4h+JfjfxVctda9rFzfSuclppXkP5sTXn2c1Mimiwmy3Jd3ExzLIzn3NRdetOVMmrSW7MOlAnIqgUozir4tD1oNocUBczQSvTINXYdVv7Rle3neMjoQTSm1YHmq7wMOooDmPb/BH7TPxk8AOn9geJryKFCP3TSGSI47FH3L+lfbnw4/4KW69atFZ/EfQ4dSj4DXFofIm+pQ5Q/htr8qHQgetUX3KeKLFXP6cPhj+078GviusUPh3XY7e/kA/0O8xBPn0UMdrf8BY19AV/I1Z6td2MqyQSFGU5BBweK+4/gh+3V8T/hs1vpWt3J8R6KmF+z3jEui/9MpuWXHYHK+1AH9AVFeC/Bz9o74ZfGqzT/hG78W2qbcyafckJcL67e0i+659wK96oAKKKKACiiigD//R/fyiiigAooooAKKK/O79tT9qEfD/AEaX4f8Agy7C6veqVup425hi6FFI6M3QnsM0AM/an/bU074ex3Xgv4bzpda0A0c96CGjtz0Kx9mcevQdsnp+IfivxtrXi3U7jVNXu5Lme4YvJJIxZnY9SSeaw9b1y51a5e4uJCwJJJJ5Y1z255GHpQK5pq+elWYwWqrEmQBWtBCcCgWgscZNaUNuWqaC1JOcVv2dnuIzTsSU7fT2YAAda3LbSHOPlrotP03djiu2sNJVsZFIpI89TQ2I+7mhtCf04r2qHRIz/Dip38PqV4Wgqx8/TaORyBWVNpzqOle8XegYBG2uZvdGCqcjkUC5TxK4siM8YrBuYCO1esX2l4zgVx99ZEZ4oJODfIPSq7TMp46Vr3cBUnisSZSOMUDR2HhrxfqWg3sV5Y3ElvLCwZHjYqysOhUjkEetfu1+xN+0tefFfSJvA3jO+a98R2EbXEE7KMz2iFUIdh1kRmGcjJUg84Nfz1ZKnOa90+Anxw8S/BDx3ZeMfDxSRosxzwSf6ueB8b427jOOCOQQDSsVzH9TlFecfCj4peFfjF4KsfHHhGfzLW7GJImI8y3mUfPFIB0ZT+YwRwa9HpgFFFFAH//S/fyiiigAooqpf31rpljcalfSCG2tY2lkduiog3MT9AKAPnH9p/49aZ8EfA8k0bCTXNTV47OEHBAxhpT3AXt6npX85vxD8f6z451yfUtWuDNI5OfRV7Ko7D/J5r3D9qz443/xV+IWp608jLZq5htI88R26EhBj1PU+5NfHS3LtJkc7qBNl8l5GwBV6CEjGajtg8h+7W3BZynB20Esdb2+cGt62tzxTLa2YHkYrobW1ORgVSQiS0tc9q6mytMEcdKitLXpxXT2lvtxmqGa+m2o4yK7awtlUA+lc9ZR7duB0rpbWQqQO1Zss6q0hXAFaot48cisa2n4HbFaQuG70AVbuzjboK43UtPXBOK7WWbdyeKwb1lYHvxQB5VqdiozgV5/qVqMmvXtRh3Z4rg9QszzxTRMjyS+tOpxXKXVvtJ9K9RvrLrxXIXtn14oaEcFKuCVqgzmNsit68gK5rBmTg0hs+3/ANiv9pm5+CvxBhsNYnY+GNcdIL+Mn5Y8nCXCj+9GTz6rkelf0dQTQ3MMdxbuJIpVDo6nKsrDIII6giv42Y5XtpVlQ4KnNf0Wf8E9Pjefif8ACL/hENWuPN1jwiUgBY5aSzf/AFLc8nZgofYLQNH3/RRRQM//0/38ooooAK+JP27Piq/w++EZ0Gwk2X3iZ2gOOq20Y3Sn2ySq/QmvtK7u4LKEz3DbVH5n6V+LX7e/iGDx14mjYa3BZWOkweRFAyl5C5JLn5CRlj29uaLAfkvr+oPfXkj5zk1ja3Fq3h+/WzFusmI1dixIJLLuIA9AOM+tdp/whepTMJ7SeOVSe4Ze/qRj9a0dZ8IeKteuFur6ZpJYkWNXR1IKqMAYYdhQQcr4Y1uW/wBQSwurFrcuSofOVyM8foa920vTFcDjNeeeF/Bmq6ZeC41OVnVM+WuwDBOckkdepr3jQbeLIBZTjrgj9atBoTWfhqCdQXjq83hOJBuT5TXoenWOIgSOKtXFuFUkCmVY8uGlPbH5uQPSr0GxTgmtq9ULmubnfaeDQKx1NrJEO4xWxBLGCMkV5c9268KxGKqvq0secyEAdaTQcx7vbTQ7hlwB9a6CFYpVyrhj7GvmTw7rGreL9TOj+DLG88RXgODFYQtPtP8AtMPkH4tXoOuaJ8T/AAJbLf8Ai3wjrWlW2MmaW0d41HqzRbwo+uKmxR6XeHyeM81z1xJuBGc1x+l+MU1WFJop1nibowOR+Yre8zcBIOVNICOaISD3rn7yxzniuvghMhz2pLqzG3HWgLHj2oWAGciuF1K22hjivZtUs8AkivM9XhA3VaZDPKNRiwTxXJ3AAJrudSX71cXeDDGpYjBlHWvtf9gH4oS/Dv4/6Na3E2yw14nTbgE4XFxxGT/uyBTXxZIB+Na3hPVbjQvFGm6tbNsltZ45FYdQyMCD+YpFH9idFYHhTWo/EnhfSPEMJymp2kFyCP8AptGH/rW/QUf/1P38ooooA8y+KOjXGp6GbuwuZ4L6xSWS3ET7A8m35Q/qCeK/nm+POv8AjnVPE32P4n+DtPg1W3ciSSEmCeTccjfktnjoQelf0e+KG/0TZ6/1r4Q/aK/Zig+Mj2niPQ9kes2eFdH4W4RTxz2YdBnqKAPyks7DwtY2UMMFnc2mVBKswlAJHOGzn9Kz59O013/0XUTE3owxXu/jr4La74buHt7mFrKeMYMcw2Zx3BPBH0NeDaloWq2hYSQlwO68j8xTTJaNrS7BUb/Tllu4R/FD8/X/AHTXtfg7w38HLlM+JNVZJWbJhllktSg9naJ1Pryv418gX091pK/aEmmtJc8PEcEfyrf034jeLL2GKxGp2esqRsEd6gSYDrgSPjv6Pz06VTY0j9FLT4Y/AO7XztO8R6tAkYDtJBLbXcafXiJv0r0Tw18LP2eoZok1rxrLe2zsSy3CS28uG/242ZBjtkYr80dH+J58MR6jostpJ4dfXIRb3nl5RJ4gysPmGejLncM+nTNbOkapLc3SLFqMVzZuOTK22ZPcMo2uPwBFCSGetfGjwvJ4R8bahYeFZ49Q0CRvNsJ45FuQ9u33dzrg7gQQQeQa8Tmn1Af62JT6/eU/1rsJ7+OWN/7Pu1uUQ4YxyBsEcYIzwa5i5vZCrAnn3FVoQzHub2zwVZ2iPH3lz9TwT0r508YeI9R1pzGnmW+lRlh0x5+043FgeU9B3717Z4hm86zeFZBC900dur/3DM4j3fhuzX6K/tGfCD4F6l4a8MeAPDj2cTadYIn2u1kTewiURruI4JJBY5OSTTW4H5gfAL426/8ADnxtZnw55dsLgiHc6B8A+in5R+VfoH8Sf2nfHejaQ7atdQ30Uycq8argY/hZNpB+ua/PLxt+z3428BXo1vQANcsLZxJvtvmkQKc/MgyfxGa7T4hW3if4pajZ6X4bgf7DFbwNcTuNkau6BiuT1IzyKTV2Cdjyq5+Il9qHimfxF4fh2NM+6e2UYWUHrkDjd6N19a+svBPiC01ywguozmC5UEBuCp6EEdiDwaq/CH4K+G/CWu6dea0Re75USVSMqQ5A6e2c1v8AxG8P2vgP4z+JNA0xRDp9wLa/gjXhV+0x/vAAOgMiMfxqZocUdXAvlMYyPu/rUk5BGTWQL9X8uQHqozViW4V0wO9QUc7qyAqa8n1oDmvT9UuFAIzXlmtTA7qaJkeZ6oMFq4e94Y12mpydcGuGvHyTzQyTJk61X3GOeNx2INSsSTk1VmI3r9aQ2f1Y/spay2u/s7+BL923MNOSEn/rizR/yWvoSvjv9gy7a7/Zi8K7jnyTcx/gJmP9a+xKLFn/1f38ooooA43xQ/CIPUVh6anCn6mtPxI2bhF9z/KqdguBx0AoAdqvh/Q/Elm+n69YQ39u/BSZA4/DPI/Cvl3xz+xZ8L/EUFxc+FmuPD+oOCU8uVnt93+0h5A+hr68hXirYHHFAH85/wC0B8CPjD8J3nfXdNe600E7LtF8+3cdjvAyD7HBr4zk1NAoM1t5b99p/of8a/rK+IfhG28e+B9b8H3RKrqlrJEjA4KSkZjcH1VsGv5Z/iLZajaazeWN/aoJ7N2hlIUIwkjJRgSMAnIPalYpNdTzuDxk+6WzNz5lvuyYZhuTI6HByAfpiui0bxW9hdBsgRO2cKflXPp6V40bS4MrsIjl3J454zW3pTxQ6pbzzjMUDozj2zTTJaPqS31FfNGr2mBlQZ1HSWIdXx/fTr7jNdlHqc9s4uLSUcjIJAZSDzyrAgj2IrxWzuZtOKYbKBzjPTK9vowrudPl8qBrQHKQHEZPXy3AdPyU4/CruRYo/EG7lv8ARLt4oYo5wqsDGuwZQhs7Rxk47DHpXuv7FXx10Dw9pni7Q/FskXnBob6KSfDEoqmORV3A9DtOB614ffqs0LRPyGBGPrXzJr+j3fh/VjcW+UhdjtYZwM9QfY0NhfU/Tb4h/tb+IfGF/J4Y+F6LpGnkkXF8saiYr3ERx8ufXrXwd4h8S6tonii+C3EstvNIXKu7HlupznqTV/wd418PWFmIr3daz9ztLKx9cjJ/OuM8a6lp+p6kbmxlEoPUjOP1xTT0uD1OwfxsiWL31vcyRzRgFRvOQ3bHPau5+HHiPWfEt1e+I9bupbuWRkgR5WLNshB4BPYFjXy3a2F9rV+mm2X3sjcf4Y1/vN/Qd6+qfDVtbaHpsFlb/LHAuBnqx7k+5PNKU7iirHuw1bASMHoBWgNTJj5NeS22qGVyxNa/9o/J96oK5jf1LUN+ea891W6B3EGrd3fFs81xmp3Z2nvVITZz2p3GS1cZdSZatXULgkk5rmZpCW5qRCmTtVeRssv1p3WoDlp0UdyKEU2f06fsCwtD+zD4Z3DHmSXTD6GVh/SvsuvmP9jXSzpP7NHgW3YYaWzaY/8AbWV2H6EV9OUFH//W/fyiikJwCaAPO9ekLXh9gf51JYgCOqWqEPePntgVpWYPlj3oA1ohwMVNUaDFSUAKDg5r+b79tLSodC+MfjTTrRAkY1aSYAf9PMSS/wA2Nf0gV/OV+3HqdvffHTxm0RBA1FYsj1hgjRvyIoA+RdH06Oa3uJWUfu0Un6kmuK1PT1hnlaPgsefwr1DQlP8AZl7L2IjX+Zrj9SRWlZz3NcTlaoz140k6Eb/1qdLo7ve6ZBcsSH2RhvcplDn64Fd7Z3ZmMZP3vs0Yb6o7qP0xXE+GIg2nc9icfTcT/Sun0cBo3dhgqiDOePmLNjFd8e5489HY0pnzXOz6dFrDyW+0SKOWJHyj15PFdMbGN7NtW1eU2WlqdqnGZJ3/ALkS9WP6epArj9X1cXcf2VIxZ6en3LdTktjvKw+8fb7o9+tNsk8+1Xw5prSmPSiVX+KQH5M/7A7/AF6fWsu38HRu4FxeTSL6DCfntGf1rq59QTOEGarC6uXOEGPpUsR0ek2Om6NAIrdFiXrgdSfUnqT9a2lvzOwRPuiuMghuJWzISa6qwtggGaQHVWjlVB7itE3TFayYiAOlSNJgUAOnnIBJNcvqEuVOa0bu4Azz0rlL+4zkZpoDBvJCWxnisR255q3dTZJNZW/c3WkBYzxUulwtdatbwKMlpFA/Oqxbapr139nvwjL46+Mfhbw3Gu/7df28bf7rONx/AZoLsf1PfCHQh4Y+FfhHQNuw2OlWcbD0YRLu/XNei0yONIY1ijG1EAUD0A4FPoGf/9f9/KjlO2J29AakqteHFtJ9KAPM7xg94fdv5VvWYARfpmudfLXZP+0TXUWowB7CgC+owKeATxSAdhU/Cj0FAHNeL/E2l+CPC2q+LtakEVlpFtJcyMe4jGQB7scAD1NfyrfFbxbe+L/Fuo6xqLZur65mupvaW4cuR/wEED8K/VH9vL9p7TdThf4V+D7pbi0tZA97KhyksyfdTI6oh5929hz+N9pBJqt9JczE+SGLOx7nOcD+tKUkldjhTcpKMTsLdvsHhtC/BuWL++0cL/jXHXR8xwqjJPAx3rW12/Z40iH3Rx+HSt7wt4Xvb+9hcxl55DmJO4H99vQAdM/XpXn0k5SbZ7eIlGFNRXQ1LWxOl6CWf5WwE/4E3+Sa7LwdYabJoV14k8Qu0Ok27ljj70xXCRxJ6s7A/wA65nWt/iTWbPwh4cPmhW8vzF+6WP8ArJf91Rwv/wBeqXj3xFZyy2/hrQ3zpOiDyo8fdlnUbXk9wPuqfqa9K+lkeFLV3M3xP4su9c1D7ddqsexSlvbx/wCrt4uyIP8A0JurH2xXFvNJMcsevaqhZnfc1WUOCKRJNFb5wxrZt4kxuPAFUY2WpJ4mvLSWzRxG0qFVYnjJHGfY9DQI07TUbCSWONHI83/VkowR8ddjEAN+Brp4gBVrWpxq2ifZnimtbeUxGNJYmVbZoSCQjH5GzjC+X684FY4ulHFNFSVjWE23jFRS3JA96y3uh65rOnvMZGaewrE13dZBz1rlryfORmpLq69+awLi43Z5pNhYrzyZNVAcGkc5NMzSK5Sd5MrgV+k//BMbwA3iT44r4mnj3W/h+2muSccB2HlR/q+fwr80hlmCjqa/od/4JjfDf/hGfhLqfjS5i2z69crFGxHPk245I9i7H8qBo/TKiiigD//Q/fyqOosFtWJq9WJr0vlWLsewJ/SgDz+A+Zcf59a66AcV4V4n+K/gD4cxxS+L9YitJ5v9VbKfMuZSeyRLlj9cY9TXxl8ZP259etGm0X4e2S6Xxg3E+JLjn0XlEP8A30fcUAfon49+KPgL4WaQ2s+O9Zg0uAAlFc7pZMdo41y7H6Cvyu/aC/bp1vxjps/h/wCG8cmiaPdAo1wxxdzRnjJxxGrf3Qc46ntXwX428X+M/iJqM+oa3dXOp3M5O5nLOfzPauMOn6sqJFebYQox87jOB7DJ4ppCbMnU4brxDfPG0h5DySOTkkKMn8TVOz02Z4xFbREIvA7KPqa77w7pdla3iXd3P57HcvlxqTneMEEA8/mK9ct/C+sSWK3eh+E7m/zgxNNGwj57pCgyw9+a56tBylq9Dtw+JjThovePFdG+HF7q7G/kVUtoBukuZzst4gD1y3U/5xW3d6tGts/hbwJE9w15lLm+ZcS3APVIweUi9SeT344qn4pv/EE+tXOgeJ52a401ir2cW0RQkeiKQg+rEVxOreKAlu9hYkRRsNrrEeXHpJLwWH+yoC+ua1jBJWRzVKrk7yZo6lqVh4S0+40jQJxPqV2PLvb6M/LGveC3Pc/3nHTtz08pdwcAfKo4A9BU80zSHLHp0A6AegA6VQZhVGLZLkCpVfHWs7zh605ZgaANUSkd6sJc9qyFkyKlDigRuR3JOPm6dOatm5bHWudEuOelOM5wcmgDYe7xn5qoTXmQeazJJ8HrVV5iaAJp7jOe+azmfPNDN3qAmgaQpbJp1LDBNP8A6pC3uBx+dXfsEqDMxCD86CzS8L2Md/rVtDMwSIMC7McKAO5Nf1ufA/w1pvhH4ReEtC0nBtodOt3DAY3tMgkZsHnksTX89/7L/wCxX8TvjdrFjrF1YTaD4PWRXn1K7Qp50anJW2RsGRiOAwGwdSe1f0r6bYW2lafa6XZLst7OJIY164SNQqj8hQBdooooA//R/fyvMPi3fapY+DtQbR/3d3JBKsMpGUjl2/KWHXH0r0+q93ALq1mtm6Soy8+4xQB/MX4qvfiTD4+u9b1UwPqIk2SzMGclFPRd5wAfatPVfGN1NEW1O5to95yWbyl5+uAf1r5u+Men3+i+PNZ0q9kl3213PGwLt1VyDxmvN7ZYFG4RKWHcjP8AOgTZ9KX/AIs8PISrams7EklIN0nJ6/cB61X8O+J/Dw123uNV0Oa/05Q3meefJGcfLxvDkZ9CK8GGoXSjCPsHovFMa5llP7xy31NAmz7F1D9orw7oj3Nj4d0BdNtxkQvFBEZlXORl1LZJ5ByfTmvM5P2l/HNrJPJ4ejnSa44M9xKS23ptG3BC46gMAe4rwcPkU3zO1VzvYV2XL7V9X1jU7zWtYlDXV8waXYoRSVGBwOOBVB5R9Kjdzzk9aovJUiLLXFV3kz9KgLU3rQVyji1AbFNpCwFA7FlHJqQS7R71DBFNO4WCNpD6KMn9K2ofDmsXGCYRCD3kYL+nX9KBcpmGY00ytnrXXReEbZBv1DUlUeka5/Vsfyrf0rQdDnmW30rTLnWbgngIjzEn/djGP0oCx5kvm3D7IEaRvRQSfyFbNv4Y1y4Xc0H2dPWU7f05P6V9YeFvgJ+0T4qCReD/AIa6nFA/AkmtTZxfXdNsFfSng/8A4Js/tCeJ3Sfxnq+m+FoGwWTzDdTgH0WIbM/8DFQ5o0jRbPzNTwgIhvv7rA77RtH5nn9K7/wD8JvEXxG1QaJ8N/Dd54jvf4vIiMiJnvJI2I0HuxAr9y/ht/wTX+BvhJ4r7xtNeeNb5MEi6fyLXP8A1xjOSPZnI9q+8vDnhbw14P0uLRPCml22kWEIwkFpEkMY99qADPv1ppvsEopbM/Ef4cf8Evfilr5iu/iXr1l4VtDgtbWg+3XYHoSNkKn3DP8ASv0X+E37Df7PXwmeHULXQf8AhIdXhwwvdXIunVh3SIgQpz0ITI9a+v6Komw1VVFCIAqqMADgACnUUUAFFFFAH//S/fyiiigD+Z39vrwe/hr9oXxdaiw8qK5li1CCdC2Hju4xIwIwRw+4Zz2r4dgPGK/cL/gqb4IlktfDXji0UqssU1jOy8Z2HzEDevDNj6V+HcfyuQe1BLLJwKUMO1NbpTEBJ+XJPtzQJon3UjNxxViLTb645igY57n5R+ta0Xhm8cbriWOFfruP6f40By9zlJHIJquW4ru7fw/ovmrDPcyXErcBIxgk+gABJr3nwX+zX8XvGfly+Cvhrqd7FIRtuLi3aGHnv5lzsTH0NOxVj5Pgtrm7bbbRPKf9lSf5Vrp4a1XG6ZFgH+23P5DJr9UvB/8AwTc/aC8QKreKdR0nwnbnqhka8mA/3IQI/wDyJX1L4N/4JdfC7TWSfx74q1XxFIuCY4PLsICfQhRJJj/gYoA/A+PRraHm8mb8MKPzOTXrfgj4N+O/HbKngPwRqWukniWG0llj57mVh5YHvkV/Sn4H/ZY/Z7+HZSTwx4F01LhMYuLmL7XPkd/MuPMYH6EV77FFHDGsUKCNEGFVRgAegApAfz7eCf8Agnd+0x4lEb6tbab4StXxk3lyJZQP+uVsJOfYsK+tPB3/AASz8G2/lz/EPxtqGrPwXh0+KOyiz6b385yPyr9WKKAsfLngj9i/9mnwF5cml+CLS/uY+fP1ItfyEjv+/LqPwUV9I6bo2j6NAtto9jBYwqMBIIliUD0AUAVpUUDCiiigAooooAKKKKACiiigAooooA//0/38ooooA+Tv2z/hN4k+L3wSvtF8HxG51rT5o7y3t1IBuAgKvGN3GSrEr6kAV/PFefs6fG6HUHs3+HuveeGwVGnXBGfqEx+tf1nUUAz+XDw5+xX+074ldBY/Du/t1b+O98u0X/yO6n9K+k/Cn/BMT9oHUwj6/qOi+H0PVWnkuJB+EKbSf+B1+/lFAuU/JLwz/wAEq9DiVH8Y/EC7uW/ijsLSOAfQPK0p/wDHa+iPCv8AwTt/Zj8OMkuoaNeeIpVxzqV5I6k+6Q+Un5ivuWigdjzvwh8Ivhb4ARU8FeE9L0Up0e1tIo5PxcLuP4mvRKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAP/U/fyiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooA//Z" alt="Casco AVX FS-V6" id="v3dimg"></div>
               <div class="viewer__ring"><i id="v3dring"></i></div>
@@ -1615,7 +1617,7 @@ body{padding-left:var(--side-w)}
               <button style="background:#B7842F" data-n="Dorado" data-f="grayscale(1) sepia(1) saturate(3.2) hue-rotate(-6deg) brightness(1.1)"></button>
             </div>
             <span class="pdp__sel" id="v3dsel">Negro mate</span>
-            <div class="pdp__fit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Talle L disponible · Envío a todo el país</div>
+            <div class="pdp__fit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Talle L disponible · Envío a todo el país</div>
             <button class="pdp__b">Agregar al carrito</button>
             <div class="pdp__specs">
               <div><span>Marca</span><b>AVX, propia de Okinoi</b></div>
@@ -1647,7 +1649,7 @@ body{padding-left:var(--side-w)}
       <div class="mock__bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><div class="mock__url">App Okinoi, comercios de la red</div></div>
       <div class="phones" style="background:var(--app-bg)">
         <div class="phone">
-          <div class="phone__st"><span>9:41</span><span class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M2 20h3v-6H2zM7 20h3V9H7zM12 20h3V4h-3zM17 20h3v-9h-3z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 19l-2-2a3 3 0 0 1 4 0zM7 14l-2-2a10 10 0 0 1 14 0l-2 2a7 7 0 0 0-10 0z"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="8" width="17" height="9" rx="2"/><path d="M21 11v3"/><rect x="4" y="10" width="12" height="5" fill="currentColor" stroke="none"/></svg></span></div>
+          <div class="phone__st"><span>9:41</span><span class="ic"><svg viewBox="0 0 24 24" fill="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 20h3v-6H2zM7 20h3V9H7zM12 20h3V4h-3zM17 20h3v-9h-3z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19l-2-2a3 3 0 0 1 4 0zM7 14l-2-2a10 10 0 0 1 14 0l-2 2a7 7 0 0 0-10 0z"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="8" width="17" height="9" rx="2"/><path d="M21 11v3"/><rect x="4" y="10" width="12" height="5" fill="currentColor" stroke="none"/></svg></span></div>
           <div class="phone__notch"><i></i></div>
           <div class="phone__h"><img class="brandimg" src="data:image/png;base64,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" alt="Okinoi" style="height:18px"><p style="margin-top:6px">Motos del Centro · Villa María</p></div>
           <div class="phone__b">
@@ -1659,7 +1661,7 @@ body{padding-left:var(--side-w)}
           </div>
         </div>
         <div class="phone">
-          <div class="phone__st"><span>9:41</span><span class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M2 20h3v-6H2zM7 20h3V9H7zM12 20h3V4h-3zM17 20h3v-9h-3z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 19l-2-2a3 3 0 0 1 4 0zM7 14l-2-2a10 10 0 0 1 14 0l-2 2a7 7 0 0 0-10 0z"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="8" width="17" height="9" rx="2"/><path d="M21 11v3"/><rect x="4" y="10" width="12" height="5" fill="currentColor" stroke="none"/></svg></span></div>
+          <div class="phone__st"><span>9:41</span><span class="ic"><svg viewBox="0 0 24 24" fill="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 20h3v-6H2zM7 20h3V9H7zM12 20h3V4h-3zM17 20h3v-9h-3z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19l-2-2a3 3 0 0 1 4 0zM7 14l-2-2a10 10 0 0 1 14 0l-2 2a7 7 0 0 0-10 0z"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="8" width="17" height="9" rx="2"/><path d="M21 11v3"/><rect x="4" y="10" width="12" height="5" fill="currentColor" stroke="none"/></svg></span></div>
           <div class="phone__notch"><i></i></div>
           <div class="phone__h"><img class="brandimg" src="data:image/png;base64,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" alt="Okinoi" style="height:18px"><p style="margin-top:6px">Pedido armado por voz o texto</p></div>
           <div class="phone__b">
@@ -1687,20 +1689,20 @@ body{padding-left:var(--side-w)}
           <aside class="app__side">
             <div class="app__logo"><img class="brandimg" src="data:image/png;base64,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" alt="Okinoi"><span class="app__sub">GESTIÓN</span></div>
             <nav class="app__nav">
-            <a ><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>Panel</a>
-            <a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="9" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>Pedidos</a>
-            <a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8l9 5 9-5z"/></svg>Stock</a>
-            <a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M20 7h-3V4H3v13h2"/><circle cx="7.5" cy="17.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg>Producción</a>
-            <a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>Viajantes</a>
-            <a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Garantías</a>
-            <a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>Cobros</a>
-            <a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 2a3 3 0 0 1 3 3v1a6 6 0 0 1 3 5v6H6v-6a6 6 0 0 1 3-5V5a3 3 0 0 1 3-3z"/></svg>Asistente IA</a>
-            <a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 3v18h18"/><path d="M7 15l4-5 4 3 5-7"/></svg>Informes</a>
+            <a ><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>Panel</a>
+            <a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>Pedidos</a>
+            <a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8l9 5 9-5z"/></svg>Stock</a>
+            <a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 7h-3V4H3v13h2"/><circle cx="7.5" cy="17.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg>Producción</a>
+            <a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>Viajantes</a>
+            <a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Garantías</a>
+            <a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>Cobros</a>
+            <a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2a3 3 0 0 1 3 3v1a6 6 0 0 1 3 5v6H6v-6a6 6 0 0 1 3-5V5a3 3 0 0 1 3-3z"/></svg>Asistente IA</a>
+            <a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="M7 15l4-5 4 3 5-7"/></svg>Informes</a>
               <a class="on">Contabilidad</a></nav>
             <div class="app__user"><span class="app__av">AZ</span><div><b>Alejandro Z.</b><span>Dirección</span></div></div>
           </aside>
           <main class="app__main">
-            <div class="app__head"><div><div class="app__title">Contabilidad</div><div class="app__sub">Asientos generados automáticamente · agosto 2026</div></div><button class="app__cta">Exportar al estudio</button></div>
+            <div class="app__head"><div><div class="app__title">Contabilidad</div><div class="app__sub">Asientos de agosto 2026 · los genera la operación, no la carga alguien</div></div><button class="app__cta">Exportar al estudio</button></div>
             <div class="cta2">
               <div>
                 <table class="ctab">
@@ -1716,7 +1718,7 @@ body{padding-left:var(--side-w)}
                 </table>
               </div>
               <div class="cimp">
-                <h6>Costo real de la importación OC-118</h6>
+                <h6>Costo real de la importación OC-118, en pesos</h6>
                 <div class="cimp__r"><span>Mercadería FOB</span><b>6.100.000</b></div>
                 <div class="cimp__r"><span>Flete y seguro</span><b>720.000</b></div>
                 <div class="cimp__r"><span>Derechos y tasas</span><b>980.000</b></div>
@@ -1733,7 +1735,7 @@ body{padding-left:var(--side-w)}
 
     <div class="imp">
       <article class="imp__i rv">
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M9 4v16"/></svg>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M9 4v16"/></svg>
         <h4>El asiento que nadie carga</h4>
         <div class="imp__ad">
           <div class="imp__a"><span>Hoy</span><p>La operación pasa primero y la contabilidad la alcanza después, con alguien releyendo comprobantes para reconstruir lo que ya ocurrió.</p></div>
@@ -1741,7 +1743,7 @@ body{padding-left:var(--side-w)}
         </div>
       </article>
       <article class="imp__i rv">
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h4l2-7 4 14 2-7h6"/><circle cx="19" cy="6" r="2"/></svg>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12h4l2-7 4 14 2-7h6"/><circle cx="19" cy="6" r="2"/></svg>
         <h4>El costo real de lo que se importa</h4>
         <div class="imp__ad">
           <div class="imp__a"><span>Hoy</span><p>El flete, los derechos y el despacho llegan en momentos distintos y en papeles distintos. Saber cuánto costó de verdad una unidad es una cuenta que se rehace a mano cada vez.</p></div>
@@ -1749,7 +1751,7 @@ body{padding-left:var(--side-w)}
         </div>
       </article>
       <article class="imp__i rv">
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 15h6M9 11h3"/></svg>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 15h6M9 11h3"/></svg>
         <h4>Lo que necesita el estudio contable</h4>
         <div class="imp__ad">
           <div class="imp__a"><span>Hoy</span><p>Cada cierre es un pedido de información que alguien de Okinoi arma juntando planillas y comprobantes.</p></div>
@@ -1762,7 +1764,7 @@ body{padding-left:var(--side-w)}
     <p class="lede rv" style="margin-top:12px">Esto no es una lista de funcionalidades. Son nueve circuitos de la operación de Okinoi y qué cambia en cada uno.</p>
     <div class="imp">
       <article class="imp__i rv">
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 3h2.2l2.1 10.3a1.6 1.6 0 0 0 1.6 1.3h8.4a1.6 1.6 0 0 0 1.6-1.3L20 6.2H6"/><circle cx="9.5" cy="19" r="1.5"/><circle cx="17" cy="19" r="1.5"/></svg>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 3h2.2l2.1 10.3a1.6 1.6 0 0 0 1.6 1.3h8.4a1.6 1.6 0 0 0 1.6-1.3L20 6.2H6"/><circle cx="9.5" cy="19" r="1.5"/><circle cx="17" cy="19" r="1.5"/></svg>
         <h4>El pedido del comercio de la red</h4>
         <div class="imp__ad">
           <div class="imp__a"><span>Hoy</span><p>El comercio del interior compra cuando pasa el viajante o cuando llama. Entre visita y visita, el pedido espera.</p></div>
@@ -1770,7 +1772,7 @@ body{padding-left:var(--side-w)}
         </div>
       </article>
       <article class="imp__i rv">
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 12.5a7.5 7.5 0 0 1-10.6 6.8L4 21l1.7-5.6A7.5 7.5 0 1 1 20.5 12.5Z"/><path d="M9 11h6"/><path d="M9 14h3.5"/></svg>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 12.5a7.5 7.5 0 0 1-10.6 6.8L4 21l1.7-5.6A7.5 7.5 0 1 1 20.5 12.5Z"/><path d="M9 11h6"/><path d="M9 14h3.5"/></svg>
         <h4>El pedido escrito como se dicta</h4>
         <div class="imp__ad">
           <div class="imp__a"><span>Hoy</span><p>Para comprar en la tienda hay que saber el nombre exacto: «kit de transmisión DID YBR 125». El que no lo sabe, pregunta, y esa consulta cae en alguien de Okinoi.</p></div>
@@ -1778,15 +1780,15 @@ body{padding-left:var(--side-w)}
         </div>
       </article>
       <article class="imp__i rv">
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 12.6 12.4 20.7a1.7 1.7 0 0 1-2.4 0l-6.7-6.7a1.7 1.7 0 0 1-.5-1.4l.6-6.1a1.7 1.7 0 0 1 1.5-1.5l6.1-.6a1.7 1.7 0 0 1 1.4.5l6.7 6.7a1.7 1.7 0 0 1 0 2.4Z"/><circle cx="8.4" cy="8.4" r="1.4"/></svg>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 12.6 12.4 20.7a1.7 1.7 0 0 1-2.4 0l-6.7-6.7a1.7 1.7 0 0 1-.5-1.4l.6-6.1a1.7 1.7 0 0 1 1.5-1.5l6.1-.6a1.7 1.7 0 0 1 1.4.5l6.7 6.7a1.7 1.7 0 0 1 0 2.4Z"/><circle cx="8.4" cy="8.4" r="1.4"/></svg>
         <h4>El precio según el cliente</h4>
         <div class="imp__ad">
-          <div class="imp__a"><span>Hoy</span><p>El mismo artículo tiene varios precios, y la regla vive en la cabeza del equipo.<span class="imp__q">«muchos precios distintos si el norte si el sur si es Mercado libre si lo paga con tarjeta si lo paga con cuotas», Bruno, marzo 2025</span></p></div>
+          <div class="imp__a"><span>Hoy</span><p>El mismo artículo tiene varios precios, y la regla vive en la cabeza del equipo.<span class="imp__q">«muchos precios distintos si el norte si el sur si es Mercado Libre si lo paga con tarjeta si lo paga con cuotas», Bruno, marzo 2025</span></p></div>
           <div class="imp__d"><span>Con el ecosistema</span><p>Las reglas de precio pasan a ser una tabla que Okinoi edita: cliente o grupo, zona, canal, medio de pago, cuotas. Los canales le preguntan a esa tabla en vez de mantener cada uno la suya. Los números los sigue poniendo Okinoi.</p></div>
         </div>
       </article>
       <article class="imp__i rv">
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="8.5" cy="7" r="3"/><path d="M2.5 20a6 6 0 0 1 12 0"/><path d="M16 4.5a3 3 0 0 1 0 5.8"/><path d="M17.8 14.2A5.6 5.6 0 0 1 21.5 20"/></svg>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8.5" cy="7" r="3"/><path d="M2.5 20a6 6 0 0 1 12 0"/><path d="M16 4.5a3 3 0 0 1 0 5.8"/><path d="M17.8 14.2A5.6 5.6 0 0 1 21.5 20"/></svg>
         <h4>El pedido que toma el viajante</h4>
         <div class="imp__ad">
           <div class="imp__a"><span>Hoy</span><p>El viajante toma el pedido en el comercio, y en algún punto del camino ese pedido se carga en el sistema.</p></div>
@@ -1794,7 +1796,7 @@ body{padding-left:var(--side-w)}
         </div>
       </article>
       <article class="imp__i rv">
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.7l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.7l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="M3.3 7 12 12l8.7-5M12 22V12"/></svg>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 16V8a2 2 0 0 0-1-1.7l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.7l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="M3.3 7 12 12l8.7-5M12 22V12"/></svg>
         <h4>El stock que se publica</h4>
         <div class="imp__ad">
           <div class="imp__a"><span>Hoy</span><p>La tienda y el sistema de gestión son dos mundos. Lo que se publica online y lo que hay en el depósito se mantienen sincronizados a pulmón.</p></div>
@@ -1802,7 +1804,7 @@ body{padding-left:var(--side-w)}
         </div>
       </article>
       <article class="imp__i rv">
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-5 4 3 5-7"/><circle cx="20" cy="4" r="1.4"/></svg>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="M7 15l4-5 4 3 5-7"/><circle cx="20" cy="4" r="1.4"/></svg>
         <h4>El informe puntual</h4>
         <div class="imp__ad">
           <div class="imp__a"><span>Hoy</span><p>Cada corte nuevo que pide la dirección es un desarrollo.<span class="imp__q">«[Alejandro pidió] un informe de la deuda que tenían los viajantes… y eso fue un desarrollo que le demoró a [el proveedor] como una semana y media», Bruno, marzo 2025</span></p></div>
@@ -1810,7 +1812,7 @@ body{padding-left:var(--side-w)}
         </div>
       </article>
       <article class="imp__i rv">
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h4"/></svg>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h4"/></svg>
         <h4>Cobros y el módulo de pagos</h4>
         <div class="imp__ad">
           <div class="imp__a"><span>Hoy</span><p>El módulo de pagos existe pero no se usa. Es trabajo ya construido que no está rindiendo.<span class="imp__q">«no es que no está desarrollando, no se usa», Bruno, marzo 2025</span></p></div>
@@ -1818,7 +1820,7 @@ body{padding-left:var(--side-w)}
         </div>
       </article>
       <article class="imp__i rv">
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="7" rx="2"/><rect x="2" y="14" width="20" height="7" rx="2"/><path d="M6 6.5h.01M6 17.5h.01"/></svg>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="7" rx="2"/><rect x="2" y="14" width="20" height="7" rx="2"/><path d="M6 6.5h.01M6 17.5h.01"/></svg>
         <h4>Dónde vive el dato</h4>
         <div class="imp__ad">
           <div class="imp__a"><span>Hoy</span><p>La operación está partida entre dos bases, con una migración empezada y sin terminar. Y no hay servidor propio: el respaldo es un disco externo compartido.</p></div>
@@ -1826,7 +1828,7 @@ body{padding-left:var(--side-w)}
         </div>
       </article>
       <article class="imp__i rv">
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M12 8v4"/><path d="M12 15.5h.01"/></svg>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M12 8v4"/><path d="M12 15.5h.01"/></svg>
         <h4>La garantía que vuelve</h4>
         <div class="imp__ad">
           <div class="imp__a"><span>Hoy</span><p>Un reclamo de garantía se sigue por teléfono y planilla. Saber cuántos hay abiertos, cuáles esperan respuesta de fábrica y cuál se venció es una consulta a mano cada vez.</p></div>
@@ -1883,22 +1885,22 @@ body{padding-left:var(--side-w)}
     <h3 class="rv h-sub">Qué cubre el abono</h3>
     <div class="deliv deliv--2">
       <div class="deliv__i rv">
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
         <span class="qty">Permanente</span><h4>Soporte técnico</h4>
         <p>Canal directo con el equipo que construyó la plataforma. Incidencias atendidas en el día hábil y correcciones sin cargo.</p>
       </div>
       <div class="deliv__i rv">
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 7c0-1.7 3.6-3 8-3s8 1.3 8 3-3.6 3-8 3-8-1.3-8-3z"/><path d="M4 7v10c0 1.7 3.6 3 8 3s8-1.3 8-3V7"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7c0-1.7 3.6-3 8-3s8 1.3 8 3-3.6 3-8 3-8-1.3-8-3z"/><path d="M4 7v10c0 1.7 3.6 3 8 3s8-1.3 8-3V7"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg>
         <span class="qty">Incluida</span><h4>Base de datos e infraestructura</h4>
         <p>Servidores, base de datos, respaldos automáticos y monitoreo. Okinoi deja de depender de un disco compartido.</p>
       </div>
       <div class="deliv__i rv">
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>
         <span class="qty">Hasta 80 h/mes</span><h4>Evolución continua</h4>
         <p>Ajustes, pantallas nuevas y funcionalidad que Okinoi vaya necesitando, dentro de una banda mensual acordada.</p>
       </div>
       <div class="deliv__i rv">
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 9h20M8 14h8"/></svg>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 9h20M8 14h8"/></svg>
         <span class="qty">Semanal</span><h4>Trabajo en conjunto</h4>
         <p>Reunión semanal de trabajo, tablero de prioridades compartido y reporte mensual de lo entregado.</p>
       </div>
@@ -1914,17 +1916,17 @@ body{padding-left:var(--side-w)}
 
     <div class="med">
       <article class="med__i rv">
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 12.5a7.5 7.5 0 0 1-10.6 6.8L4 21l1.7-5.6A7.5 7.5 0 1 1 20.5 12.5Z"/><path d="M9 11h6M9 14h3.5"/></svg>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 12.5a7.5 7.5 0 0 1-10.6 6.8L4 21l1.7-5.6A7.5 7.5 0 1 1 20.5 12.5Z"/><path d="M9 11h6M9 14h3.5"/></svg>
         <strong>Qué trae Okinoi</strong>
         <span>Lo que apareció esa semana: lo que costó más de lo que debía, lo que faltó, el caso que el sistema no contemplaba y alguien resolvió a mano. Eso es materia prima, no una queja.</span>
       </article>
       <article class="med__i rv">
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-5 4 3 5-7"/></svg>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="M7 15l4-5 4 3 5-7"/></svg>
         <strong>Qué trae Xnod</strong>
         <span>Lo que avanzó, lo que está bloqueado esperando una definición, y qué se puede construir con las horas que quedan en el mes. Sin maquillar: si algo se atrasó, se dice ahí.</span>
       </article>
       <article class="med__i rv">
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
         <strong>Qué sale de la reunión</strong>
         <span>Una lista priorizada para la semana que viene, decidida por Okinoi. No es una reunión de estado: es donde se decide qué se construye.</span>
       </article>
@@ -1999,28 +2001,29 @@ body{padding-left:var(--side-w)}
 
     <div class="incl">
       <div class="incl__c yes rv">
-        <h4><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg> Qué incluye</h4>
+        <h4><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg> Qué incluye</h4>
         <ul>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg><span>Todo el alcance enumerado en la propuesta elegida</span></li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg><span>Capacitación al equipo de Okinoi que va a operarlo</span></li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg><span>Corrección sin cargo de cualquier desvío respecto de lo documentado</span></li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg><span>Documentación técnica y funcional de lo entregado</span></li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg><span>Dos rondas de revisión por entregable</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span>Todo el alcance enumerado en la propuesta elegida</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span>Capacitación al equipo de Okinoi que va a operarlo</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span>Corrección sin cargo de cualquier desvío respecto de lo documentado</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span>Documentación técnica y funcional de lo entregado</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span>Dos rondas de revisión por entregable</span></li>
           <li><span>El código de todo lo desarrollado y los datos quedan de Okinoi, entregados al cierre sin cargo.</span></li>
         </ul>
       </div>
       <div class="incl__c no rv">
-        <h4><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M18 6L6 18M6 6l12 12"/></svg> Qué no incluye</h4>
+        <h4><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg> Qué no incluye</h4>
         <ul>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 6L6 18M6 6l12 12"/></svg><span><strong>Consumo de inteligencia artificial.</strong> Se factura aparte según uso real, con tope mensual acordado por Okinoi</span></li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 6L6 18M6 6l12 12"/></svg><span><strong>Migración de datos históricos</strong> con sus vínculos. Se releva y se cotiza por separado</span></li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 6L6 18M6 6l12 12"/></svg><span>Carga o corrección del catálogo actual de la tienda</span></li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 6L6 18M6 6l12 12"/></svg><span>Impuestos, licencias de terceros, hardware y conectividad</span></li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 6L6 18M6 6l12 12"/></svg><span>Cualquier servicio no descrito expresamente, con independencia de su relación con los entregables descritos</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg><span><strong>Consumo de inteligencia artificial.</strong> Se factura aparte según uso real, con tope mensual acordado por Okinoi</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg><span><strong>Migración de datos históricos</strong> con sus vínculos. Se releva y se cotiza por separado</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg><span>Carga o corrección del catálogo actual de la tienda</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg><span>Impuestos, licencias de terceros, hardware y conectividad</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg><span>Cualquier servicio no descrito expresamente, con independencia de su relación con los entregables descritos</span></li>
         </ul>
       </div>
     </div>
 
+    <h3 class="rv h-sub">Condiciones</h3>
     <div class="fine rv">
       <ul>
         <li><b>Defecto y cambio no son lo mismo.</b> Un defecto es una desviación de lo documentado y se corrige sin cargo. Un cambio es funcionalidad fuera del alcance y se cotiza antes de ejecutarse.</li>
@@ -2040,7 +2043,7 @@ body{padding-left:var(--side-w)}
     <p class="lede rv">Del sí a la primera línea de código hay cinco pasos y ninguno es protocolar. Acá está qué pasa en cada uno, qué pone cada lado y cuánto demora.</p>
     <div class="pasos" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,330px),1fr))">
       <div class="paso rv">
-        <svg class="paso__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+        <svg class="paso__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
         <h4>Okinoi elige una propuesta</h4>
         <p>Okinoi define si toma la Propuesta N.º 1 sola, la N.º 2 sola, o la N.º 1 como entrada al ecosistema. La decisión la toma quien firma: si esa persona no estuvo en la reunión, Xnod se la vuelve a presentar, presencial o por videollamada, sin costo.</p>
         <ul class="opt__list" style="margin-top:13px">
@@ -2050,7 +2053,7 @@ body{padding-left:var(--side-w)}
         <div class="fase__crit"><b>Cuánto demora</b>El tiempo que Okinoi necesite. Los valores de esta propuesta rigen hasta el 27 de septiembre de 2026. Todavía no corre ningún plazo de entrega.</div>
       </div>
       <div class="paso rv">
-        <svg class="paso__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 13h6M9 17h4"/></svg>
+        <svg class="paso__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 13h6M9 17h4"/></svg>
         <h4>Alcance final, accesos y criterios</h4>
         <p>Una reunión de trabajo de unas dos horas con el referente, más el acceso al catálogo. De ahí sale una carilla con el alcance cerrado del hito 1, la lista de 30 consultas reales y los 4 escenarios de precio. Esa carilla es lo que se firma, y es la vara con la que se aprueba cada hito.</p>
         <ul class="opt__list" style="margin-top:13px">
@@ -2060,9 +2063,9 @@ body{padding-left:var(--side-w)}
         <div class="fase__crit"><b>Cuánto demora</b>5 días hábiles desde que Xnod tiene los accesos. Si algo falta, el reloj no arranca y se avisa el mismo día.</div>
       </div>
       <div class="paso rv">
-        <svg class="paso__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2M4 7v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7"/><path d="M9 13h6"/><path d="M12 10v6"/></svg>
+        <svg class="paso__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M4 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2M4 7v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7"/><path d="M9 13h6"/><path d="M12 10v6"/></svg>
         <h4>Firma y acreditación del hito 1</h4>
-        <p>Se firma la carilla del alcance y se acredita el primer pago, el 40 % (USD 3.600). Ninguna tarea comienza antes de la acreditación, y desde ese día corre el plazo de entrega.</p>
+        <p>Se firma la carilla del alcance y se acredita el primer pago, el 40% (USD 3.600). Ninguna tarea comienza antes de la acreditación, y desde ese día corre el plazo de entrega.</p>
         <ul class="opt__list" style="margin-top:13px">
           <li><span><b>Okinoi pone.</b> La firma y la transferencia del primer pago.</span></li>
           <li><span><b>Xnod pone.</b> La factura, y la fecha de entrega comprometida contada desde el día de la acreditación.</span></li>
@@ -2070,7 +2073,7 @@ body{padding-left:var(--side-w)}
         <div class="fase__crit"><b>Cuánto demora</b>El plazo de 60 días corridos empieza a contar el día que se acredita, no el día que se firma.</div>
       </div>
       <div class="paso rv">
-        <svg class="paso__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.2 2"/></svg>
+        <svg class="paso__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.2 2"/></svg>
         <h4>Arranque y avance semanal</h4>
         <p>La primera semana se monta el entorno, se conecta la lectura del catálogo y se hace la reunión de arranque con el referente. Desde ahí, un avance por escrito todas las semanas: lo hecho, lo que viene, y lo que está bloqueado esperando algo de Okinoi.</p>
         <ul class="opt__list" style="margin-top:13px">
@@ -2080,7 +2083,7 @@ body{padding-left:var(--side-w)}
         <div class="fase__crit"><b>Cuánto demora</b>Arranca el día de la acreditación y corre hasta la entrega.</div>
       </div>
       <div class="paso rv">
-        <svg class="paso__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+        <svg class="paso__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
         <h4>Entrega y aceptación, hito por hito</h4>
         <p>Cada hito se prueba contra su criterio escrito: 27 de las 30 consultas resueltas en el hito 1, el carrito armado con la lista correcta en los cuatro escenarios de precio en el hito 2, y cinco días hábiles en producción sin incidencias bloqueantes en el hito 3. Si pasa, se aprueba y se factura el siguiente. Si no pasa, Xnod corrige sin costo. La aceptación no es una opinión: es una lista que se cuenta.</p>
         <ul class="opt__list" style="margin-top:13px">
@@ -2199,6 +2202,10 @@ body{padding-left:var(--side-w)}
       '¿Tenés pastillas de freno para la CBF 250?'
     ];
     if(reduce){ q.textContent=frases[0]; r.classList.add('on'); return; }
+    var visible=true;
+    if(window.IntersectionObserver){
+      new IntersectionObserver(function(es){ visible=es[0].isIntersecting; }).observe(document.querySelector('.ai'));
+    }
     var cur=document.createElement('span'); cur.className='ai__cur';
     var fi=0,ci=0,borrando=false;
     function paso(){
@@ -2210,6 +2217,7 @@ body{padding-left:var(--side-w)}
         ci-=3; if(ci<=0){ ci=0; borrando=false; fi=(fi+1)%frases.length; }
       }
       q.textContent=f.slice(0,ci); q.appendChild(cur);
+      if(document.hidden || !visible){ setTimeout(paso, 400); return; }
       setTimeout(paso, borrando?18:(38+Math.random()*45));
     }
     paso();
