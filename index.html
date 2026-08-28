@@ -656,6 +656,17 @@ table.t tbody tr:hover{background:var(--surface)}
 .tab__n--sub{font-family:var(--f-mono);font-size:9px;letter-spacing:.1em;opacity:.6}
 
 
+
+/* ---- los proximos pasos como linea de tiempo ---- */
+#sec-reco .pasos{grid-template-columns:1fr;gap:0;position:relative;padding-left:38px;margin-top:44px}
+#sec-reco .pasos::before{content:"";position:absolute;left:11px;top:12px;bottom:26px;width:2px;background:var(--line)}
+#sec-reco .paso{border-top:none;padding:0 0 34px;position:relative}
+#sec-reco .paso:last-child{padding-bottom:0}
+#sec-reco .paso::before{content:"";position:absolute;left:-33px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--signal);box-shadow:0 0 0 4px var(--paper)}
+#sec-reco .paso__ico{position:absolute;left:-33px;top:6px;width:12px;height:12px;opacity:0}
+#sec-reco .paso h4{font-size:19px;margin-bottom:9px}
+@media (max-width:660px){#sec-reco .pasos{padding-left:28px}#sec-reco .pasos::before{left:7px}#sec-reco .paso::before{left:-27px}}
+
 /* ---- la tarifa flat ---- */
 .flat{margin-top:40px;border:1px solid var(--line-strong);background:var(--surface)}
 .flat__h{padding:24px 26px 20px;border-bottom:1px solid var(--line)}
@@ -2041,7 +2052,7 @@ body{padding-left:var(--side-w)}
     <div class="eyebrow rv">Cómo seguimos</div>
     <h2 class="h-sec rv">Los próximos cinco pasos</h2>
     <p class="lede rv">Del sí a la primera línea de código hay cinco pasos y ninguno es protocolar. Acá está qué pasa en cada uno, qué pone cada lado y cuánto demora.</p>
-    <div class="pasos" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,330px),1fr))">
+    <div class="pasos">
       <div class="paso rv">
         <svg class="paso__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
         <h4>Okinoi elige una propuesta</h4>
